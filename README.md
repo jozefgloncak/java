@@ -1,1 +1,2 @@
-# java
+# JAVA
+Repository for java examples
