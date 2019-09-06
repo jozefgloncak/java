@@ -1,5 +1,0 @@
-
-::::::Start of number generator
-Notif in NumberGenerator. New generated number 374.
- EvenNumberObserver 3: generated 374.
-:::::Stop of number generator
