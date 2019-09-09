@@ -11,17 +11,15 @@ import java.util.List;
 import java.util.Random;
 
 public class NumberGeneratorImpl implements NumberGenerator {
-    private CustomizedBufferedWriter fw;
     private List<Observer> observersForOddNumberGenerated = new ArrayList<>();
     private List<Observer> observersForEvenNumberGenerated = new ArrayList<>();
     private List<Observer> observersFor3DivisibleNumberGenerated = new ArrayList<>();
 
-    Observable thisNumberGenerator = this;
-    Observer numberGeneratedObserver;
-    Thread threadForNumGenerator;
+    private Observable thisNumberGenerator = this;
+    private Observer numberGeneratedObserver;
+    private Thread threadForNumGenerator;
 
     public NumberGeneratorImpl(CustomizedBufferedWriter fw) {
-        this.fw = fw;
         this.numberGeneratedObserver = new CustomObserver(fw);
     }
 
@@ -77,7 +75,7 @@ public class NumberGeneratorImpl implements NumberGenerator {
      *
      * This code is run in standalone thread.
      */
-    private class NumGenerator implements Runnable, Observable {
+    private static class NumGenerator implements Runnable, Observable {
         /**
          * Generator for random numbers
          */
@@ -120,7 +118,7 @@ public class NumberGeneratorImpl implements NumberGenerator {
      */
     private class CustomObserver extends ObserverCommon {
 
-        public CustomObserver(CustomizedBufferedWriter fw) {
+        private CustomObserver(CustomizedBufferedWriter fw) {
             super(fw);
         }
 
@@ -130,14 +128,14 @@ public class NumberGeneratorImpl implements NumberGenerator {
                 final int newData = Math.abs((int) data) % 1000;
                 fw.writeLn(String.format("Notif in NumberGenerator. New generated number %d.", newData));
 
-                if ((Integer)newData % 2 == 0) {
+                if (newData % 2 == 0) {
                     observersForEvenNumberGenerated.forEach(
                             observer -> observer.update(thisNumberGenerator, newData));
                 } else {
                     observersForOddNumberGenerated.forEach(
                             observer -> observer.update(thisNumberGenerator, newData));
                 }
-                if ((Integer)newData % 3 == 0 ) {
+                if (newData % 3 == 0 ) {
                     observersFor3DivisibleNumberGenerated.forEach(
                             observer -> observer.update(thisNumberGenerator, newData));
                 }
@@ -148,6 +146,6 @@ public class NumberGeneratorImpl implements NumberGenerator {
         public void updateWithNoData(Observable observable) {
             fw.writeLn("Notification accepted in NumberGenerator about new generated number");
         }
-    };
+    }
 
 }

@@ -13,6 +13,9 @@ Source code is placed to the package _gloncak.jozef.design.pattern_ which consis
 * impl - concrete implementations of interfaces __Observer__   and __NumbeGenerator__
 * writer - helping class for easier file log outputing cross whole application.
 
+
+<img src="https://www.plantuml.com/plantuml/img/dLLDJuD04BtpApRnWXyzUQmnZQsQ9aOJOzBpbXtQCR3Rp2xLQFplJbcW2uKsoWMOUMy-tip2n3f9hiYpA7BeCX3JJ5ehPYXN97EH6X8ABAwqs4ZdWBHuMLgWBL0KeMP3AXEeR7B9_E_evz03n7R1rwNO6bIYs2Zf80vefdcyOiux94umH9v7dXQm5kZMpsR6pdx--RZYS15Y1MwkOZQrYdekyYNG8sWWwRX3-7IWbMst4IGkDQhW43S9Af_P3BW8LcWvv_qMj4zPgn4tie3trU_z0LwK6kARqdMSVZt3BLhajluJfT1D6JLlfwofNkOphsvIxirXg_DyatK41fgQF3VQxufSMaUIv-qZT238TCX1EnkkKbdUcKXHoqnC2vv1Zb-Wxeeq1GAr8EHoHVenRYDtTQDgZ3nMXqbfJGeYJZ9NGIy7gfzinVCyQKZqFmLfLhHa1LfqDzYVhj5HAKh44q_ofavxsqpHFfZzbjNhh4vpzlF-0wahJK3rtE0SkZNQJhFZ4CIzwNQGsbx1tjO4Kd6StOsJSx1EfAYb-bxJGExNGklwszJ-qdcUrtr_g8-CD-gRxELerCez26edwWzsmRZUtHr4zv_QGVZf1USs9wm0_rP-0G00">
+
 # Program
 After starting of program generation of numbers will automatically start. Logs from generating are stored in _output.txt_.
 In console you can specify several commands (see it by typing _help_ in running program):
