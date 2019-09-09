@@ -9,10 +9,19 @@ public class CustomizedBufferedWriter extends BufferedWriter {
         super(out);
     }
 
+    public void writeLn(String str)  {
+        try {
+            super.write(String.format("%s%n", str));
+            super.flush();
+        } catch (IOException e) {
+            System.out.println("Problem with writting to output file");
+        }
+    }
+
     @Override
     public void write(String str)  {
         try {
-            super.write(String.format("%s%n", str));
+            super.write(String.format("%s", str));
             super.flush();
         } catch (IOException e) {
             System.out.println("Problem with writting to output file");

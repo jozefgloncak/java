@@ -6,7 +6,7 @@ import gloncak.jozef.design.pattern.observer.writer.CustomizedBufferedWriter;
 /**
  * Observer for even number 0, 2, 4, 6....
  */
-public class EvenNumberObserverImpl extends ObserverAdapter {
+public class EvenNumberObserverImpl extends ObserverCommon {
 
     public EvenNumberObserverImpl(CustomizedBufferedWriter fw) {
         super(fw);
@@ -14,7 +14,8 @@ public class EvenNumberObserverImpl extends ObserverAdapter {
 
     @Override
     public void update(Observable observable, Object data) {
-        fw.write(String.format(" EvenNumberObserver %d: generated %d.", id, data));
+        fw.write(" EvenNumberObserver");
+        super.update(observable, data);
     }
 
     @Override

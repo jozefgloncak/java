@@ -3,7 +3,10 @@ package gloncak.jozef.design.pattern.observer.impl.dp;
 import gloncak.jozef.design.pattern.observer.api.dp.Observable;
 import gloncak.jozef.design.pattern.observer.writer.CustomizedBufferedWriter;
 
-public class Number3DivisibleNumberObserverImpl extends ObserverAdapter {
+/**
+ * Observer for numbers which are divisible by number 3
+ */
+public class Number3DivisibleNumberObserverImpl extends ObserverCommon {
 
     public Number3DivisibleNumberObserverImpl(CustomizedBufferedWriter fw) {
         super(fw);
@@ -11,7 +14,8 @@ public class Number3DivisibleNumberObserverImpl extends ObserverAdapter {
 
     @Override
     public void update(Observable observable, Object data) {
-        fw.write(String.format(" 3NumberDivisibleNumberObserver %d: generated %d.", id, data));
+        fw.write(" 3NumberDivisibleNumberObserver");
+        super.update(observable, data);
     }
 
     @Override

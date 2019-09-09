@@ -25,5 +25,5 @@ public interface Observer {
      *
      * @return integer with ID of observer
      */
-    int getID();
+    int getId();
 }

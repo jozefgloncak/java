@@ -9,8 +9,7 @@ import gloncak.jozef.design.pattern.observer.writer.CustomizedBufferedWriter;
 import java.io.*;
 
 /**
- * Hello world!
- *
+ * Class which wrap call of main method
  */
 public class Main
 {
@@ -82,13 +81,13 @@ public class Main
             numberGenerator = null;
         }
         System.out.println("Stop of number generator");
-        fw.write(":::::Stop of number generator");
+        fw.writeLn(":::::Stop of number generator");
     }
 
     private static void handleStartGenerator() {
         System.out.println("Start of number generator");
-        fw.write("");
-        fw.write("::::::Start of number generator");
+        fw.writeLn("");
+        fw.writeLn("::::::Start of number generator");
 
         numberGenerator = new NumberGeneratorImpl(fw);
         numberGenerator.startGenerate();
