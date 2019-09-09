@@ -1,4 +1,4 @@
-package gloncak.jozef.design.pattern;
+package gloncak.jozef.design.pattern.observer;
 
 //import static org.junit.Assert.assertTrue;
 //

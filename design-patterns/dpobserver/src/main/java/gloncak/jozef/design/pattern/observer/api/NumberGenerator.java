@@ -1,7 +1,7 @@
-package gloncak.jozef.design.pattern.api;
+package gloncak.jozef.design.pattern.observer.api;
 
-import gloncak.jozef.design.pattern.api.dp.Observable;
-import gloncak.jozef.design.pattern.api.dp.Observer;
+import gloncak.jozef.design.pattern.observer.api.dp.Observable;
+import gloncak.jozef.design.pattern.observer.api.dp.Observer;
 
 /**
  * Is responsible for starting and stopping of generation of number and

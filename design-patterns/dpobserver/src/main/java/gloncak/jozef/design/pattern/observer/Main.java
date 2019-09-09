@@ -1,10 +1,10 @@
-package gloncak.jozef.design.pattern;
+package gloncak.jozef.design.pattern.observer;
 
-import gloncak.jozef.design.pattern.impl.NumberGeneratorImpl;
-import gloncak.jozef.design.pattern.impl.dp.EvenNumberObserverImpl;
-import gloncak.jozef.design.pattern.impl.dp.Number3DivisibleNumberObserverImpl;
-import gloncak.jozef.design.pattern.impl.dp.OddNumberObserverImpl;
-import gloncak.jozef.design.pattern.writer.CustomizedBufferedWriter;
+import gloncak.jozef.design.pattern.observer.impl.NumberGeneratorImpl;
+import gloncak.jozef.design.pattern.observer.impl.dp.EvenNumberObserverImpl;
+import gloncak.jozef.design.pattern.observer.impl.dp.Number3DivisibleNumberObserverImpl;
+import gloncak.jozef.design.pattern.observer.impl.dp.OddNumberObserverImpl;
+import gloncak.jozef.design.pattern.observer.writer.CustomizedBufferedWriter;
 
 import java.io.*;
 

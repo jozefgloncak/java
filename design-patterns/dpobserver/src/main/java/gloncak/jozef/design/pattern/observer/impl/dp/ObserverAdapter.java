@@ -1,8 +1,8 @@
-package gloncak.jozef.design.pattern.impl.dp;
+package gloncak.jozef.design.pattern.observer.impl.dp;
 
-import gloncak.jozef.design.pattern.api.dp.Observable;
-import gloncak.jozef.design.pattern.api.dp.Observer;
-import gloncak.jozef.design.pattern.writer.CustomizedBufferedWriter;
+import gloncak.jozef.design.pattern.observer.api.dp.Observable;
+import gloncak.jozef.design.pattern.observer.api.dp.Observer;
+import gloncak.jozef.design.pattern.observer.writer.CustomizedBufferedWriter;
 
 public abstract class ObserverAdapter implements Observer {
 

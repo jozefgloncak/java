@@ -1,4 +1,4 @@
-package gloncak.jozef.design.pattern.api.dp;
+package gloncak.jozef.design.pattern.observer.api.dp;
 
 /**
  * Own implementation of Observable interface

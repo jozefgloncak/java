@@ -1,14 +1,11 @@
-package gloncak.jozef.design.pattern.impl;
+package gloncak.jozef.design.pattern.observer.impl;
 
-import gloncak.jozef.design.pattern.api.NumberGenerator;
-import gloncak.jozef.design.pattern.api.dp.Observable;
-import gloncak.jozef.design.pattern.api.dp.Observer;
-import gloncak.jozef.design.pattern.impl.dp.ObserverAdapter;
-import gloncak.jozef.design.pattern.writer.CustomizedBufferedWriter;
+import gloncak.jozef.design.pattern.observer.api.NumberGenerator;
+import gloncak.jozef.design.pattern.observer.api.dp.Observable;
+import gloncak.jozef.design.pattern.observer.api.dp.Observer;
+import gloncak.jozef.design.pattern.observer.impl.dp.ObserverAdapter;
+import gloncak.jozef.design.pattern.observer.writer.CustomizedBufferedWriter;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;

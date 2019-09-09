@@ -1,4 +1,4 @@
-package gloncak.jozef.design.pattern.writer;
+package gloncak.jozef.design.pattern.observer.writer;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
