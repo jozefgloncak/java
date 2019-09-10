@@ -1,0 +1,77 @@
+@startuml
+
+title Class diagram for design pattern Facade
+
+class State {
+    -String name
+    -int stateId
+    -List<int> districts
+}
+
+class District {
+    -String name
+    -int districtID
+    -int belongsToState
+    -List<int> settlements
+}
+
+
+class Settlement {
+    -String name
+    -int settlementId
+    -int belongsToDistrict
+    -int settlementType
+}
+
+class Person {
+    -String name
+    -int personID
+    -int permanentStay
+    -List<int> previousStay
+}
+
+class Citizens {
+    -Map<int, Person> citizens
+}
+
+class PersonInfoFacade {
+    -AdministrativeUnits administrativeUnits
+    -Citizenes citizenes
+
+    +PersonInfoDTO getFullPersonInfo(int personID);
+}
+
+class PersonInfoDTO {
+    -String name
+    -String permanentStay,
+    -String district
+    -String state
+}
+
+class AdministrativeUnits {
+    -Map<id, State> states
+    -Map<id, District> districts
+    -Map<id, Settlement> settlements
+}
+
+class DataAccessor {
+
+}
+
+State o-- District
+District o-- Settlement
+
+Citizens o--Person
+AdministrativeUnits o-- State
+AdministrativeUnits o-- District
+AdministrativeUnits o-- Settlement
+Person -- Settlement
+
+DataAccessor o-- PersonInfoFacade
+PersonInfoDTO -- PersonInfoFacade
+PersonInfoFacade o-- Citizens
+PersonInfoFacade o-- AdministrativeUnits
+
+
+
+@enduml
