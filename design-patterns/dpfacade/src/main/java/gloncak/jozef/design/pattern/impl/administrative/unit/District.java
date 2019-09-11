@@ -1,5 +1,6 @@
 package gloncak.jozef.design.pattern.impl.administrative.unit;
 
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -13,6 +14,7 @@ public class District extends AdministrativeUnit {
 
     public District(String districtName) {
         this.id = idGenerator++;
+        this.settlements = new HashSet<>();
         setName(districtName);
     }
 
@@ -28,8 +30,8 @@ public class District extends AdministrativeUnit {
         return settlements;
     }
 
-    public void setSettlements(Set<Integer> settlements) {
-        this.settlements = settlements;
+    public void addSettlement(int settlementId) {
+        this.settlements.add(settlementId);
     }
 
 }

@@ -9,8 +9,9 @@ public class Settlement extends AdministrativeUnit {
     private int belongsToDistrict;
     private SettlementType settlementType;
 
-    public Settlement() {
+    public Settlement(String settlementName) {
         this.id = idGenerator++;
+        setName(settlementName);
     }
 
     public int getBelongsToDistrict() {
