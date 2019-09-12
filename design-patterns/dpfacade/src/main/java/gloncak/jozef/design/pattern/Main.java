@@ -1,17 +1,31 @@
 package gloncak.jozef.design.pattern;
 
 import gloncak.jozef.design.pattern.impl.administrative.AdministrativeUnits;
-import gloncak.jozef.design.pattern.impl.person.Citizens;
+import gloncak.jozef.design.pattern.impl.facade.CitizenInfoFacade;
+import gloncak.jozef.design.pattern.impl.citizen.Citizens;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Optional;
 
 public class Main {
+    public static final Logger LOG = LoggerFactory.getLogger(Main.class);
+
     public static void main(String[] args) {
+        //creation of dummy backend system
         AdministrativeUnits administrativeUnits = generateDataToAdministrativeSubsystem();
         Citizens citizens = generateDataToCitizens();
-        System.out.println(administrativeUnits);
-    }
 
+        //creation of facade for backend system
+        CitizenInfoFacade citizenInfoFacade = new CitizenInfoFacade(administrativeUnits, citizens);
+
+        //accessing data from backend system through facade
+        LOG.info(citizenInfoFacade.getFullCitizenInfo(1).toString());
+        LOG.info(citizenInfoFacade.getFullCitizenInfo(2).toString());
+        LOG.info(citizenInfoFacade.getFullCitizenInfo(3).toString());
+        LOG.info(citizenInfoFacade.getFullCitizenInfo(4).toString());
+        LOG.info(citizenInfoFacade.getFullCitizenInfo(5).toString());
+    }
 
     /**
      * Generate example data for demonstration.

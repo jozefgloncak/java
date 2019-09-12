@@ -45,7 +45,7 @@ public class AdministrativeUnits {
      * @param settlementId id of settlement
      * @return return Optional with {@link Settlement if exists} or empty Optional otherwise.
      */
-    Optional<Settlement> findInSettlement(int settlementId) {
+    public Optional<Settlement> findInSettlement(int settlementId) {
         return Optional.ofNullable(idToSettlement.get(settlementId));
     }
 
@@ -55,7 +55,7 @@ public class AdministrativeUnits {
      * @param districtId id of district
      * @return return Optional with {@link District if exists} or empty Optional otherwise.
      */
-    Optional<District> findInDistrict(int districtId) {
+    public Optional<District> findInDistrict(int districtId) {
         return Optional.ofNullable(idToDistrict.get(districtId));
     }
 
@@ -65,7 +65,7 @@ public class AdministrativeUnits {
      * @param stateId id of state
      * @return return Optional with {@link State if exists} or empty Optional otherwise.
      */
-    Optional<State> findInState(int stateId) {
+    public Optional<State> findInState(int stateId) {
         return Optional.ofNullable(idToState.get(stateId));
     }
 
@@ -115,6 +115,7 @@ public class AdministrativeUnits {
             return result;
         }
         final District newDistrict = new District(districtName);
+        newDistrict.setBelongsToState(stateId);
         final int newDistrictId = newDistrict.getId();
         state.addDistrict(newDistrictId);
         idToDistrict.put(newDistrictId, newDistrict);
@@ -156,6 +157,7 @@ public class AdministrativeUnits {
             return result;
         }
         final Settlement newSettlement = new Settlement(settlementName);
+        newSettlement.setBelongsToDistrict(districtId);
         final int newSettlementId = newSettlement.getId();
         district.addSettlement(newSettlementId);
         idToSettlement.put(newSettlementId, newSettlement);

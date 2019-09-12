@@ -23,25 +23,25 @@ class Settlement {
     -int settlementType
 }
 
-class Person {
+class Citizen {
     -String name
-    -int personID
+    -int citizenID
     -int permanentStay
     -List<int> previousStay
 }
 
 class Citizens {
-    -Map<int, Person> citizens
+    -Map<int, Citizen> citizens
 }
 
-class PersonInfoFacade {
+class CitizenInfoFacade {
     -AdministrativeUnits administrativeUnits
-    -Citizenes citizenes
+    -Citizenes citizens
 
-    +PersonInfoDTO getFullPersonInfo(int personID);
+    +CitizenInfoDTO getFullCitizenInfo(int citizenID);
 }
 
-class PersonInfoDTO {
+class CitizenInfoDTO {
     -String name
     -String permanentStay,
     -String district
@@ -61,16 +61,16 @@ class DataAccessor {
 State o-- District
 District o-- Settlement
 
-Citizens o--Person
+Citizens o--Citizen
 AdministrativeUnits o-- State
 AdministrativeUnits o-- District
 AdministrativeUnits o-- Settlement
-Person -- Settlement
+Citizen -- Settlement
 
-DataAccessor o-- PersonInfoFacade
-PersonInfoDTO -- PersonInfoFacade
-PersonInfoFacade o-- Citizens
-PersonInfoFacade o-- AdministrativeUnits
+DataAccessor o-- CitizenInfoFacade
+CitizenInfoDTO -- CitizenInfoFacade
+CitizenInfoFacade o-- Citizens
+CitizenInfoFacade o-- AdministrativeUnits
 
 
 

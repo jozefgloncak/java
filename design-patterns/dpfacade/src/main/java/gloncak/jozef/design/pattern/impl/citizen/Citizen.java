@@ -1,22 +1,22 @@
-package gloncak.jozef.design.pattern.impl.person;
+package gloncak.jozef.design.pattern.impl.citizen;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Model real citizen (person) in country
+ * Model real citizen (citizen) in country
  */
-public class Person {
+public class Citizen {
     private static int idGenerator = 1;
 
     private String name;
-    final private int personId;
+    final private int citizenId;
     private Integer permanentStay = null;
     final private List<Integer> previousStays;
 
-    public Person(String name) {
+    public Citizen(String name) {
         this.name = name;
-        this.personId = idGenerator++;
+        this.citizenId = idGenerator++;
         previousStays = new ArrayList<>();
     }
 
@@ -31,8 +31,8 @@ public class Person {
         return permanentStay;
     }
 
-    public int getPersonId() {
-        return personId;
+    public int getCitizenId() {
+        return citizenId;
     }
 
     public String getName() {
