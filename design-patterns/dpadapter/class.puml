@@ -1,0 +1,24 @@
+@startuml
+
+title Class diagram for design pattern Adapter.
+
+class LegacySystem
+interface LegacyMathLibrary {
+    +List<Integer> decomposeToPrimeNumbers(int number)
+    +int minimumCommonDivisor(int num1, int num2)
+}
+
+class LegacyMathLibraryImpl implements LegacyMathLibrary
+
+interface BetterMathLibrary {
+    +int[] splitToPrimes(int number)
+    +int minMutualDivisor(int n1, int n2)
+}
+
+class BetterMathLibraryImpl implements BetterMathLibrary
+class BetterMathLibraryAdapter implements LegacyMathLibrary
+
+BetterMathLibraryAdapter o-- BetterMathLibrary
+LegacySystem *-- LegacyMathLibrary
+
+@enduml
