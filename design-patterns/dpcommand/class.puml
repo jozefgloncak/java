@@ -1,0 +1,26 @@
+@startuml
+
+title Class diagram for design pattern Command
+
+class Person {
+    +destroy(Archivator archivator);
+}
+
+interface Archivator <<anonymous>> {
+    +archive()
+}
+note right:  Various implementation, archive to:\n - extern file,\n - print to console,\n - move to other array
+
+
+class Main {
+    +List<Person> persons
+    +List<Person> personArchive
+
+    +generatePersons()
+    +destroyPersons(Archivator archivator)
+}
+
+Main +-> Archivator
+Main *--> Person
+
+@enduml

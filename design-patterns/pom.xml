@@ -13,5 +13,6 @@
     <module>dpobserver</module>
     <module>dpfacade</module>
     <module>dpadapter</module>
+    <module>dpcommand</module>
   </modules>
 </project>
