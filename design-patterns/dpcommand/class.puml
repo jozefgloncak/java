@@ -14,10 +14,9 @@ note right:  Various implementation, archive to:\n - extern file,\n - print to c
 
 class Main {
     +List<Person> persons
-    +List<Person> personArchive
+    +List<Person> archive
 
     +generatePersons()
-    +destroyPersons(Archivator archivator)
 }
 
 Main +-> Archivator

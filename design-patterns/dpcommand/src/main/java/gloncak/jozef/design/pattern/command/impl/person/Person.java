@@ -10,8 +10,23 @@ import org.slf4j.LoggerFactory;
  * It is used to demonstrate usage of command design pattern
  */
 public class Person {
+    private String firstName;
+    private String surname;
 
     private static final Logger LOG = LoggerFactory.getLogger(Person.class);
+
+    public Person(String firstName, String surname) {
+        this.firstName = firstName;
+        this.surname = surname;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
 
     /**
      * Destroy person.
@@ -22,7 +37,17 @@ public class Person {
      */
     public void destroy(Archivator archivator) {
         LOG.info("Destroying inner instances in Person");
-        archivator.archive();
+        if (archivator != null) {
+            archivator.archive(this);
+        }
         LOG.info("Final destroyng activities.");
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "firstName='" + firstName + '\'' +
+                ", surname='" + surname + '\'' +
+                '}';
     }
 }
