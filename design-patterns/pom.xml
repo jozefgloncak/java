@@ -14,5 +14,6 @@
     <module>dpfacade</module>
     <module>dpadapter</module>
     <module>dpcommand</module>
+    <module>dp.servant</module>
   </modules>
 </project>
