@@ -15,5 +15,6 @@
     <module>dpadapter</module>
     <module>dpcommand</module>
     <module>dpservant</module>
+    <module>dpflyweight</module>
   </modules>
 </project>

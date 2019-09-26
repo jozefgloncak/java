@@ -1,0 +1,44 @@
+@startuml
+
+title Class diagram for design patter <b>fly weight</b>
+
+class Invitation {
+    -String title;
+    -String text;
+    -String place;
+    -String date;
+    -String time;
+    -String additionalInformaton;
+    -String template;
+
+    -String generateInvitationTemplate();
+    +String provideInvitation(Person person)
+}
+
+class InvitationGenerationService {
+
+    +generateInvitation(List<Person> personsToInvite,\n  String outputFile,\n  String template);
+}
+
+class Main {
+
+    {static} -Map<String, List<Person>> placeToPersons;
+    {static} -Map<String, List<Invitation>> placeToInvitationType
+
+    {static} -generateTownToPersons();
+    {static} -generateTownToInvitationType();
+}
+
+class Person {
+    -String title;
+    -String name;
+    -String surname;
+}
+
+Main ..> InvitationGenerationService
+Main *--> Invitation
+Main *--> Person
+Invitation ..> Person
+
+
+@enduml
