@@ -1,0 +1,32 @@
+@startuml
+
+title Class diagram for design pattern Servant
+
+enum Location {
+    CAPITAL,
+    COUNTY,
+    DISTRICT,
+    TOWN,
+    VILLAGE
+}
+
+interface Property {
+    +int getArea();
+    +Location getLocation();
+    +int getAge();
+}
+
+class InsuranceCounter {
+    +double countInsurance(Property property)
+}
+
+class BlockOfFlat implements Property
+class Cottage implements Property
+class House implements Property
+InsuranceCounter --> Property
+
+
+
+Property o--> Location
+
+@enduml
