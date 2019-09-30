@@ -1,4 +1,4 @@
-package gloncak.jozef.hello;
+package gloncak.jozef.springframework.boot.web.banner;
 
 import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;
