@@ -1,0 +1,61 @@
+@startuml
+
+title Class diagram for design pattern Decorator
+
+interface Coach {
+    +boolean isMoving();
+    +void pullBreak();
+    +void releaseOfBreak();
+}
+
+class CoachImpl implements Coach {
+    -int id;
+    -int height;
+    -int width;
+    -int length;
+    -int weight;
+     String homeDepo
+}
+
+class ElectricCoach extends CoachAdapter {
+    -boolean isElectricityTurnedOn
+
+    +void turnElectricityOn();
+    +void turnElectricityOff();
+}
+
+class ACCoach extends PersonalCoachAdapter {
+    -boolean isACOn;
+
+    +void turnACOn();
+    +void turnACOff();
+}
+
+class DoubleDeckerCoach extends PersonalCoachAdapter {
+    -int seatsNumberOnFirstFloor;
+}
+
+
+
+class PersonalCoachImpl extends CoachImpl implements PersonalCoach{
+    -int seatsNumber;
+    -boolean isToiletVacant
+}
+
+interface PersonalCoach extends Coach {
+    +int getSeatsNumber();
+    +int isToiletVacant();
+}
+
+abstract class PersonalCoachAdapter extends CoachAdapter implements PersonalCoach {
+    -PersonalCoach coach; //delegate calls to attribute
+}
+
+abstract class CoachAdapter implements Coach {
+    -Coach coach; //delegate call to this attribute
+}
+
+PersonalCoachAdapter o--> PersonalCoach
+CoachAdapter o--> Coach
+
+@enduml
