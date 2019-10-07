@@ -11,5 +11,6 @@
 
     <modules>
         <module>configuration.via.java</module>
+        <module>scopes</module>
     </modules>
 </project>
