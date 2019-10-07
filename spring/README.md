@@ -1,3 +1,9 @@
+# Structure
+
+This part contains Spring realted code and is structured as follows:
+
+* [pure framework](pure-framework/README.md) - contains examples with Spring framework only
+* [web](web/README.md) - contains WEB based examples with Spring framework 
 # 
 
 [simple REST application](https://spring.io/guides/gs/rest-service)
