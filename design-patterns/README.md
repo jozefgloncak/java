@@ -7,6 +7,7 @@ Currently there are example implementation for following design patterns from Go
 - [facade](dpfacade/README.md)
 - [adapter](dpadapter/README.md)
 - [command](dpcommand/README.md)
+- [decorator](dpdecorator/README.md)
 
 Additionally there are also other design patterns which don't belong to GoF
 

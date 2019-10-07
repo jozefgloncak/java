@@ -16,5 +16,6 @@
     <module>dpcommand</module>
     <module>dpservant</module>
     <module>dpflyweight</module>
+    <module>dp.decorator</module>
   </modules>
 </project>
