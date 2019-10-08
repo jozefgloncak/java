@@ -7,4 +7,6 @@ There are examples which depends on Spring framework core dependency. Mainly the
 * [spring application configuration through JAVA](configuration.via.java/README.md)
 * [scopes](scopes/README.md) - defining Spring bean scopes by annotations or by XML file
 * [bean lyfecycle](bean.lifecycle/README.md) - defining Spring bean lifecycle hooks for initializing and destroying
- by annotations or by XML file. 
+ by annotations or by XML file.
+* [bean postprocesors](bean.postprocesors/README.md) - define special bean which provide hooks for doing own things
+ before and after initialization 

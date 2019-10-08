@@ -13,5 +13,6 @@
         <module>configuration.via.java</module>
         <module>scopes</module>
         <module>bean.lifecycle</module>
+        <module>bean.postprocesors</module>
     </modules>
 </project>
