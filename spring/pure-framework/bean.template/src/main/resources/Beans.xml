@@ -1,0 +1,21 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<beans xmlns = "http://www.springframework.org/schema/beans"
+       xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation = "http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <bean id="abstractPerson" abstract="true">
+        <property name="firstName" value="Emma"></property>
+        <property name="middleName" value="Grace"></property>
+        <property name="surname" value="Koch"></property>
+    </bean>
+
+    <bean id="personDefault" class="gloncak.jozef.springframework.pure.bean.template.bean.Person"
+          parent="abstractPerson" />
+
+    <bean id="personCustom" class="gloncak.jozef.springframework.pure.bean.template.bean.Person"
+          parent="abstractPerson">
+        <property name="surname" value="Kvasnievic"></property>
+    </bean>
+</beans>
