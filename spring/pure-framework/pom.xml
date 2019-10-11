@@ -14,5 +14,6 @@
         <module>scopes</module>
         <module>bean.lifecycle</module>
         <module>bean.postprocesors</module>
+        <module>di.constructor</module>
     </modules>
 </project>

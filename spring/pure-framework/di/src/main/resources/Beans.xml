@@ -1,0 +1,60 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<beans xmlns = "http://www.springframework.org/schema/beans"
+       xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p = "http://www.springframework.org/schema/p"
+       xsi:schemaLocation = "http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <bean id = "address1" class = "gloncak.jozef.springframework.pure.di.beans.Address" scope = "singleton">
+        <constructor-arg value="Kalinciakova"></constructor-arg>
+        <constructor-arg value="Levice"></constructor-arg>
+        <constructor-arg value="00232"></constructor-arg>
+    </bean>
+
+    <bean id = "address2" class = "gloncak.jozef.springframework.pure.di.beans.Address" scope = "singleton">
+        <property name="street" value="Sturova"></property>
+        <property name="town" value="Komarno"></property>
+        <property name="zip" value="55345"></property>
+    </bean>
+
+    <bean id = "address3" class = "gloncak.jozef.springframework.pure.di.beans.Address" scope = "singleton"
+          p:street="Kamenna"
+          p:town="Trsnena"
+          p:zip="43323">
+    </bean>
+
+    <bean id = "name1" class = "gloncak.jozef.springframework.pure.di.beans.Name" scope = "singleton">
+        <constructor-arg value="Martin"></constructor-arg>
+        <constructor-arg value="Nikolajevic"></constructor-arg>
+        <constructor-arg value="Tolstoj"></constructor-arg>
+    </bean>
+
+    <bean id = "name2" class = "gloncak.jozef.springframework.pure.di.beans.Name" scope = "singleton">
+        <property name="firstName" value="Emma" />
+        <property name="middleName" value="Grace" />
+        <property name="surname" value="Adamovic" />
+    </bean>
+
+    <bean id = "name3" class = "gloncak.jozef.springframework.pure.di.beans.Name" scope = "singleton"
+          p:firstName="Juraj"
+          p:middleName="Patrik"
+          p:surname="Oravsky" >
+    </bean>
+
+    <bean id = "person1" class = "gloncak.jozef.springframework.pure.di.beans.Person" scope = "singleton">
+        <constructor-arg ref="address1" />
+        <constructor-arg ref="name1" />
+    </bean>
+
+    <bean id = "person2" class = "gloncak.jozef.springframework.pure.di.beans.Person" scope = "singleton">
+        <property name="address" ref="address2" />
+        <property name="name" ref="name2" />
+    </bean>
+
+    <bean id = "person3" class = "gloncak.jozef.springframework.pure.di.beans.Person" scope = "singleton"
+          p:address-ref="address3"
+          p:name-ref="name3" >
+    </bean>
+
+</beans>

@@ -11,4 +11,5 @@ There are examples which depends on Spring framework core dependency. Mainly the
 * [bean postprocesors](bean.postprocesors/README.md) - define special bean which provide hooks for doing own things
  before and after initialization
 * [bean templates](bean.template/README.md) - define parent templates which contains configuration data for child
- beans (e. g. default values of some properties). Example is done via annotation and also via spring XML configuration. 
+ beans (e. g. default values of some properties). Example is done via annotation and also via spring XML configuration.
+* [dependency injection](di/README.md) - dependency injection through XML and JAVA annotations
