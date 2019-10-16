@@ -1,0 +1,72 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<beans xmlns = "http://www.springframework.org/schema/beans"
+       xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation = "http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <!-- cars - start -->
+    <bean id="UI111111111" class="gloncak.jozef.springframework.pure.collections.beans.Car">
+        <constructor-arg value="UI111111111"></constructor-arg>
+        <property name="ecv" value="BB100BA" />
+    </bean>
+
+    <bean id="UI222222222" class="gloncak.jozef.springframework.pure.collections.beans.Car">
+        <constructor-arg value="UI222222222"></constructor-arg>
+        <property name="ecv" value="BB100BR" />
+    </bean>
+
+    <bean id="UI333333333" class="gloncak.jozef.springframework.pure.collections.beans.Car">
+        <constructor-arg value="UI333333333"></constructor-arg>
+        <property name="ecv" value="BB100AA" />
+    </bean>
+    <!-- cars - end -->
+
+    <!-- car types - start -->
+    <bean id="sandero" class="gloncak.jozef.springframework.pure.collections.beans.CarType">
+        <constructor-arg value="Dacia"></constructor-arg>
+        <constructor-arg value="2010"></constructor-arg>
+        <constructor-arg value="Sandero"></constructor-arg>
+    </bean>
+    <bean id="fabia" class="gloncak.jozef.springframework.pure.collections.beans.CarType">
+        <constructor-arg value="Skoda"></constructor-arg>
+        <constructor-arg value="2011"></constructor-arg>
+        <constructor-arg value="Fabia"></constructor-arg>
+    </bean>
+    <!-- car types - end -->
+
+    <bean id="carManager" class="gloncak.jozef.springframework.pure.collections.beans.CarManager">
+        <property name="cars">
+            <map>
+                <entry key="UI111111111" value-ref="UI111111111"></entry>
+                <entry key="UI222222222" value-ref="UI222222222"></entry>
+                <entry key="UI333333333" value-ref="UI333333333"></entry>
+                <entry key="UI444444444">
+                    <bean id="UI444444444" class="gloncak.jozef.springframework.pure.collections.beans.Car">
+                        <constructor-arg value="UI444444444"></constructor-arg>
+                        <property name="ecv" value="BB200RR" />
+                    </bean>
+                </entry>
+            </map>
+        </property>
+        <property name="carTypes">
+            <set>
+                <ref bean ="sandero" />
+                <ref bean ="fabia" />
+                <bean class="gloncak.jozef.springframework.pure.collections.beans.CarType">
+                    <constructor-arg value="Kia"></constructor-arg>
+                    <constructor-arg value="2012"></constructor-arg>
+                    <constructor-arg value="Ceed"></constructor-arg>
+                </bean>
+            </set>
+        </property>
+        <property name="driversID">
+            <list>
+                <value>ES435431</value>
+                <value>EV990093</value>
+                <value>EK446334</value>
+            </list>
+        </property>
+    </bean>
+
+</beans>
