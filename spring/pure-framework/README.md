@@ -15,3 +15,4 @@ There are examples which depends on Spring framework core dependency. Mainly the
 * [dependency injection](di/README.md) - dependency injection through XML and JAVA annotations
 * [collections](collections/README.md) - demonstrate how it is possible to set collections of data (map, list, set
 ) via XML configuration.
+* [custom events](custom-event/README.md) - custom events in spring framework

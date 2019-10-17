@@ -16,5 +16,6 @@
         <module>bean.postprocesors</module>
         <module>di</module>
         <module>collections</module>
+        <module>custom-event</module>
     </modules>
 </project>
