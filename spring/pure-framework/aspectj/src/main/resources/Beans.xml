@@ -1,0 +1,34 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<beans xmlns = "http://www.springframework.org/schema/beans"
+       xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop = "http://www.springframework.org/schema/aop"
+       xsi:schemaLocation = "http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+   http://www.springframework.org/schema/aop
+   http://www.springframework.org/schema/aop/spring-aop-3.0.xsd ">
+
+    <aop:config>
+        <aop:aspect id = "log" ref = "aspectLogger">
+            <aop:pointcut id ="allMethods"
+                          expression = "execution(*  gloncak.jozef.springframework.pure.aspectj.beans.*.*(..))"/>
+
+            <aop:before pointcut-ref = "allMethods" method = "beforeAdvice"/>
+            <aop:after pointcut-ref = "allMethods" method = "afterAdvice"/>
+            <aop:after-returning pointcut-ref = "allMethods"
+                                 returning = "retVal" method = "afterReturningAdvice"/>
+
+            <aop:after-throwing pointcut-ref = "allMethods"
+                                throwing = "ex" method = "afterThrowingAdvice"/>
+        </aop:aspect>
+    </aop:config>
+
+    <!-- Definition for house bean -->
+    <bean id = "house" class = "gloncak.jozef.springframework.pure.aspectj.beans.House">
+        <property name = "number" value = "55" />
+        <property name = "isOpened" value = "true"/>
+    </bean>
+
+    <!-- Definition for logging aspect -->
+    <bean id = "aspectLogger" class = "gloncak.jozef.springframework.pure.aspectj.beans.AspectLogger"/>
+
+</beans>

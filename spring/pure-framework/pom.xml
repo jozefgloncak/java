@@ -17,5 +17,6 @@
         <module>di</module>
         <module>collections</module>
         <module>custom-event</module>
+        <module>aspectj</module>
     </modules>
 </project>
