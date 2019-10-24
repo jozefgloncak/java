@@ -12,5 +12,6 @@
     <modules>
         <module>pure-framework</module>
         <module>web</module>
+        <module>data-access-agregation</module>
     </modules>
 </project>

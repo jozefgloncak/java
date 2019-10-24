@@ -18,7 +18,5 @@
         <module>collections</module>
         <module>custom-event</module>
         <module>aspectj</module>
-        <module>jdbc</module>
-        <module>jdbc</module>
     </modules>
 </project>
