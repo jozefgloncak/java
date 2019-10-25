@@ -15,7 +15,7 @@
 
   <modules>
     <module>jdbc</module>
-    <module>transaction-agregation</module>
+    <module>transaction-management</module>
   </modules>
 
 

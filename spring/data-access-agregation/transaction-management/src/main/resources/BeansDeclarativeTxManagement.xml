@@ -1,0 +1,58 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<beans xmlns = "http://www.springframework.org/schema/beans"
+       xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx = "http://www.springframework.org/schema/tx"
+       xmlns:aop = "http://www.springframework.org/schema/aop"
+       xsi:schemaLocation = "http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    http://www.springframework.org/schema/tx
+    http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+    http://www.springframework.org/schema/aop
+    http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+
+
+    <!-- Initialization for data source -->
+    <bean id="dataSource"
+          class = "org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name = "driverClassName" value = "com.mysql.cj.jdbc.Driver"/>
+        <property name = "url" value = "jdbc:mysql://remotemysql.com:3306/btdAcMMVVJ" />
+        <property name = "username" value = "btdAcMMVVJ"/>
+<!--        here insert correct password-->
+        <property name = "password" value = ""/>
+    </bean>
+
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref = "dataSource" />
+    </bean>
+
+    <tx:advice id = "txAdvice" transaction-manager = "transactionManager">
+        <tx:attributes>
+            <tx:method name = "create"/>
+            <tx:method name = "createWithException"/>
+            <tx:method name = "deleteAllTableContent"/>
+        </tx:attributes>
+    </tx:advice>
+
+    <aop:config>
+        <aop:pointcut id = "createOperation"
+                      expression =
+                              "execution(* gloncak.jozef.springframework.data.access.transaction.impl.template.StudentJDBCDeclarativeManagementTemplate.create(..))"/>
+        <aop:pointcut id = "createWithExceptionOperation"
+                      expression =
+                              "execution(* gloncak.jozef.springframework.data.access.transaction.impl.template.StudentJDBCDeclarativeManagementTemplate.createWithException(..))"/>
+        <aop:pointcut id = "deleteAllTableContentOperation"
+                      expression = "execution(* gloncak.jozef.springframework.data.access.transaction.impl.template.StudentJDBCDeclarativeManagementTemplate.deleteAllTableContent(..))"/>
+
+        <aop:advisor advice-ref = "txAdvice" pointcut-ref = "createOperation"/>
+        <aop:advisor advice-ref = "txAdvice" pointcut-ref = "createWithExceptionOperation"/>
+        <aop:advisor advice-ref = "txAdvice" pointcut-ref = "deleteAllTableContentOperation"/>
+    </aop:config>
+
+    <!-- Definition for studentJDBCTemplate bean -->
+    <bean id = "studentJDBCTemplate"
+          class = "gloncak.jozef.springframework.data.access.transaction.impl.template.StudentJDBCDeclarativeManagementTemplate">
+        <property name = "dataSource" ref = "dataSource" />
+    </bean>
+
+</beans>

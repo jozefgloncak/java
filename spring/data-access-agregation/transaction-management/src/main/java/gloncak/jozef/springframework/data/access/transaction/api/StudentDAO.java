@@ -1,6 +1,6 @@
-package gloncak.jozef.springframework.data.access.transactions.api;
+package gloncak.jozef.springframework.data.access.transaction.api;
 
-import gloncak.jozef.springframework.data.access.transactions.impl.StudentMarks;
+import gloncak.jozef.springframework.data.access.transaction.impl.StudentMarks;
 
 import javax.sql.DataSource;
 import java.util.List;

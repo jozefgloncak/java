@@ -1,6 +1,6 @@
-package gloncak.jozef.springframework.data.access.transactions.impl.mapper;
+package gloncak.jozef.springframework.data.access.transaction.impl.mapper;
 
-import gloncak.jozef.springframework.data.access.transactions.impl.StudentMarks;
+import gloncak.jozef.springframework.data.access.transaction.impl.StudentMarks;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;

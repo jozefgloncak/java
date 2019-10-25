@@ -1,4 +1,4 @@
-package gloncak.jozef.springframework.data.access.transactions.impl;
+package gloncak.jozef.springframework.data.access.transaction.impl;
 
 public class StudentMarks {
     private Integer age;

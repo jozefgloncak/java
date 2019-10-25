@@ -14,7 +14,7 @@
         <property name = "url" value = "jdbc:mysql://remotemysql.com:3306/btdAcMMVVJ" />
         <property name = "username" value = "btdAcMMVVJ"/>
 <!--        here insert correct password-->
-        <property name = "password" value = "5I5e0a56xA"/>
+        <property name = "password" value = ""/>
     </bean>
 
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
@@ -23,7 +23,7 @@
 
     <!-- Definition for studentJDBCTemplate bean -->
     <bean id = "studentJDBCTemplate"
-          class = "gloncak.jozef.springframework.data.access.transactions.impl.template.StudentJDBCTemplate">
+          class = "gloncak.jozef.springframework.data.access.transaction.impl.template.StudentJDBCProgramaticManagementTemplate">
         <property name = "dataSource" ref = "dataSource" />
         <property name = "transactionManager" ref = "transactionManager" />
     </bean>
