@@ -12,5 +12,6 @@
   <modules>
     <module>optional</module>
     <module>date</module>
+    <module>lambdas</module>
   </modules>
 </project>
