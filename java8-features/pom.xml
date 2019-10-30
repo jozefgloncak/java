@@ -13,5 +13,6 @@
     <module>optional</module>
     <module>date</module>
     <module>lambdas</module>
+    <module>method-reference</module>
   </modules>
 </project>
