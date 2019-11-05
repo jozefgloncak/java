@@ -14,5 +14,6 @@
     <module>date</module>
     <module>lambdas</module>
     <module>method-reference</module>
+      <module>functional-interfaces</module>
   </modules>
 </project>
