@@ -15,6 +15,8 @@
     <module>lambdas</module>
     <module>method-reference</module>
     <module>functional-interfaces</module>
-    <module>default-interface</module>
+    <module>default-methods</module>
+    <module>streams</module>
+    <module>streams</module>
   </modules>
 </project>
