@@ -7,3 +7,4 @@ Contains demonstration of features which came to JAVA 8.
 * [Functional interfaces](functional-interfaces/README.md) - details about functional interfaces.
 * [Default metods](default-methods/README.md)
 * [Streams](streams/README.md) - examples with streams
+* [Nashorn](nashorn/README.md) - javascript engine Nashorn

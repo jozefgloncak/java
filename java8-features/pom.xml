@@ -18,5 +18,6 @@
     <module>default-methods</module>
     <module>streams</module>
     <module>streams</module>
+      <module>nashorn</module>
   </modules>
 </project>
