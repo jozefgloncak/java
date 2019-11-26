@@ -19,5 +19,6 @@
     <module>streams</module>
     <module>streams</module>
       <module>nashorn</module>
+      <module>base64</module>
   </modules>
 </project>

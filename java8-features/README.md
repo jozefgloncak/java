@@ -8,3 +8,4 @@ Contains demonstration of features which came to JAVA 8.
 * [Default metods](default-methods/README.md)
 * [Streams](streams/README.md) - examples with streams
 * [Nashorn](nashorn/README.md) - javascript engine Nashorn
+* [Base64](base64/README.md) - base64 encoding and decoding
