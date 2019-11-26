@@ -18,3 +18,4 @@ There are examples which depends on Spring framework core dependency. Mainly the
 * [custom events](custom-event/README.md) - custom events in spring framework
 * [aspectJ](aspectj/README.md)
 * [profiles](profile/README.md)
+* [property source](property-source/README.md) - how to define source of properties.

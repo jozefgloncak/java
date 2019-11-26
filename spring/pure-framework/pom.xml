@@ -19,5 +19,6 @@
         <module>custom-event</module>
         <module>aspectj</module>
         <module>profile</module>
+        <module>property-source</module>
     </modules>
 </project>
