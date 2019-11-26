@@ -17,3 +17,4 @@ There are examples which depends on Spring framework core dependency. Mainly the
 ) via XML configuration.
 * [custom events](custom-event/README.md) - custom events in spring framework
 * [aspectJ](aspectj/README.md)
+* [profiles](profile/README.md)
