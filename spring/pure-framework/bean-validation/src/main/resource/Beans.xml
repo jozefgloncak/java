@@ -1,0 +1,20 @@
+
+<beans xmlns = "http://www.springframework.org/schema/beans"
+       xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation = "http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+
+
+    <bean class="gloncak.jozef.springframework.pure.bean.validation.validators.PersonValidator" name="personValidator">
+    </bean>
+
+    <bean name="person1" class="gloncak.jozef.springframework.pure.bean.validation.beans.Person">
+        <property name="surname" value="Markovic"></property>
+        <property name="age" value="-3"></property>
+    </bean>
+    <bean name="person2" class="gloncak.jozef.springframework.pure.bean.validation.beans.Person">
+        <property name="surname" value=""></property>
+        <property name="age" value="135"></property>
+    </bean>
+</beans>
