@@ -20,5 +20,6 @@
         <module>aspectj</module>
         <module>profile</module>
         <module>property-source</module>
+        <module>message</module>
     </modules>
 </project>
