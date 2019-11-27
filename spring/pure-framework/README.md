@@ -20,3 +20,4 @@ There are examples which depends on Spring framework core dependency. Mainly the
 * [profiles](profile/README.md)
 * [property source](property-source/README.md) - how to define source of properties.
 * [message and i18n](message/README.md)
+* [bean validation](bean-validation/README.md)

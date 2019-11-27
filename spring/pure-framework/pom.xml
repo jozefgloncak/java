@@ -21,5 +21,7 @@
         <module>profile</module>
         <module>property-source</module>
         <module>message</module>
+        <module>resource-loader</module>
+        <module>bean-validation</module>
     </modules>
 </project>
