@@ -22,3 +22,5 @@ There are examples which depends on Spring framework core dependency. Mainly the
 * [message and i18n](message/README.md)
 * [bean validation](bean-validation/README.md)
 * [util xml schema](util.xml.schema/README.md)
+* [property editor](property-editor/README.md) - how can be defined standalone editor for property (e. g. if you want
+ to load data to Address property as street|town|zip instead of specifying gradually)
