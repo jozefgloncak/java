@@ -7,5 +7,9 @@
 
     <groupId>gloncak.jozef.hibernate</groupId>
     <artifactId>hibernate.aggregate</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>simple</module>
+    </modules>
 
 </project>
