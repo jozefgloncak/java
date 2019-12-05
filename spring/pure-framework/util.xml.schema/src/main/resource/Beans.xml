@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd">
+
+    <!-- following list can be used many times -->
+    <util:list id="names">
+        <value>Martin</value>
+        <value>Marian</value>
+        <value>Maria</value>
+        <value>Magdalena</value>
+    </util:list>
+
+    <bean id="outterClass" class="gloncak.jozef.springframework.pure.util.xml.schema.helper.OutterClass">
+        <property name="inner">
+            <bean class="gloncak.jozef.springframework.pure.util.xml.schema.helper.InnerClass">
+                <property name="value" value="value inner 1"></property>
+            </bean>
+        </property>
+        <property name="lst" ref="names"></property>
+    </bean>
+
+    <bean id="dummyBean" class="gloncak.jozef.springframework.pure.util.xml.schema.CollectorBean">
+        <property name="constValue">
+            <util:constant static-field="gloncak.jozef.springframework.pure.util.xml.schema.helper.Constants.CONST1"/>
+        </property>
+        <property name="valueOfInnerBean">
+            <util:property-path path="outterClass.inner.value"/>
+        </property>
+        <property name="firstNames" ref="names" />
+    </bean>
+
+
+</beans>
+

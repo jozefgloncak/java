@@ -23,5 +23,7 @@
         <module>message</module>
         <module>resource-loader</module>
         <module>bean-validation</module>
+        <module>property-editor</module>
+        <module>util.xml.schema</module>
     </modules>
 </project>
