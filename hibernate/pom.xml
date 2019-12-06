@@ -10,6 +10,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>simple</module>
+        <module>hibernate-collections</module>
     </modules>
 
 </project>
