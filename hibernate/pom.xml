@@ -11,6 +11,7 @@
     <modules>
         <module>simple</module>
         <module>hibernate-collections</module>
+        <module>many-2-many</module>
     </modules>
 
 </project>
