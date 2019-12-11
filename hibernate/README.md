@@ -12,5 +12,10 @@ DB H2 (in memory) is demonstrate e. g. in [many-2-many](many-2-many/src/main/res
 * [collections](hibernate-collections/README.md) - two entities and two DB dables. Demonstrate how collection (map
 , set, list...) which contain elements of one entity and is part of second entity can be persisted to DB. Also
  demonstrate relation one-to-many between entities.
-* [many 2 many relationship](many-2-many/README.md) - two entities with many2many relationship, 3 DB tables. 
+* [many 2 many relationship](many-2-many/README.md) - two entities with many2many relationship, 3 DB tables.
+* [annotations](annotations/README.md) 
 
+
+# Key words navigation
+* [@CreationTimestamp](annotations/src/test/java/gloncak/jozef/hibernate/annotations/DBTablesTest.java) - see
+ isCreationTimestampGeneratedTest() 

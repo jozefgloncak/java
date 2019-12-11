@@ -54,6 +54,22 @@ public class DBTablesTest {
         em2.close();
     }
 
+    /**
+     * Tests that @CreationTimestamp annotated property is generated once entity is persisted.
+     */
+    @Test
+    public void isCreationTimestampGeneratedTest() {
+        EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("cars-test");
+        EntityManager em = emFactory.createEntityManager();
+        em.getTransaction().begin();
+        Car newCar = new Car("BB231BA", "lemon", 400);
+        em.persist(newCar);
+        Assert.assertNull(newCar.getTimestamp());
+        em.getTransaction().commit();
+        Assert.assertNotNull(newCar.getTimestamp());
+        em.close();
+    }
+
 
 
 }

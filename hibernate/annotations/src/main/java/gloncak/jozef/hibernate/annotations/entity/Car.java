@@ -1,6 +1,9 @@
 package gloncak.jozef.hibernate.annotations.entity;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "VEHICLE")
@@ -18,6 +21,10 @@ public class Car {
 
     @Column(name = "VOLUME")
     private int engineVolume;
+
+    @Column(name = "TIMESTAMP")
+    @CreationTimestamp
+    private LocalDateTime timestamp;
 
     public Car() {
     }
@@ -60,8 +67,16 @@ public class Car {
         this.engineVolume = engineVolume;
     }
 
+    public LocalDateTime getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(LocalDateTime timestamp) {
+        this.timestamp = timestamp;
+    }
+
     @Override
     public String toString() {
-        return "Car{" + "id=" + id + ", plate='" + plate + '\'' + ", color='" + color + '\'' + ", engineVolume=" + engineVolume + '}';
+        return "Car{" + "id=" + id + ", plate='" + plate + '\'' + ", color='" + color + '\'' + ", engineVolume=" + engineVolume + ", timestamp=" + timestamp + '}';
     }
 }
