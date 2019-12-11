@@ -9,6 +9,8 @@ For bootstrapping application there are used 2 attitudes:
 * [JPA API](src/main/java/gloncak/jozef/hibernate/annotations/AppEntityManager.java) __EntityManagerFactory__ which
  provides __EntityManager__ .
 
+There is also example of JUnit testing of DB content through in memmory DB. See test/resources for standalone
+ persistence.xml file.
 
 ```roomsql
 CREATE TABLE VEHICLE(
