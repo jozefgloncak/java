@@ -1,6 +1,7 @@
 package gloncak.jozef.hibernate.annotations.entity;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -22,9 +23,13 @@ public class Car {
     @Column(name = "VOLUME")
     private int engineVolume;
 
-    @Column(name = "TIMESTAMP")
+    @Column(name = "CREATION")
     @CreationTimestamp
-    private LocalDateTime timestamp;
+    private LocalDateTime created;
+
+    @Column(name = "updated")
+    @UpdateTimestamp
+    private LocalDateTime lastUpdated;
 
     public Car() {
     }
@@ -67,16 +72,24 @@ public class Car {
         this.engineVolume = engineVolume;
     }
 
-    public LocalDateTime getTimestamp() {
-        return timestamp;
+    public LocalDateTime getCreated() {
+        return created;
     }
 
-    public void setTimestamp(LocalDateTime timestamp) {
-        this.timestamp = timestamp;
+    public void setCreated(LocalDateTime created) {
+        this.created = created;
+    }
+
+    public LocalDateTime getLastUpdated() {
+        return lastUpdated;
+    }
+
+    public void setLastUpdated(LocalDateTime lastUpdated) {
+        this.lastUpdated = lastUpdated;
     }
 
     @Override
     public String toString() {
-        return "Car{" + "id=" + id + ", plate='" + plate + '\'' + ", color='" + color + '\'' + ", engineVolume=" + engineVolume + ", timestamp=" + timestamp + '}';
+        return "Car{" + "id=" + id + ", plate='" + plate + '\'' + ", color='" + color + '\'' + ", engineVolume=" + engineVolume + ", created=" + created + ", lastUpdated=" + lastUpdated + '}';
     }
 }

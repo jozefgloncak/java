@@ -16,6 +16,8 @@ DB H2 (in memory) is demonstrate e. g. in [many-2-many](many-2-many/src/main/res
 * [annotations](annotations/README.md) 
 
 
-# Key words navigation
+# Various Hibernate aspects in code
 * [@CreationTimestamp](annotations/src/test/java/gloncak/jozef/hibernate/annotations/DBTablesTest.java) - see
- isCreationTimestampGeneratedTest() 
+ isCreationTimestampGeneratedTest()
+* [@UpdateTimestamp](annotations/src/test/java/gloncak/jozef/hibernate/annotations/DBTablesTest.java) - see
+ isUpdateTimestampGeneratedTest()
