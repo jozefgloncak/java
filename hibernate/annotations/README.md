@@ -2,8 +2,12 @@
 
 # About
 Demonstrate usage of basic hibernate annotations.
-For bootstrapping application is used new API available in hibernate version 5.4.9 (StandardServiceRegistry
+For bootstrapping application there are used 2 attitudes:
+* [new API](src/main/java/gloncak/jozef/hibernate/annotations/App.java) available in hibernate version 5.4.9
+ (StandardServiceRegistry
 , MetadataSources, Metadata, SessionFactory)
+* [JPA API](src/main/java/gloncak/jozef/hibernate/annotations/AppEntityManager.java) __EntityManagerFactory__ which
+ provides __EntityManager__ .
 
 
 ```roomsql
@@ -17,3 +21,5 @@ CREATE TABLE VEHICLE(
 
 # Source code
 Entity __Car__ is persisted to table VEHICLE.
+
+For JPA API is important also META-INF/persistence.xml file which is in resource directory.
