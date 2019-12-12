@@ -21,3 +21,6 @@ DB H2 (in memory) is demonstrate e. g. in [many-2-many](many-2-many/src/main/res
  isCreationTimestampGeneratedTest()
 * [@UpdateTimestamp](annotations/src/test/java/gloncak/jozef/hibernate/annotations/DBTablesTest.java) - see
  isUpdateTimestampGeneratedTest()
+* [@Embeddable, @Embedded](embedables/src/test/java/gloncak/jozef/hibernate/embedables/entity/BookTest.java) - see
+ isEmbededPropertyPopulated() and corresponding entity class
+ ([Book](embedables/src/main/java/gloncak/jozef/hibernate/embedables/entity/Book.java)) in test.

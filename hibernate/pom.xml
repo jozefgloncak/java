@@ -13,6 +13,7 @@
         <module>hibernate-collections</module>
         <module>many-2-many</module>
         <module>annotations</module>
+        <module>embedables</module>
     </modules>
 
 </project>
