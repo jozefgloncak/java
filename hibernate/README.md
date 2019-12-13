@@ -7,6 +7,13 @@ DB MySQL is demonstrate e. g. in [collections](hibernate-collections/src/main/re
 
 DB H2 (in memory) is demonstrate e. g. in [many-2-many](many-2-many/src/main/resource/hibernate.cfg.xml) example.
 
+It is also possible to start h2 server
+```shell script
+java -cp h2-1.4.200.jar org.h2.tools.Server -ifNoExists
+```
+then it is possible to connect through h2 console (JDBC  URL: jdbc:h2:tcp://localhost/~/test) and also
+ programatically in the same time
+
 * [basic example](simple/README.md) - contains very simple example with XML mapping (JAVA(entity) - DB(table)) with
  demonstration of CRUD operations. There is only one entity, one DB table
 * [collections](hibernate-collections/README.md) - two entities and two DB dables. Demonstrate how collection (map
@@ -24,3 +31,10 @@ DB H2 (in memory) is demonstrate e. g. in [many-2-many](many-2-many/src/main/res
 * [@Embeddable, @Embedded](embedables/src/test/java/gloncak/jozef/hibernate/embedables/entity/BookTest.java) - see
  isEmbededPropertyPopulated() and corresponding entity class
  ([Book](embedables/src/main/java/gloncak/jozef/hibernate/embedables/entity/Book.java)) in test.
+* [@GeneratedValue](generated-identifiers/src/test/java/gloncak/jozef/hibernate/generated/identifiers/BookTest.java
+) - see gradually tests with __BookSequence__, __BookWithIdentifier__, __BookWithTable__
+* [@TableGenerator](generated-identifiers/src/main/java/gloncak/jozef/hibernate/generated/identifiers/entity/BookWithTable.java)
+\- see also coresponding JUnit test
+[isTableGeneratorUsedToGenerate()](generated-identifiers/src/test/java/gloncak/jozef/hibernate/generated/identifiers/BookTest.java)
+* [@SequenceGenerator](generated-identifiers/src/main/java/gloncak/jozef/hibernate/generated/identifiers/entity/BookSequence.java)
+\- see also coresponding JUnit test [isSequenceUsedToGenerate()](generated-identifiers/src/test/java/gloncak/jozef/hibernate/generated/identifiers/BookTest.java)
