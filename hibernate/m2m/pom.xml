@@ -2,19 +2,20 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-
+    <parent>
+        <artifactId>hibernate.aggregate</artifactId>
+        <groupId>gloncak.jozef.hibernate</groupId>
+        <version>Unknown</version>
+    </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>gloncak.jozef.hibernate</groupId>
-    <artifactId>hibernate.aggregate</artifactId>
-    <packaging>pom</packaging>
+    <artifactId>m2m</artifactId>
+
     <modules>
-        <module>simple</module>
-        <module>hibernate-collections</module>
-        <module>annotations</module>
-        <module>embedables</module>
-        <module>generated-identifiers</module>
-        <module>m2m</module>
+        <module>m2m-annotations</module>
+        <module>m2m-xml</module>
     </modules>
+
 
 </project>

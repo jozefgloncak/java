@@ -19,7 +19,7 @@ then it is possible to connect through h2 console (JDBC  URL: jdbc:h2:tcp://loca
 * [collections](hibernate-collections/README.md) - two entities and two DB dables. Demonstrate how collection (map
 , set, list...) which contain elements of one entity and is part of second entity can be persisted to DB. Also
  demonstrate relation one-to-many between entities.
-* [many 2 many relationship](many-2-many/README.md) - two entities with many2many relationship, 3 DB tables.
+* [m2m](m2m/README.md) - entities with many to many relation.
 * [annotations](annotations/README.md) 
 
 
