@@ -1,0 +1,10 @@
+# crete new user
+```
+curl http://localhost:8080/users -X POST -d '{"name":"Marian", "birthDate":"2013-01-01"}' -H "Content-type
+:application/json" -v
+```
+
+# get users
+```
+curl http://localhost:8080/users
+```
