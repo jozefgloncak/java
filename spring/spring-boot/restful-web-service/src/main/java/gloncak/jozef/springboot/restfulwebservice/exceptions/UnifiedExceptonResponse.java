@@ -3,6 +3,7 @@ package gloncak.jozef.springboot.restfulwebservice.exceptions;
 import org.springframework.http.HttpStatus;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class UnifiedExceptonResponse {
 
@@ -10,9 +11,9 @@ public class UnifiedExceptonResponse {
 
     private HttpStatus httpStatus;
 
-    private String mesage;
+    private List<String> mesage;
 
-    public UnifiedExceptonResponse(LocalDate date, HttpStatus httpStatus, String mesage) {
+    public UnifiedExceptonResponse(LocalDate date, HttpStatus httpStatus, List<String> mesage) {
         this.date = date;
         this.httpStatus = httpStatus;
         this.mesage = mesage;
@@ -26,7 +27,7 @@ public class UnifiedExceptonResponse {
         this.httpStatus = httpStatus;
     }
 
-    public void setMesage(String mesage) {
+    public void setMesage(List<String> mesage) {
         this.mesage = mesage;
     }
 
@@ -38,7 +39,7 @@ public class UnifiedExceptonResponse {
         return httpStatus;
     }
 
-    public String getMesage() {
+    public List<String> getMesage() {
         return mesage;
     }
 }

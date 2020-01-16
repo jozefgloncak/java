@@ -3,8 +3,10 @@ package gloncak.jozef.springboot.restfulwebservice.user;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 import java.util.Optional;
@@ -37,12 +39,18 @@ public class UserResource {
     }
 
     @RequestMapping(method = RequestMethod.POST, path = "/users")
-    public ResponseEntity<Object> newUser(@RequestBody User user) {
+    public ResponseEntity<Object> createUser(@Valid @RequestBody User user) {
         userDAOService.saveUser(user);
 
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(user.getId()).toUri();
         //return status and link where resource can be found
-        return ResponseEntity.created(location).build();
+        return      ResponseEntity.created(location).build();
+    }
+
+    @RequestMapping(method = RequestMethod.DELETE, path = "/users/{userId}")
+    public ResponseEntity<User> deleteUser(@PathVariable int userId) {
+        return ResponseEntity.of(userDAOService.deleteUser(userId));
+
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "/users/{userId}/posts")

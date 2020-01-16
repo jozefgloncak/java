@@ -42,6 +42,15 @@ public class UserDAOService {
         return user;
     }
 
+    public Optional<User> deleteUser(int id) {
+        for(int i = 0; i < users.size(); i++) {
+            if (users.get(i).getId() == id) {
+                return Optional.of(users.remove(i));
+            }
+        }
+        return Optional.empty();
+    }
+
     public User findUser(int id) {
         for (User user : users) {
             if (user.getId() == id) {

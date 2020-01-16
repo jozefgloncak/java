@@ -1,13 +1,17 @@
 package gloncak.jozef.springboot.restfulwebservice.user;
 
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.List;
 
 public class User {
     private Integer id;
 
+    @Size(min=2, message = "Name should have at least 2 characters.")
     private String name;
 
+    @Past(message = "Birth day has to be in past.")
     private LocalDate birthDate;
 
     private List<Post> posts;
