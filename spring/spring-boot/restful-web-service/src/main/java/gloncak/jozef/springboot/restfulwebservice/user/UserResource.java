@@ -22,9 +22,9 @@ public class UserResource {
         return userDAOService.findUsers();
     }
 
-    @GetMapping("/users/{id}")
-    public ResponseEntity<User> getUser(@PathVariable int id) {
-        User user = userDAOService.findUser(id);
+    @GetMapping("/users/{userId}")
+    public ResponseEntity<User> getUser(@PathVariable int userId) {
+        User user = userDAOService.findUser(userId);
 
         return ResponseEntity.of(Optional.ofNullable(user));
     }
