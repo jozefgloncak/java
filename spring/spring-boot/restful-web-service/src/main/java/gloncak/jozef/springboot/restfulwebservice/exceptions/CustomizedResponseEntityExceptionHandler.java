@@ -2,6 +2,7 @@ package gloncak.jozef.springboot.restfulwebservice.exceptions;
 
 import gloncak.jozef.springboot.restfulwebservice.user.PostNotFoundException;
 import gloncak.jozef.springboot.restfulwebservice.user.UserNotFoundException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import javax.xml.ws.Response;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
@@ -36,6 +38,13 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
         UnifiedExceptonResponse unifiedResponse = new UnifiedExceptonResponse(LocalDate.now(), HttpStatus.BAD_REQUEST,
                 processResultOfNoValidMethodArgument(ex));
         return new ResponseEntity(unifiedResponse, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler({EmptyResultDataAccessException.class})
+    public ResponseEntity<Object> handleEmptyResultDataAccesException(Exception ex, WebRequest request) {
+        return new ResponseEntity(
+                new UnifiedExceptonResponse(LocalDate.now(), HttpStatus.NOT_FOUND, Arrays.asList(ex.getMessage())),
+                HttpStatus.NOT_FOUND);
     }
 
     private List<String> processResultOfNoValidMethodArgument(MethodArgumentNotValidException ex) {

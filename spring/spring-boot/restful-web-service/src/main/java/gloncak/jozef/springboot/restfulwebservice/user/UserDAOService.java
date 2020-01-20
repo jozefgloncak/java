@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.util.*;
 
 @Component
-public class UserDAOService {
+public class UserDAOService implements UserDAO {
 
     private static List<User> users = new ArrayList<>();
 
@@ -30,6 +30,7 @@ public class UserDAOService {
         users.add(new User(3, "Jack", LocalDate.now(), postsOfUser3));
     }
 
+    @Override
     public List<User> findUsers() {
         return users;
     }
