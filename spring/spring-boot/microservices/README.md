@@ -244,3 +244,24 @@ Request some resource through REST service. Then it is possible to go to URI *lo
  available complete trace of URI
  calls for
  serfices where previous dependency was added. 
+ 
+# Hystrix - fault tolernce
+Add to pom.xml dependency:
+```
+    <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-hystrix</artifactId>
+    </dependency>
+```
+Add above application class **@EnableHystrix** annotation
+Addd above method for retreiving resource (where is e.g. **@GetMapping** annotation) annotation
+```java
+@HystrixCommand(fallbackMethod="{fallback_method_name}")
+
+//.....
+
+public fallback_method_name() {
+    //TODO implement fallback behaviour.
+}
+```
+Now when method annoted with @HystrixCommand.... doesn't fail but execute fallback_method_name().
