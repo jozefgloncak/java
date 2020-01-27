@@ -1,0 +1,90 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+    <title>JSF tutorial</title>
+    <!--    <h:outputStylesheet library="css" name="styles.css"/>-->
+    <link rel="stylesheet" type="text/css"
+          href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/cosmo/bootstrap.min.css"/>
+
+</h:head>
+
+<h:body>
+    <h:form>
+        <h:commandLink action="#{navigationController.resolvePage}" value="menu">
+            <f:param name="pageId" value=""/>
+        </h:commandLink>
+    </h:form>
+
+    <h2>DataTable Example</h2>
+
+    <h:form>
+        <h:dataTable value="#{personData.persons}" var="person">
+
+            <h:column>
+                <f:facet name="header">Name</f:facet>
+                #{person.firstName}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Height</f:facet>
+                #{person.height}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Age</f:facet>
+                #{person.age}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Job start</f:facet>
+                #{person.jobStartDate}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Delete</f:facet>
+                <h:commandButton value="Delete"
+                                 action="#{personData.deletePerson(person)}">
+                </h:commandButton>
+            </h:column>
+
+        </h:dataTable>
+
+        <h2>Add person</h2>
+        <table>
+            <tr>
+                <td>Name</td>
+                <td>
+                    <h:inputText value="#{personData.firstName}"/>
+                </td>
+            </tr>
+            <tr>
+                <td>Height</td>
+                <td>
+                    <h:inputText value="#{personData.height}"/>
+                </td>
+            </tr>
+            <tr>
+                <td>Age</td>
+                <td>
+                    <h:inputText value="#{personData.age}"/>
+                </td>
+            </tr>
+            <tr>
+                <td>Job start date</td>
+                <td>
+                    <h:inputText value="#{personData.jobStartDate}">
+                        <f:converter converterId="PickListConverter"/>
+                    </h:inputText>
+                </td>
+            </tr>
+        </table>
+        <h:commandButton value="Add person" action="#{personData.addPerson}"/>
+    </h:form>
+
+</h:body>
+</html>
