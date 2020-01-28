@@ -29,74 +29,212 @@
                     <!--                    <h:inputText id="inputFirstName" value="#{person.firstName}" accesskey="f" maxlength="5">-->
                     <h:inputText id="inputFirstName" value="#{personSession.person.firstName}" accesskey="f">
                         <f:validateLength minimum="5" maximum="10"/>
-                        <f:validateRequired />
+                        <f:validateRequired/>
                     </h:inputText>
                 </td>
             </tr>
-<!--            &lt;!&ndash; min & max input length validation through annotation &ndash;&gt;-->
-<!--            <tr>-->
-<!--                <td><h:outputLabel for="inputMiddleName">Middle name</h:outputLabel></td>-->
-<!--                <td><h:inputText id="inputMiddleName" value="#{person.middleName}"></h:inputText></td>-->
-<!--            </tr>-->
-<!--            &lt;!&ndash; not null (required) validation through annotation &ndash;&gt;-->
-<!--            <tr>-->
-<!--                <td><h:outputLabel for="inputSurname">Surname</h:outputLabel></td>-->
-<!--                <td><h:inputText id="inputSurname" value="#{person.surname}"></h:inputText></td>-->
-<!--            </tr>-->
-<!--            &lt;!&ndash; min & max validation through annotation &ndash;&gt;-->
-<!--            <tr>-->
-<!--                <td>-->
-<!--                    <h:outputLabel for="inputHeight">Height</h:outputLabel>-->
-<!--                </td>-->
-<!--                <td>-->
-<!--                    <h:inputText id="inputHeight" value="#{person.height}"/>-->
-<!--                </td>-->
-<!--            </tr>-->
-<!--            &lt;!&ndash; min & max validation on view &ndash;&gt;-->
-<!--            <tr>-->
-<!--                <td>-->
-<!--                    <h:outputLabel for="inputAge">Age</h:outputLabel>-->
-<!--                </td>-->
-<!--                <td>-->
-<!--                    <h:inputText id="inputAge" value="#{person.age}">-->
-<!--                        <f:validateDoubleRange minimum="18" maximum="65"/>-->
-<!--                    </h:inputText>-->
-<!--                </td>-->
-<!--            </tr>-->
-<!--            &lt;!&ndash; regex validation through annotation &ndash;&gt;-->
-<!--            <tr>-->
-<!--                <td>-->
-<!--                    <h:outputLabel for="inputEmail">Email</h:outputLabel>-->
-<!--                </td>-->
-<!--                <td>-->
-<!--                    <h:inputText id="inputEmail" value="#{person.eMail}"/>-->
-<!--                </td>-->
-<!--            </tr>-->
-<!--            &lt;!&ndash; regex validation on view &ndash;&gt;-->
-<!--            <tr>-->
-<!--                <td>-->
-<!--                    <h:outputLabel for="inputZip">ZIP</h:outputLabel>-->
-<!--                </td>-->
-<!--                <td>-->
-<!--                    &lt;!&ndash; !!!validator Message is equal for both f: validation &ndash;&gt;-->
-<!--                    <h:inputText id="inputZip" value="#{person.zip}" validatorMessage="Regex not matched">-->
-<!--                        <f:validateRegex pattern="^[0-9]{5}$"/>-->
-<!--                        <f:validateLength  minimum="5"  maximum="5"/>-->
-<!--                    </h:inputText>-->
-<!--                </td>-->
-<!--            </tr>-->
+            <!--            &lt;!&ndash; min & max input length validation through annotation &ndash;&gt;-->
+            <!--            <tr>-->
+            <!--                <td><h:outputLabel for="inputMiddleName">Middle name</h:outputLabel></td>-->
+            <!--                <td><h:inputText id="inputMiddleName" value="#{person.middleName}"></h:inputText></td>-->
+            <!--            </tr>-->
+            <!--            &lt;!&ndash; not null (required) validation through annotation &ndash;&gt;-->
+            <!--            <tr>-->
+            <!--                <td><h:outputLabel for="inputSurname">Surname</h:outputLabel></td>-->
+            <!--                <td><h:inputText id="inputSurname" value="#{person.surname}"></h:inputText></td>-->
+            <!--            </tr>-->
+            <!--            &lt;!&ndash; min & max validation through annotation &ndash;&gt;-->
+            <!--            <tr>-->
+            <!--                <td>-->
+            <!--                    <h:outputLabel for="inputHeight">Height</h:outputLabel>-->
+            <!--                </td>-->
+            <!--                <td>-->
+            <!--                    <h:inputText id="inputHeight" value="#{person.height}"/>-->
+            <!--                </td>-->
+            <!--            </tr>-->
+            <!--            &lt;!&ndash; min & max validation on view &ndash;&gt;-->
+            <!--            <tr>-->
+            <!--                <td>-->
+            <!--                    <h:outputLabel for="inputAge">Age</h:outputLabel>-->
+            <!--                </td>-->
+            <!--                <td>-->
+            <!--                    <h:inputText id="inputAge" value="#{person.age}">-->
+            <!--                        <f:validateDoubleRange minimum="18" maximum="65"/>-->
+            <!--                    </h:inputText>-->
+            <!--                </td>-->
+            <!--            </tr>-->
+            <!--            &lt;!&ndash; regex validation through annotation &ndash;&gt;-->
+            <!--            <tr>-->
+            <!--                <td>-->
+            <!--                    <h:outputLabel for="inputEmail">Email</h:outputLabel>-->
+            <!--                </td>-->
+            <!--                <td>-->
+            <!--                    <h:inputText id="inputEmail" value="#{person.eMail}"/>-->
+            <!--                </td>-->
+            <!--            </tr>-->
+            <!--            &lt;!&ndash; regex validation on view &ndash;&gt;-->
+            <!--            <tr>-->
+            <!--                <td>-->
+            <!--                    <h:outputLabel for="inputZip">ZIP</h:outputLabel>-->
+            <!--                </td>-->
+            <!--                <td>-->
+            <!--                    &lt;!&ndash; !!!validator Message is equal for both f: validation &ndash;&gt;-->
+            <!--                    <h:inputText id="inputZip" value="#{person.zip}" validatorMessage="Regex not matched">-->
+            <!--                        <f:validateRegex pattern="^[0-9]{5}$"/>-->
+            <!--                        <f:validateLength  minimum="5"  maximum="5"/>-->
+            <!--                    </h:inputText>-->
+            <!--                </td>-->
+            <!--            </tr>-->
 
-<!--            <tr>-->
-<!--                <td>-->
-<!--                    <h:outputLabel for="radioGender">Gender</h:outputLabel>-->
-<!--                </td>-->
-<!--                <td>-->
-<!--                    <h:selectOneRadio id="radioGender" value="#{person.male}">-->
-<!--                        <f:selectItem itemValue="true" itemLabel="male"/>-->
-<!--                        <f:selectItem itemValue="false" itemLabel="famale"/>-->
-<!--                    </h:selectOneRadio>-->
-<!--                </td>-->
-<!--            </tr>-->
+            <!-- select many checkbox -->
+            <tr>
+                <td>
+                    <h:outputLabel for="checkboxProgramming">Programming (value, code) from frontend</h:outputLabel>
+                </td>
+                <td>
+                    <h:selectManyCheckbox id="checkboxProgramming" value="#{personSession.person.programmingLanguages}">
+                        <f:selectItem itemLabel="Java" itemValue="JV"/>
+                        <f:selectItem itemLabel="C++" itemValue="Cpluplus"/>
+                        <f:selectItem itemLabel="C#" itemValue="Csharp"/>
+                    </h:selectManyCheckbox>
+                </td>
+            </tr>
+            <!-- :::select  many checkbox -->
+            <!-- select many listbox -->
+            <tr>
+                <td>
+                    <h:outputLabel for="favoriteColours">Favourite colours (value = code) from frontend</h:outputLabel>
+                </td>
+                <td>
+                    <h:selectManyListbox id="favoriteColours" value="#{personSession.person.colours}">
+                        <f:selectItem itemLabel="green" itemValue="GREEN"/>
+                        <f:selectItem itemLabel="red" itemValue="RED"/>
+                        <f:selectItem itemLabel="yellow" itemValue="YELLOW"/>
+                        <f:selectItem itemLabel="black" itemValue="BLACK"/>
+                    </h:selectManyListbox>
+                </td>
+            </tr>
+            <!-- select many menu -->
+            <tr>
+                <td>
+                    <h:outputLabel for="favouriteAnimals">Favourite animals (value = code) from frontend</h:outputLabel>
+                </td>
+                <td>
+                    <h:selectManyMenu id="favouriteAnimals" value="#{personSession.person.animals}">
+                        <f:selectItem itemLabel="pig" itemValue="PIG"/>
+                        <f:selectItem itemLabel="rat" itemValue="RAT"/>
+                        <f:selectItem itemLabel="monkey" itemValue="MONKEY"/>
+                        <f:selectItem itemLabel="turtle" itemValue="TURTLE"/>
+                    </h:selectManyMenu>
+                </td>
+            </tr>
+            <!-- :::select  many menu -->
+            <!-- select one radio -->
+            <tr>
+                <td>
+                    <h:outputLabel for="radioGender">Gender (value = code) from frontend</h:outputLabel>
+                </td>
+                <td>
+                    <h:selectOneRadio id="radioGender" value="#{personSession.person.genderFrontend}">
+                        <f:selectItem itemValue="true" itemLabel="male"/>
+                        <f:selectItem itemValue="false" itemLabel="famale"/>
+                    </h:selectOneRadio>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h:outputLabel for="selectGender">Gender (value, code) from backend</h:outputLabel>
+                </td>
+                <td>
+                    <h:selectOneRadio id="selectGender" value="#{personSession.person.gender}">
+                        <f:selectItems value="#{personSession.genders}" var="gender"
+                                       itemLabel="#{gender.name}"
+                                       itemValue="#{gender.code}"/>
+                    </h:selectOneRadio>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h:outputLabel for="selectGender2">Gender (value = code) from backend</h:outputLabel>
+                </td>
+                <td>
+                    <h:selectOneRadio id="selectGender2" value="#{personSession.person.genderValue}">
+                        <f:selectItems value="#{personSession.genderValues}"/>
+                    </h:selectOneRadio>
+                </td>
+            </tr>
+            <!-- ::::::select one radio -->
+
+            <!-- select one listbox -->
+            <tr>
+                <td>
+                    <h:outputLabel for="selectTownFrontend">Towns (value = code) from frontend</h:outputLabel>
+                </td>
+                <td>
+                    <h:selectOneListbox id="selectTownFrontend" value="#{personSession.person.townFrontend}">
+                        <f:selectItem itemValue="RK" itemLabel="Ruzomberok"/>
+                        <f:selectItem itemValue="BB" itemLabel="Banska Bystrica"/>
+                    </h:selectOneListbox>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h:outputLabel for="selectTown">Towns (value, code) from backend</h:outputLabel>
+                </td>
+                <td>
+                    <h:selectOneListbox id="selectTown" value="#{personSession.person.town}">
+                        <f:selectItems value="#{personSession.towns}" var="town"
+                                       itemLabel="#{town.name}"
+                                       itemValue="#{town.code}"/>
+                    </h:selectOneListbox>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h:outputLabel for="selectTown2">Towns (value = code) from backend</h:outputLabel>
+                </td>
+                <td>
+                    <h:selectOneListbox id="selectTown2" value="#{personSession.person.townValue}">
+                        <f:selectItems value="#{personSession.townValues}"/>
+                    </h:selectOneListbox>
+                </td>
+            </tr>
+            <!-- ::::::select one listbox -->
+            <!-- select one menu -->
+            <tr>
+                <td>
+                    <h:outputLabel for="selectCountryFrontend">Countries (value = code) from frontend</h:outputLabel>
+                </td>
+                <td>
+                    <h:selectOneMenu id="selectCountryFrontend" value="#{personSession.person.countryFrontend}">
+                        <f:selectItem itemValue="SK" itemLabel="Slovensko"/>
+                        <f:selectItem itemValue="CZ" itemLabel="Cesko"/>
+                    </h:selectOneMenu>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h:outputLabel for="selectCountry">Countries (value, code) from backend</h:outputLabel>
+                </td>
+                <td>
+                    <h:selectOneMenu id="selectCountry" value="#{personSession.person.country}">
+                        <f:selectItems value="#{personSession.countries}" var="country"
+                                       itemLabel="#{country.name}"
+                                       itemValue="#{country.code}"/>
+                    </h:selectOneMenu>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h:outputLabel for="selectCountry2">Countries (value = code) from backend</h:outputLabel>
+                </td>
+                <td>
+                    <h:selectOneMenu id="selectCountry2" value="#{personSession.person.countryValue}">
+                        <f:selectItems value="#{personSession.countryValues}"/>
+                    </h:selectOneMenu>
+                </td>
+            </tr>
+            <!-- ::::::select one menu -->
             <tr>
                 <td>
                     <h:outputLabel for="inputStartJobDate"/>
@@ -105,8 +243,8 @@
                 <td>
                     <h:inputText id="inputStartJobDate" value="#{personSession.person.jobStartDate}"
                                  actionListener="#{personSession.person.actionListener}">
-                        <f:converter converterId="PickListConverter" />
-<!--                        <f:convertDateTime></f:convertDateTime>-->
+                        <f:converter converterId="PickListConverter"/>
+                        <!--                        <f:convertDateTime></f:convertDateTime>-->
                     </h:inputText>
                 </td>
             </tr>

@@ -8,6 +8,8 @@ import org.springframework.web.context.annotation.SessionScope;
 import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.List;
 
 public class Person implements Serializable {
 
@@ -40,6 +42,36 @@ public class Person implements Serializable {
 
     private String zip;
 
+    //selection one menu
+    private String country;
+    private String countryValue;
+    private String countryFrontend;
+    //:selection one menu
+
+    //selection one listbox
+    private String town;
+    private String townValue;
+    private String townFrontend;
+    //:selection one listbox
+
+    //selection one radio
+    private String gender;
+    private String genderValue;
+    private String genderFrontend;
+    //:selection one radio
+
+    //select many checkbox
+    private List<String> programmingLanguages;
+    //:select many checkbox
+
+    //select many listbox
+    private List<String> colours;
+    //:select many listbox
+
+    //select many menu
+    private List<String> animals;
+    //:select many menu
+
     public Person() {
     }
 
@@ -52,10 +84,6 @@ public class Person implements Serializable {
 
     @Past
     private LocalDate jobStartDate;
-
-    private boolean male;
-    private String gender;
-
 
     public String getZip() {
         return zip;
@@ -95,19 +123,6 @@ public class Person implements Serializable {
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
-    }
-
-    public boolean getMale() {
-        return male;
-    }
-
-    public void setMale(boolean male) {
-        this.male = male;
-        if (male) {
-            gender = "male";
-        } else {
-            gender = "female";
-        }
     }
 
     public String getGender() {
@@ -160,5 +175,97 @@ public class Person implements Serializable {
         this.middleName = null;
         this.surname = null;
         this.zip = null;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getCountryValue() {
+        return countryValue;
+    }
+
+    public void setCountryValue(String countryValue) {
+        this.countryValue = countryValue;
+    }
+
+    public String getCountryFrontend() {
+        return countryFrontend;
+    }
+
+    public void setCountryFrontend(String countryFrontend) {
+        this.countryFrontend = countryFrontend;
+    }
+
+    public String getTownFrontend() {
+        return townFrontend;
+    }
+
+    public void setTownFrontend(String townFrontend) {
+        this.townFrontend = townFrontend;
+    }
+
+    public String getTown() {
+        return town;
+    }
+
+    public void setTown(String town) {
+        this.town = town;
+    }
+
+    public String getTownValue() {
+        return townValue;
+    }
+
+    public void setTownValue(String townValue) {
+        this.townValue = townValue;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getGenderValue() {
+        return genderValue;
+    }
+
+    public void setGenderValue(String genderValue) {
+        this.genderValue = genderValue;
+    }
+
+    public String getGenderFrontend() {
+        return genderFrontend;
+    }
+
+    public void setGenderFrontend(String genderFrontend) {
+        this.genderFrontend = genderFrontend;
+    }
+
+    public List<String> getProgrammingLanguages() {
+        return programmingLanguages;
+    }
+
+    public void setProgrammingLanguages(List<String> programmingLanguages) {
+        this.programmingLanguages = programmingLanguages;
+    }
+
+    public List<String> getColours() {
+        return colours;
+    }
+
+    public void setColours(List<String> colours) {
+        this.colours = colours;
+    }
+
+    public List<String> getAnimals() {
+        return animals;
+    }
+
+    public void setAnimals(List<String> animals) {
+        this.animals = animals;
     }
 }

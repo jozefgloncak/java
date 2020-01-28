@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+>
+
+<h:head>
+    <link rel="stylesheet" type="text/css"
+          href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/cosmo/bootstrap.min.css"/>
+</h:head>
+<h:body>
+    <h:form>
+        <h:commandLink action="#{navigationController.resolvePage}" value="menu">
+            <f:param name="pageId" value=""/>
+        </h:commandLink>
+    </h:form>
+
+    <h:form>
+        <table>
+            <tr>
+                <td>
+                    <h:outputLabel for="inputFirstValue">First value</h:outputLabel>
+                </td>
+                <td>
+                    <h:inputText id="inputFirstValue" value="#{expression.firstValue}"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h:outputLabel for="inputSecondValue">second value</h:outputLabel>
+                </td>
+                <td>
+                    <h:inputText id="inputSecondValue" value="#{expression.secondValue}"/>
+                </td>
+            </tr>
+        </table>
+        <h:commandButton value="Submit" action="#{expression.calculate}"/>
+    </h:form>
+
+
+    <h:outputLabel for="outputResult">result</h:outputLabel><br/>
+    <h:outputText id="outputResult" value="#{expression.result}"/>
+</h:body>
+
+</html>

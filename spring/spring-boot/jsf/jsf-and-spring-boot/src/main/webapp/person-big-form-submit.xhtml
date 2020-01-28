@@ -11,17 +11,74 @@
           href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/cosmo/bootstrap.min.css"/>
 </h:head>
 <h:body>
-    <h:outputText value="#{personSession.person.firstName}" />
-    <br />
-    <h:outputText value="#{personSession.person.gender}" />
-    <br />
-    <h:outputText value="#{personSession.person.eMail}" />
-    <br />
-    <h:outputText value="#{personSession.person.age}" />
-    <br />
-    <h:outputText value="#{personSession.person.jobStartDate}">
-        <f:converter converterId="PickListConverter" />
-    </h:outputText>
+    <h:panelGrid columns="2">
+        First name:
+        <h:outputText value="#{personSession.person.firstName}"/>
+
+
+
+        E-mail:
+        <h:outputText value="#{personSession.person.eMail}"/>
+
+        Age:
+        <h:outputText value="#{personSession.person.age}"/>
+
+        Job start date:
+        <h:outputText value="#{personSession.person.jobStartDate}">
+            <f:converter converterId="PickListConverter"/>
+        </h:outputText>
+    </h:panelGrid>
+
+    <hr/>
+    <h:panelGrid columns="2">
+        Country value and key (backend definition):
+        <h:outputText value="#{personSession.person.country}"/>
+
+        Country only value (backend definition):
+        <h:outputText value="#{personSession.person.countryValue}"/>
+
+        Country (defined in frontend)
+        <h:outputText value="#{personSession.person.countryFrontend}"/>
+    </h:panelGrid>
+    <hr/>
+
+    
+    
+    <h:panelGrid columns="2">
+        Gender value and key (backend definition):
+        <h:outputText value="#{personSession.person.gender}"/>
+
+        Gender only value (backend definition):
+        <h:outputText value="#{personSession.person.genderValue}"/>
+
+        Gender (defined in frontend)
+        <h:outputText value="#{personSession.person.genderFrontend}"/>
+    </h:panelGrid>
+    <hr/>
+
+
+    <h:panelGrid columns="2">
+        Town value and key (backend definition):
+        <h:outputText value="#{personSession.person.town}"/>
+
+        Town only value (backend definition):
+        <h:outputText value="#{personSession.person.townValue}"/>
+
+        Town (defined in frontend)
+        <h:outputText value="#{personSession.person.townFrontend}"/>
+    </h:panelGrid>
+    <hr/>
+
+    <h:panelGrid columns="2">
+        Programming languages:
+        <h:outputText value="#{personSession.person.programmingLanguages}"/>
+        Favourite colours:
+        <h:outputText value="#{personSession.person.colours}"/>
+        Favourite animals:
+        <h:outputText value="#{personSession.person.animals}"/>
+    </h:panelGrid>
+    <hr/>
+
     <h:form>
         <h:commandButton value="back" action="person-big-form.xhtml?faces-redirect=true"/>
     </h:form>
