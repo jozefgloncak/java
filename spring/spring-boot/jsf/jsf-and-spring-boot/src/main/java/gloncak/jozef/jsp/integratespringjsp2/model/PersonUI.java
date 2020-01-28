@@ -12,16 +12,16 @@ import java.util.List;
 
 @Component
 @SessionScope
-public class PersonSession {
+public class PersonUI {
 
     private Person person;
 
 
-    public PersonSession() {
+    public PersonUI() {
         this.person = new Person();
     }
 
-    public PersonSession(String firstName, Integer age, Integer height, LocalDate jobStartDate) {
+    public PersonUI(String firstName, Integer age, Integer height, LocalDate jobStartDate) {
         this.person = new Person(firstName, age, height, jobStartDate);
     }
 

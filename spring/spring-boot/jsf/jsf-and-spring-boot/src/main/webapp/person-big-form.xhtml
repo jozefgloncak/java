@@ -27,7 +27,7 @@
                 </td>
                 <td>
                     <!--                    <h:inputText id="inputFirstName" value="#{person.firstName}" accesskey="f" maxlength="5">-->
-                    <h:inputText id="inputFirstName" value="#{personSession.person.firstName}" accesskey="f">
+                    <h:inputText id="inputFirstName" value="#{personUI.person.firstName}" accesskey="f">
                         <f:validateLength minimum="5" maximum="10"/>
                         <f:validateRequired/>
                     </h:inputText>
@@ -92,7 +92,7 @@
                     <h:outputLabel for="checkboxProgramming">Programming (value, code) from frontend</h:outputLabel>
                 </td>
                 <td>
-                    <h:selectManyCheckbox id="checkboxProgramming" value="#{personSession.person.programmingLanguages}">
+                    <h:selectManyCheckbox id="checkboxProgramming" value="#{personUI.person.programmingLanguages}">
                         <f:selectItem itemLabel="Java" itemValue="JV"/>
                         <f:selectItem itemLabel="C++" itemValue="Cpluplus"/>
                         <f:selectItem itemLabel="C#" itemValue="Csharp"/>
@@ -106,7 +106,7 @@
                     <h:outputLabel for="favoriteColours">Favourite colours (value = code) from frontend</h:outputLabel>
                 </td>
                 <td>
-                    <h:selectManyListbox id="favoriteColours" value="#{personSession.person.colours}">
+                    <h:selectManyListbox id="favoriteColours" value="#{personUI.person.colours}">
                         <f:selectItem itemLabel="green" itemValue="GREEN"/>
                         <f:selectItem itemLabel="red" itemValue="RED"/>
                         <f:selectItem itemLabel="yellow" itemValue="YELLOW"/>
@@ -120,7 +120,7 @@
                     <h:outputLabel for="favouriteAnimals">Favourite animals (value = code) from frontend</h:outputLabel>
                 </td>
                 <td>
-                    <h:selectManyMenu id="favouriteAnimals" value="#{personSession.person.animals}">
+                    <h:selectManyMenu id="favouriteAnimals" value="#{personUI.person.animals}">
                         <f:selectItem itemLabel="pig" itemValue="PIG"/>
                         <f:selectItem itemLabel="rat" itemValue="RAT"/>
                         <f:selectItem itemLabel="monkey" itemValue="MONKEY"/>
@@ -135,7 +135,7 @@
                     <h:outputLabel for="radioGender">Gender (value = code) from frontend</h:outputLabel>
                 </td>
                 <td>
-                    <h:selectOneRadio id="radioGender" value="#{personSession.person.genderFrontend}">
+                    <h:selectOneRadio id="radioGender" value="#{personUI.person.genderFrontend}">
                         <f:selectItem itemValue="true" itemLabel="male"/>
                         <f:selectItem itemValue="false" itemLabel="famale"/>
                     </h:selectOneRadio>
@@ -146,8 +146,8 @@
                     <h:outputLabel for="selectGender">Gender (value, code) from backend</h:outputLabel>
                 </td>
                 <td>
-                    <h:selectOneRadio id="selectGender" value="#{personSession.person.gender}">
-                        <f:selectItems value="#{personSession.genders}" var="gender"
+                    <h:selectOneRadio id="selectGender" value="#{personUI.person.gender}">
+                        <f:selectItems value="#{personUI.genders}" var="gender"
                                        itemLabel="#{gender.name}"
                                        itemValue="#{gender.code}"/>
                     </h:selectOneRadio>
@@ -158,8 +158,8 @@
                     <h:outputLabel for="selectGender2">Gender (value = code) from backend</h:outputLabel>
                 </td>
                 <td>
-                    <h:selectOneRadio id="selectGender2" value="#{personSession.person.genderValue}">
-                        <f:selectItems value="#{personSession.genderValues}"/>
+                    <h:selectOneRadio id="selectGender2" value="#{personUI.person.genderValue}">
+                        <f:selectItems value="#{personUI.genderValues}"/>
                     </h:selectOneRadio>
                 </td>
             </tr>
@@ -171,7 +171,7 @@
                     <h:outputLabel for="selectTownFrontend">Towns (value = code) from frontend</h:outputLabel>
                 </td>
                 <td>
-                    <h:selectOneListbox id="selectTownFrontend" value="#{personSession.person.townFrontend}">
+                    <h:selectOneListbox id="selectTownFrontend" value="#{personUI.person.townFrontend}">
                         <f:selectItem itemValue="RK" itemLabel="Ruzomberok"/>
                         <f:selectItem itemValue="BB" itemLabel="Banska Bystrica"/>
                     </h:selectOneListbox>
@@ -182,8 +182,8 @@
                     <h:outputLabel for="selectTown">Towns (value, code) from backend</h:outputLabel>
                 </td>
                 <td>
-                    <h:selectOneListbox id="selectTown" value="#{personSession.person.town}">
-                        <f:selectItems value="#{personSession.towns}" var="town"
+                    <h:selectOneListbox id="selectTown" value="#{personUI.person.town}">
+                        <f:selectItems value="#{personUI.towns}" var="town"
                                        itemLabel="#{town.name}"
                                        itemValue="#{town.code}"/>
                     </h:selectOneListbox>
@@ -194,8 +194,8 @@
                     <h:outputLabel for="selectTown2">Towns (value = code) from backend</h:outputLabel>
                 </td>
                 <td>
-                    <h:selectOneListbox id="selectTown2" value="#{personSession.person.townValue}">
-                        <f:selectItems value="#{personSession.townValues}"/>
+                    <h:selectOneListbox id="selectTown2" value="#{personUI.person.townValue}">
+                        <f:selectItems value="#{personUI.townValues}"/>
                     </h:selectOneListbox>
                 </td>
             </tr>
@@ -206,7 +206,7 @@
                     <h:outputLabel for="selectCountryFrontend">Countries (value = code) from frontend</h:outputLabel>
                 </td>
                 <td>
-                    <h:selectOneMenu id="selectCountryFrontend" value="#{personSession.person.countryFrontend}">
+                    <h:selectOneMenu id="selectCountryFrontend" value="#{personUI.person.countryFrontend}">
                         <f:selectItem itemValue="SK" itemLabel="Slovensko"/>
                         <f:selectItem itemValue="CZ" itemLabel="Cesko"/>
                     </h:selectOneMenu>
@@ -217,8 +217,8 @@
                     <h:outputLabel for="selectCountry">Countries (value, code) from backend</h:outputLabel>
                 </td>
                 <td>
-                    <h:selectOneMenu id="selectCountry" value="#{personSession.person.country}">
-                        <f:selectItems value="#{personSession.countries}" var="country"
+                    <h:selectOneMenu id="selectCountry" value="#{personUI.person.country}">
+                        <f:selectItems value="#{personUI.countries}" var="country"
                                        itemLabel="#{country.name}"
                                        itemValue="#{country.code}"/>
                     </h:selectOneMenu>
@@ -229,8 +229,8 @@
                     <h:outputLabel for="selectCountry2">Countries (value = code) from backend</h:outputLabel>
                 </td>
                 <td>
-                    <h:selectOneMenu id="selectCountry2" value="#{personSession.person.countryValue}">
-                        <f:selectItems value="#{personSession.countryValues}"/>
+                    <h:selectOneMenu id="selectCountry2" value="#{personUI.person.countryValue}">
+                        <f:selectItems value="#{personUI.countryValues}"/>
                     </h:selectOneMenu>
                 </td>
             </tr>
@@ -241,8 +241,8 @@
                     Job start
                 </td>
                 <td>
-                    <h:inputText id="inputStartJobDate" value="#{personSession.person.jobStartDate}"
-                                 actionListener="#{personSession.person.actionListener}">
+                    <h:inputText id="inputStartJobDate" value="#{personUI.person.jobStartDate}"
+                                 actionListener="#{personUI.person.actionListener}">
                         <f:converter converterId="PickListConverter"/>
                         <!--                        <f:convertDateTime></f:convertDateTime>-->
                     </h:inputText>
@@ -251,7 +251,7 @@
         </table>
         <h:messages style="color: red"></h:messages>
         <h:commandButton value="Submit" action="person-big-form-submit.xhtml?faces-redirect=true"/>
-        <h:commandButton value="Clear" action="#{personSession.person.clearData}"/>
+        <h:commandButton value="Clear" action="#{personUI.person.clearData}"/>
     </h:form>
 </h:body>
 
