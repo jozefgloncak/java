@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.SessionScope;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -47,6 +48,38 @@ public class PersonUI {
             "unknown", "-1"));
     private List<String> genderValues = Arrays.asList("man", "woman");
     //:selection one radio - data
+
+    private Boolean genderFrontend;
+
+    private List<String> animals;
+
+
+    public boolean isGenderFrontend() {
+        if (genderFrontend == null) {
+            this.genderFrontend = false;
+            this.person.setGenderFrontend(this.genderFrontend);
+        }
+        return genderFrontend;
+    }
+
+    public void setGenderFrontend(boolean gender) {
+        this.genderFrontend = gender;
+        this.person.setGenderFrontend(this.genderFrontend);
+    }
+
+    public List<String> getAnimals() {
+        if (this.animals == null || this.animals.isEmpty()) {
+            this.animals = new ArrayList<>(Arrays.asList("PIG", "RAT", "monkey")); //monkey is in lower case
+            // therefore wont be in initial selection
+            this.person.setAnimals(this.animals);
+        }
+        return animals;
+    }
+
+    public void setAnimals(List<String> animals) {
+        this.animals = animals;
+        this.person.setAnimals(animals);
+    }
 
     public List<Town> getTowns() {
         return towns;

@@ -121,7 +121,7 @@
                     <h:outputLabel for="favouriteAnimals">Favourite animals (value = code) from frontend</h:outputLabel>
                 </td>
                 <td>
-                    <h:selectManyMenu id="favouriteAnimals" value="#{personUI.person.animals}">
+                    <h:selectManyMenu id="favouriteAnimals" value="#{personUI.animals}">
                         <f:selectItem itemLabel="pig" itemValue="PIG"/>
                         <f:selectItem itemLabel="rat" itemValue="RAT"/>
                         <f:selectItem itemLabel="monkey" itemValue="MONKEY"/>
@@ -235,6 +235,14 @@
                     </h:selectOneMenu>
                 </td>
             </tr>
+            <tr>
+                <td>
+                    <h:outputLabel>Is healthy</h:outputLabel>
+                </td>
+                <td>
+                    <h:selectBooleanCheckbox value="#{personUI.person.healthy}"/>
+                </td>
+            </tr>
             <!-- ::::::select one menu -->
 <!--
             <tr>
@@ -253,6 +261,7 @@
         <h:messages style="color: red"></h:messages>
         <h:commandButton value="Submit" action="person-big-form-submit.xhtml?faces-redirect=true"/>
         <h:commandButton value="Clear" action="#{personUI.person.clearData}"/>
+        <h:commandButton value="Analyze request" action="#{personUI.person.analyzeRequest}" />
     </h:form>
 </h:body>
 

@@ -1,6 +1,8 @@
 # Lifecycle of JSF
-* setter methods are called once submitted formular
-* then method specified in action attribute of button is called. There can be several action methods if there is
+* getter method of bean is called once form is displayed
+* setter methods are called once formular is submitted 
+    * after that, method specified in action attribute of button is called. There can be several action methods if
+     there is
  several buttons on form.
   
 

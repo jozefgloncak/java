@@ -5,10 +5,15 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.SessionScope;
 
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.Enumeration;
 import java.util.List;
 
 public class Person implements Serializable {
@@ -57,7 +62,7 @@ public class Person implements Serializable {
     //selection one radio
     private String gender;
     private String genderValue;
-    private String genderFrontend;
+    private boolean genderFrontend;
     //:selection one radio
 
     //select many checkbox
@@ -71,6 +76,8 @@ public class Person implements Serializable {
     //select many menu
     private List<String> animals;
     //:select many menu
+
+    private Boolean healthy;
 
     public Person() {
     }
@@ -125,10 +132,6 @@ public class Person implements Serializable {
         this.firstName = firstName;
     }
 
-    public String getGender() {
-        return gender;
-    }
-
     public String getSurname() {
         return surname;
     }
@@ -165,7 +168,6 @@ public class Person implements Serializable {
         this.age = null;
         this.eMail = null;
         this.firstName = null;
-        this.gender = null;
         this.height = null;
         this.jobStartDate = null;
         this.middleName = null;
@@ -221,26 +223,6 @@ public class Person implements Serializable {
         this.townValue = townValue;
     }
 
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
-    public String getGenderValue() {
-        return genderValue;
-    }
-
-    public void setGenderValue(String genderValue) {
-        this.genderValue = genderValue;
-    }
-
-    public String getGenderFrontend() {
-        return genderFrontend;
-    }
-
-    public void setGenderFrontend(String genderFrontend) {
-        this.genderFrontend = genderFrontend;
-    }
-
     public List<String> getProgrammingLanguages() {
         return programmingLanguages;
     }
@@ -264,4 +246,37 @@ public class Person implements Serializable {
     public void setAnimals(List<String> animals) {
         this.animals = animals;
     }
+
+    public String getGenderValue() {
+        return genderValue;
+    }
+
+    public void setGenderValue(String genderValue) {
+        this.genderValue = genderValue;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public boolean isGenderFrontend() {
+        return genderFrontend;
+    }
+
+    public void setGenderFrontend(boolean genderFrontend) {
+        this.genderFrontend = genderFrontend;
+    }
+
+    public Boolean getHealthy() {
+        return healthy;
+    }
+
+    public void setHealthy(Boolean healthy) {
+        this.healthy = healthy;
+    }
+
 }
