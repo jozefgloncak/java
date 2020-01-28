@@ -21,18 +21,19 @@
         <table>
             <!-- max & min input length validation in view -->
             <!-- required validation on view -->
+<!--
             <tr>
                 <td>
                     <h:outputLabel for="inputFirstName">First name</h:outputLabel>
                 </td>
                 <td>
-                    <!--                    <h:inputText id="inputFirstName" value="#{person.firstName}" accesskey="f" maxlength="5">-->
                     <h:inputText id="inputFirstName" value="#{personUI.person.firstName}" accesskey="f">
                         <f:validateLength minimum="5" maximum="10"/>
                         <f:validateRequired/>
                     </h:inputText>
                 </td>
             </tr>
+-->
             <!--            &lt;!&ndash; min & max input length validation through annotation &ndash;&gt;-->
             <!--            <tr>-->
             <!--                <td><h:outputLabel for="inputMiddleName">Middle name</h:outputLabel></td>-->
@@ -218,7 +219,7 @@
                 </td>
                 <td>
                     <h:selectOneMenu id="selectCountry" value="#{personUI.person.country}">
-                        <f:selectItems value="#{personUI.countries}" var="country"
+                        <f:selectItems value="#{countryOptions.countries}" var="country"
                                        itemLabel="#{country.name}"
                                        itemValue="#{country.code}"/>
                     </h:selectOneMenu>
@@ -230,24 +231,24 @@
                 </td>
                 <td>
                     <h:selectOneMenu id="selectCountry2" value="#{personUI.person.countryValue}">
-                        <f:selectItems value="#{personUI.countryValues}"/>
+                        <f:selectItems value="#{countryOptions.countryValues}"/>
                     </h:selectOneMenu>
                 </td>
             </tr>
             <!-- ::::::select one menu -->
+<!--
             <tr>
                 <td>
                     <h:outputLabel for="inputStartJobDate"/>
                     Job start
                 </td>
                 <td>
-                    <h:inputText id="inputStartJobDate" value="#{personUI.person.jobStartDate}"
-                                 actionListener="#{personUI.person.actionListener}">
+                    <h:inputText id="inputStartJobDate" value="#{personUI.person.jobStartDate}">
                         <f:converter converterId="PickListConverter"/>
-                        <!--                        <f:convertDateTime></f:convertDateTime>-->
                     </h:inputText>
                 </td>
             </tr>
+-->
         </table>
         <h:messages style="color: red"></h:messages>
         <h:commandButton value="Submit" action="person-big-form-submit.xhtml?faces-redirect=true"/>

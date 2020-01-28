@@ -153,10 +153,6 @@ public class Person implements Serializable {
         this.jobStartDate = jobStartDate;
     }
 
-    public void actionListener() {
-        System.out.println("tu som");
-    }
-
     public boolean isCanEdit() {
         return canEdit;
     }
