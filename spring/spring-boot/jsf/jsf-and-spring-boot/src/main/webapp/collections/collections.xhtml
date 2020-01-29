@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+<h:head>
+</h:head>
+<h:body>
+    <table>
+        <tr>
+            <th>EL type</th>
+            <th>code result</th>
+        </tr>
+        <tr>
+            <td>
+                Accesss to concrete element of list (\#{bean.list[index]})
+            </td>
+            <td>
+                #{countryOptions.countryValues[0]}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Accesss to concrete element of array (\#{bean.array[index]})
+            </td>
+            <td>
+                #{countryOptions.countryValuesAsArray[0]}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Accesss to concrete element of map (\#{bean.map[key]})
+            </td>
+            <td>
+                #{countryOptions.codeToCountry["SK"]}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Array notation for accessing properties (\#{bean["mapName"][index]})
+            </td>
+            <td>
+                #{countryOptions["countryValuesAsArray"][0]}
+            </td>
+        </tr>
+        <tr>
+            <th>Default variable</th>
+            <th>code result</th>
+        </tr>
+        <tr>
+            <td>facesContext.externalContext.requestLocale</td>
+            <td>#{facesContext.externalContext.requestLocale}</td>
+        </tr>
+        <tr>
+            <td>facesContext.externalContext.contextName</td>
+            <td>#{facesContext.externalContext.contextName}</td>
+        </tr>
+        <tr>
+            <td>facesContext.externalContext.applicationContextPath</td>
+            <td>#{facesContext.externalContext.applicationContextPath}</td>
+        </tr>
+        <tr>
+            <td>facesContext.externalContext.authType</td>
+            <td>#{facesContext.externalContext.authType}</td>
+        </tr>
+        <tr>
+            <c:set var="param1" value="#{param.par1}" />
+            <c:set var="param2" value="#{param.par2}" />
+            <td>param - prams sent in URI<br />Try localhost:port/....?par1=4&amp;par2=5</td>
+            <td>#{param},<br />
+                #{empty param1 ? "chyba param1" : param1}<br />
+                #{empty param2 ? "chyba param2" : param2}<br />
+            </td>
+        </tr>
+        <tr>
+            <td>header</td>
+            <td>#{header}</td>
+        </tr>
+        <tr>
+            <td>header.host</td>
+            <td>#{header.host}</td>
+        </tr>
+        <tr>
+            <td>header.user-agent</td>
+            <td>#{header["user-agent"]}</td>
+        </tr>
+        <tr>
+            <td>cookie</td>
+            <td>#{cookie}</td>
+        </tr>
+        <tr>
+            <td>cookie[cookieName].name</td>
+            <td>#{cookie['JSESSIONID'].name}</td>
+        </tr>
+        <tr>
+            <td>cookie[cookieName].value</td>
+            <td>#{cookie['JSESSIONID'].value}</td>
+        </tr>
+        <tr>
+            <td>cookie[cookieName].maxAge</td>
+            <td>#{cookie['JSESSIONID'].maxAge}</td>
+        </tr>
+        <tr>
+            <td>cookie[cookieName].version</td>
+            <td>#{cookie['JSESSIONID'].version}</td>
+        </tr>
+        <tr>
+            <td>cookie[cookieName].comment</td>
+            <td>#{cookie['JSESSIONID'].comment}</td>
+        </tr>
+        <tr>
+            <td>request</td>
+            <td>#{request}</td>
+        </tr>
+        <tr>
+            <td>request.method</td>
+            <td>#{request.method}</td>
+        </tr>
+    </table>
+</h:body>
+
+</html>

@@ -7,6 +7,8 @@ import org.springframework.web.context.annotation.ApplicationScope;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Component
 @ApplicationScope
@@ -20,8 +22,13 @@ public class CountryOptions {
             , new Country("Madarsko", "HU")
             , new Country("Polsko", "PL"));
 
-    private List<String> countryValues = Arrays.asList("Slovensko", "Cesko", "Madarsko", "Polsko");
+    private String[] countryValuesAsArray = new String[]{"Slovensko", "Cesko", "Madarsko", "Polsko"};
+    private List<String> countryValues = Arrays.asList(countryValuesAsArray);
+    private Map<String, List<Country>> codeToCountry =
+            countries.stream().collect(Collectors.groupingBy(country -> country.getCode()));
     //:selection one element
+
+
 
 
     public CountryOptions() {
@@ -42,5 +49,21 @@ public class CountryOptions {
 
     public void setCountryValues(List<String> countryValues) {
         this.countryValues = countryValues;
+    }
+
+    public String[] getCountryValuesAsArray() {
+        return countryValuesAsArray;
+    }
+
+    public void setCountryValuesAsArray(String[] countryValuesAsArray) {
+        this.countryValuesAsArray = countryValuesAsArray;
+    }
+
+    public Map<String, List<Country>> getCodeToCountry() {
+        return codeToCountry;
+    }
+
+    public void setCodeToCountry(Map<String, List<Country>> codeToCountry) {
+        this.codeToCountry = codeToCountry;
     }
 }
