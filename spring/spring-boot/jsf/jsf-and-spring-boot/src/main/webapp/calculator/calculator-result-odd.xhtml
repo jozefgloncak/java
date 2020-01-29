@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+>
+
+<h:head>
+    <link rel="stylesheet" type="text/css"
+          href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/cosmo/bootstrap.min.css"/>
+</h:head>
+<h:body>
+    <h:form>
+        <h:commandLink action="#{navigationController.resolvePage}" value="menu">
+            <f:param name="pageId" value=""/>
+        </h:commandLink>
+        <h:commandButton value="back" action="calculator.xhtml"/>
+        <h:commandButton value="analyze" action="#{expression.analyzePrime}"/>
+    </h:form>
+
+    <p>You will get to this page when result is odd (1, 3, 5....). See configuration in faces-config.xml.</p>
+
+    <h:outputLabel for="outputResult">result</h:outputLabel><br/>
+    <h:outputText id="outputResult" value="#{expression.result}"/>
+</h:body>
+
+</html>

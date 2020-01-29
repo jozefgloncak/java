@@ -1,11 +1,12 @@
+# About
+Following remarks come mainly from tutorial [1](#coreServlets)
+
 # Lifecycle of JSF
 * getter method of bean is called once form is displayed
 * setter methods are called once formular is submitted 
     * after that, method specified in action attribute of button is called. There can be several action methods if
      there is
  several buttons on form.
-  
-
 
 
 # Redirecting
@@ -14,6 +15,61 @@ in action define
 action="{name_of_new_page?faces-redirect=true}"
 ```
 [more](https://stackoverflow.com/questions/15521451/how-to-navigate-in-jsf-how-to-make-url-reflect-current-page-and-not-previous-o)
+
+
+# faces-config.xml file
+This file has to be situted as follows in main/webpp/WEB-INF/faces-config.xml
+
+File starts like this
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+        http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
+              version="2.2">
+    <!-- various content -->
+
+</faces-config>
+```
+Notice that there is version 2.2 but in pom there is version of JSF 2.3. Problem was that this file wasn't possible
+ load and I wasn't able to reproduce this [advice](http://alibassam.com/deploying-jsf-2-3-application-tomcat-9/).
+
+## Explicit navigation
+It means that you externaly (in file **faces-config.xml**) define what are navigation rules when you click submit
+ button on page.
+ 
+You can define (simple example) that if you click submit on page A and result of some procesing is 1 than you will
+ navigate to page B, if result is 2 you will navigate to page C and so on.
+
+
+Structure of file is as follows:
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+        http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
+              version="2.2">
+    <navigation-rule>
+        <from-view-id>/calculator.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>5</from-outcome>
+            <to-view-id>/calculator-result1.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>6</from-outcome>
+            <to-view-id>/calculator-result2.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+</faces-config>
+``` 
+In element ```navigation-rule``` you define subelement ```from-view-id``` where you specify origin page on which is
+ button submit. In elements ```navigation-case``` you define result of click on button submit (result of handling
+  method - specified in *action* part). Specifically in ```from-outcome``` you define result of handling method and
+   in ```to-view-id``` you define page which navigate to.
+   
+```navigation-rule``` element can be in xml several times.
 
 
 # UI elements
@@ -77,6 +133,19 @@ For each of previous (should be) option it is possible:
 ```
 in backend there has to be model classs **PersonData** with method **deletePerson(Person person)** which accepts one
  input parameter of type Person.
- 
+
+# Styling (CSS)
+It is necessary to create following structure in project *resources/static/style.css*
+In XHTML then you can reference it through
+```xhtml
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+```
+
+There should be also other possibility through
+```xhtml
+  <h:outputStylesheet library="default" name="css/style.css" />
+```
+but I wasn't able to handle it.
+
 # Sources
-[CoreServlets](http://www.coreservlets.com/JSF-Tutorial/jsf2/#Beans-1)
+<a name="coreServlets">[1] [CoreServlets](http://www.coreservlets.com/JSF-Tutorial/jsf2/#Beans-1)

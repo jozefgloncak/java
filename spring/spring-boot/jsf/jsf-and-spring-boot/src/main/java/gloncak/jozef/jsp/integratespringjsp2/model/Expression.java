@@ -1,15 +1,20 @@
 package gloncak.jozef.jsp.integratespringjsp2.model;
 
+import gloncak.jozef.jsp.integratespringjsp2.api.service.MathematicalService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.RequestScope;
 import org.springframework.web.context.annotation.SessionScope;
 
 @Component
-@RequestScope
+@SessionScope
 public class Expression {
     private int firstValue;
     private int secondValue;
     private int result;
+
+    @Autowired
+    MathematicalService mathService;
 
     public int getFirstValue() {
         return firstValue;
@@ -35,8 +40,12 @@ public class Expression {
         this.result = result;
     }
 
-    public String calculate() {
+    public String analyzeEven() {
         result = firstValue + secondValue;
-        return null;
+        return result % 2 == 0 ? "even":"odd";
+    }
+
+    public String analyzePrime() {
+        return mathService.isPrime(result) ? "prime":"not-prime";
     }
 }
