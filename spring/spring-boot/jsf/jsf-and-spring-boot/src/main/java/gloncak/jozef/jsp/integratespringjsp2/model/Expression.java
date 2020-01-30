@@ -1,6 +1,8 @@
 package gloncak.jozef.jsp.integratespringjsp2.model;
 
 import gloncak.jozef.jsp.integratespringjsp2.api.service.MathematicalService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.servlet.LocaleResolver;
 
 //@Component
 //@SessionScope
@@ -12,7 +14,7 @@ public class Expression {
 
     private int firstValue;
     private int secondValue;
-    private Integer result;
+    private Integer result = 0;
     private boolean prime;
 
     //    wiring is now done through beans.xml file

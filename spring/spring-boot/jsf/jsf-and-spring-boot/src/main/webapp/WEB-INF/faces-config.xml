@@ -15,28 +15,6 @@
             <to-view-id>/calculator/calculator-result-even.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
-<!--    <navigation-rule>
-        <from-view-id>/calculator/calculator-result-even.xhtml</from-view-id>
-        <navigation-case>
-            <from-outcome>prime</from-outcome>
-            <to-view-id>/calculator/calculator-result-analyze-prime.xhtml</to-view-id>
-        </navigation-case>
-        <navigation-case>
-            <from-outcome>not-prime</from-outcome>
-            <to-view-id>/calculator/calculator-result-analyze-not-prime.xhtml</to-view-id>
-        </navigation-case>
-    </navigation-rule>
-    <navigation-rule>
-        <from-view-id>/calculator/calculator-result-odd.xhtml</from-view-id>
-        <navigation-case>
-            <from-outcome>prime</from-outcome>
-            <to-view-id>/calculator/calculator-result-analyze-prime.xhtml</to-view-id>
-        </navigation-case>
-        <navigation-case>
-            <from-outcome>not-prime</from-outcome>
-            <to-view-id>/calculator/calculator-result-analyze-not-prime.xhtml</to-view-id>
-        </navigation-case>
-    </navigation-rule>-->
     <navigation-rule>
 <!--        star (*) means that this rule will be applied for navigation from whatever page-->
         <from-view-id>*</from-view-id>
@@ -49,4 +27,12 @@
             <to-view-id>/calculator/calculator-result-analyze-not-prime.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
+
+
+    <application>
+        <resource-bundle>
+            <base-name>messages</base-name>
+            <var>msg</var>
+        </resource-bundle>
+    </application>
 </faces-config>

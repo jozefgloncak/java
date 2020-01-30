@@ -116,7 +116,26 @@ Finally it is also possible to compute next page also in config as follows:
 </navigation-case>
 ```
 
-
+## Messages
+Add to *faces-config.xml* following code.
+```xhtml
+<application>
+    <resource-bundle>
+        <base-name>messages</base-name>
+        <var>msg</var>
+    </resource-bundle>
+</application>
+```
+It describe that file **messages.properties** is placed in *resources* folder. Content of file is in *key*=value
+ format e. g.
+```properties
+label.displayLabels=Should be labels displayed?
+label.value1=First value
+```
+In facelet it is now possible following syntax:
+```xhtml
+#{msg['label.value1']}
+```
 
 # XML configuration
 Spring bean configuration is possible also through *.xml file. It is necessary specify bean in *.xml file and then
