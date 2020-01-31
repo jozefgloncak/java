@@ -1,18 +1,28 @@
 # About
 Following remarks come mainly from tutorial [1](#coreServlets)
 
+Once is project started directly from IDE (IntelliJ) than it is possible it just simply run (e. g. click R-mouse on
+ Application class). If you want to crete runnable JAR with embeded Tomcat it is necessary to change packaging in pom to
+```xml
+<package>war</package>
+```
+then it is possible to simply run from command line
+```
+java -jar archive_name.war
+```
+
 # Lifecycle of JSF
-* getter method of bean is called once form is displayed
-* setter methods are called once formular is submitted 
+* getter methods of bean are called once form is **displayed**
+* setter methods of bean are called once formular is **submitted** 
     * after that, method specified in action attribute of button is called. There can be several action methods if
-     there is
- several buttons on form.
+     there is several buttons on form.
 
 # EL - Expression language
 * accesss to concrete element of list ```#{bean.list[index]}```
 * accesss to concrete element of array ```#{bean.array[index]}```
 * accesss to concrete element of map ```#{bean.map[key]}```
 * array notation for accessing properties ```#{bean["mapName"][index]})```
+* is string empty (null or '') ```#{empty bean.property}``` - the same is valid also for list, map...
 
 # Predefined variables
 * facesContext
@@ -126,8 +136,8 @@ Add to *faces-config.xml* following code.
     </resource-bundle>
 </application>
 ```
-It describe that file **messages.properties** is placed in *resources* folder. Content of file is in *key*=value
- format e. g.
+It describe that file **messages.properties** is placed in *resources* folder. Name of file can be different but then
+ it is also necessary change this value in ```<base-name>``` element. Content of file is in *key*=value format e. g.
 ```properties
 label.displayLabels=Should be labels displayed?
 label.value1=First value
@@ -136,6 +146,21 @@ In facelet it is now possible following syntax:
 ```xhtml
 #{msg['label.value1']}
 ```
+
+## Placeholders
+If you want to add to message text some parameter specify messsage in **messages.properties** as follows:
+```properties
+msg.result=Výsledok je {0} a cislo {1} je prvočíslo.
+```
+
+then it is possible use in XHTML
+```xhtml
+<h:outputFormat value="#{msg['msg.result']}">
+    <f:param value="#{expression.result}" />
+    <f:param value="#{expression.prime ? '': 'nie'}" />
+</h:outputFormat>
+```
+Parameters values are specified through ```<f:param>``` tag
 
 # XML configuration
 Spring bean configuration is possible also through *.xml file. It is necessary specify bean in *.xml file and then

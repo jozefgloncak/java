@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+>
+
+<h:head>
+    <link rel="stylesheet" type="text/css"
+          href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/cosmo/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../style.css"/>
+
+</h:head>
+<h:body>
+    <f:view locale="#{formSettings.localeInner}">
+
+        <h:form>
+            <h:commandLink action="#{navigationController.resolvePage}" value="menu">
+                <f:param name="pageId" value=""/>
+            </h:commandLink>
+        </h:form>
+        <h:form>
+            <h:selectOneMenu value="#{formSettings.locale}" onchange="submit()">
+                <f:selectItem itemValue="sk" itemLabel="sk"/>
+                <f:selectItem itemValue="en" itemLabel="en"/>
+            </h:selectOneMenu>
+        </h:form>
+
+        <h:form>
+            <h:panelGrid columns="4">
+                Name:
+                <h:inputText id="inputName" value="#{validatorForm.name}" required="true"
+                             requiredMessage="#{msg1['msg.required']}"/>
+                <h:message class="error" for="inputName"/>
+                <h:outputText value="Required validation"/>
+
+                Age:
+                <h:inputText id="inputAge" value="#{validatorForm.age}"
+                             converterMessage="#{msg1['err.convert.toNumber']}"/>
+                <h:message class="error" for="inputAge"/>
+                <h:outputText value="String to int conversion validation"/>
+
+                Rating:
+                <h:inputText id="inputRating" value="#{validatorForm.rating}"
+                             converterMessage="#{msg1['err.convert.toDouble']}"/>
+                <h:message class="error" for="inputRating"/>
+                <h:outputText value="String to double conversion validation"/>
+
+            </h:panelGrid>
+            <h:commandButton value="#{capt['button.submit']}"/>
+        </h:form>
+    </f:view>
+</h:body>
+
+</html>

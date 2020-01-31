@@ -1,4 +1,4 @@
-<?xml version="1.0" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml"
@@ -8,41 +8,61 @@
 
 <h:head>
     <link rel="stylesheet" type="text/css" href="style.css"/>
+    <meta content='text/html; charset=UTF-8' http-equiv="Content-Type" />
 </h:head>
 <h:body>
 
     <f:loadBundle basename="messages" var="msg"/>
+    <f:view locale="#{formSettings.localeInner}">
 
-    <h:form>
-        <h:outputLabel value="#{msg['label.displayLabels']}" />
-        <h:selectBooleanCheckbox value="#{expression.displayLabels}">
-            <f:ajax render="@form" execute="@form"/>
-        </h:selectBooleanCheckbox>
-
-        <br/>
-        <h:outputLabel value="#{msg['label.value1']}" rendered="#{expression.displayLabels}"/>
-        <h:inputText value="#{expression.firstValue}"/>
-
-        <br/>
-        <h:outputLabel value="#{msg['label.value2']}" rendered="#{expression.displayLabels}"/>
-        <h:inputText value="#{expression.secondValue}"/>
-
-        <br />
-        <h:outputText value="#{expression.result}" rendered="#{!(empty expression.result) and expression.result!=0}"/>
-        <h:outputText value="#{msg['msg.emptyResult']}"
-                      rendered="#{empty expression.result or expression.result==0}"/>
-
-        #{expression.analyzePrime()}
-
-        <h:panelGroup rendered="#{expression.prime}">
-            <h:outputText class="prime" value="#{msg['msg.isPrime']}" />
-        </h:panelGroup>
+        <h:form>
+            <h:selectOneMenu value="#{formSettings.locale}" onchange="submit()">
+                <f:selectItem itemValue="sk" itemLabel="sk"/>
+                <f:selectItem itemValue="en" itemLabel="en"/>
+            </h:selectOneMenu>
+        </h:form>
+        <h:form>
+            <br />
 
 
-        <br />
-        <h:commandButton value="#{msg['btn.calculate']}" action="#{expression.calculate}" />
+            <h:outputLabel value="#{msg['label.displayLabels']}"/>
+            <h:selectBooleanCheckbox value="#{expression.displayLabels}">
+                <f:ajax render="@form" execute="@form"/>
+            </h:selectBooleanCheckbox>
 
-    </h:form>
+            <br/>
+            <h:outputLabel value="#{msg['label.value1']}" rendered="#{expression.displayLabels}"/>
+            <h:inputText value="#{expression.firstValue}"/>
+
+            <br/>
+            <h:outputLabel value="#{msg['label.value2']}" rendered="#{expression.displayLabels}"/>
+            <h:inputText value="#{expression.secondValue}"/>
+
+            <br/>
+            <h:outputText value="#{expression.result}"
+                          rendered="#{!(empty expression.result) and expression.result!=0}"/>
+            <h:outputText value="#{msg['msg.emptyResult']}"
+                          rendered="#{empty expression.result or expression.result==0}"/>
+
+            #{expression.analyzePrime()}
+            <br/>
+            <h:outputFormat value="#{msg['msg.result']}">
+                <f:param value="#{expression.result}"/>
+                <f:param value="#{expression.prime ? '': msg['no']}"/>
+            </h:outputFormat>
+
+            <br/>
+            <h:panelGroup rendered="#{expression.prime}">
+                <h:outputText class="prime" value="#{msg['msg.isPrime']}"/>
+            </h:panelGroup>
+
+            Locale: #{facesContext.externalContext.requestLocale}
+
+            <br/>
+            <h:commandButton value="#{msg['btn.calculate']}" action="#{expression.calculate}"/>
+
+        </h:form>
+    </f:view>
 </h:body>
 
 </html>

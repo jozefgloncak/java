@@ -11,6 +11,8 @@
 	<groupId>gloncak.jozef.jsp</groupId>
 	<artifactId>integrate-spring-jsp2</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+<!--	this packiging war value should be used once you want to generate runnable, tomcat enabled archive (war)-->
+<!--	<packaging>war</packaging>-->
 	<name>integrate-spring-jsp2</name>
 	<description>Demo project for Spring Boot integration with jsp</description>
 

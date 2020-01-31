@@ -21,7 +21,6 @@
         <table>
             <!-- max & min input length validation in view -->
             <!-- required validation on view -->
-<!--
             <tr>
                 <td>
                     <h:outputLabel for="inputFirstName">First name</h:outputLabel>
@@ -33,59 +32,58 @@
                     </h:inputText>
                 </td>
             </tr>
--->
-            <!--            &lt;!&ndash; min & max input length validation through annotation &ndash;&gt;-->
-            <!--            <tr>-->
-            <!--                <td><h:outputLabel for="inputMiddleName">Middle name</h:outputLabel></td>-->
-            <!--                <td><h:inputText id="inputMiddleName" value="#{person.middleName}"></h:inputText></td>-->
-            <!--            </tr>-->
-            <!--            &lt;!&ndash; not null (required) validation through annotation &ndash;&gt;-->
-            <!--            <tr>-->
-            <!--                <td><h:outputLabel for="inputSurname">Surname</h:outputLabel></td>-->
-            <!--                <td><h:inputText id="inputSurname" value="#{person.surname}"></h:inputText></td>-->
-            <!--            </tr>-->
-            <!--            &lt;!&ndash; min & max validation through annotation &ndash;&gt;-->
-            <!--            <tr>-->
-            <!--                <td>-->
-            <!--                    <h:outputLabel for="inputHeight">Height</h:outputLabel>-->
-            <!--                </td>-->
-            <!--                <td>-->
-            <!--                    <h:inputText id="inputHeight" value="#{person.height}"/>-->
-            <!--                </td>-->
-            <!--            </tr>-->
-            <!--            &lt;!&ndash; min & max validation on view &ndash;&gt;-->
-            <!--            <tr>-->
-            <!--                <td>-->
-            <!--                    <h:outputLabel for="inputAge">Age</h:outputLabel>-->
-            <!--                </td>-->
-            <!--                <td>-->
-            <!--                    <h:inputText id="inputAge" value="#{person.age}">-->
-            <!--                        <f:validateDoubleRange minimum="18" maximum="65"/>-->
-            <!--                    </h:inputText>-->
-            <!--                </td>-->
-            <!--            </tr>-->
-            <!--            &lt;!&ndash; regex validation through annotation &ndash;&gt;-->
-            <!--            <tr>-->
-            <!--                <td>-->
-            <!--                    <h:outputLabel for="inputEmail">Email</h:outputLabel>-->
-            <!--                </td>-->
-            <!--                <td>-->
-            <!--                    <h:inputText id="inputEmail" value="#{person.eMail}"/>-->
-            <!--                </td>-->
-            <!--            </tr>-->
-            <!--            &lt;!&ndash; regex validation on view &ndash;&gt;-->
-            <!--            <tr>-->
-            <!--                <td>-->
-            <!--                    <h:outputLabel for="inputZip">ZIP</h:outputLabel>-->
-            <!--                </td>-->
-            <!--                <td>-->
-            <!--                    &lt;!&ndash; !!!validator Message is equal for both f: validation &ndash;&gt;-->
-            <!--                    <h:inputText id="inputZip" value="#{person.zip}" validatorMessage="Regex not matched">-->
-            <!--                        <f:validateRegex pattern="^[0-9]{5}$"/>-->
-            <!--                        <f:validateLength  minimum="5"  maximum="5"/>-->
-            <!--                    </h:inputText>-->
-            <!--                </td>-->
-            <!--            </tr>-->
+                        <!-- min & max input length validation through annotation -->
+<!--                        <tr>-->
+<!--                            <td><h:outputLabel for="inputMiddleName">Middle name</h:outputLabel></td>-->
+<!--                            <td><h:inputText id="inputMiddleName" value="#{person.middleName}"></h:inputText></td>-->
+<!--                        </tr>-->
+                        <!-- not null (required) validation through annotation -->
+<!--                        <tr>-->
+<!--                            <td><h:outputLabel for="inputSurname">Surname</h:outputLabel></td>-->
+<!--                            <td><h:inputText id="inputSurname" value="#{person.surname}"></h:inputText></td>-->
+<!--                        </tr>-->
+                        <!-- min & max validation through annotation -->
+                        <tr>
+                            <td>
+                                <h:outputLabel for="inputHeight">Height</h:outputLabel>
+                            </td>
+                            <td>
+                                <h:inputText id="inputHeight" value="#{person.height}"/>
+                            </td>
+                        </tr>
+                        <!-- min & max validation on view -->
+                        <tr>
+                            <td>
+                                <h:outputLabel for="inputAge">Age</h:outputLabel>
+                            </td>
+                            <td>
+                                <h:inputText id="inputAge" value="#{person.age}">
+                                    <f:validateDoubleRange minimum="18" maximum="65"/>
+                                </h:inputText>
+                            </td>
+                        </tr>
+                        <!-- regex validation through annotation -->
+                        <tr>
+                            <td>
+                                <h:outputLabel for="inputEmail">Email</h:outputLabel>
+                            </td>
+                            <td>
+                                <h:inputText id="inputEmail" value="#{person.eMail}"/>
+                            </td>
+                        </tr>
+                        <!-- regex validation on view -->
+                        <tr>
+                            <td>
+                                <h:outputLabel for="inputZip">ZIP</h:outputLabel>
+                            </td>
+                            <td>
+                                <!-- !!!validator Message is equal for both f: validation -->
+                                <h:inputText id="inputZip" value="#{person.zip}" validatorMessage="Regex not matched">
+                                    <f:validateRegex pattern="^[0-9]{5}$"/>
+                                    <f:validateLength  minimum="5"  maximum="5"/>
+                                </h:inputText>
+                            </td>
+                        </tr>
 
             <!-- select many checkbox -->
             <tr>
