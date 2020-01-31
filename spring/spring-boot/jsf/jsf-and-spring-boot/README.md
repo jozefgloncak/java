@@ -44,7 +44,19 @@ action="{name_of_new_page?faces-redirect=true}"
 ```
 [more](https://stackoverflow.com/questions/15521451/how-to-navigate-in-jsf-how-to-make-url-reflect-current-page-and-not-previous-o)
 
-
+# Input validation
+Following checks are in the same order as they are done in JSF
+* check required condition - is mandatory?
+```xhtml
+<h:inputText id="inputName" value="#{validatorForm.name}" required="true"
+             requiredMessage="#{msg1['msg.required']}"/>
+```
+* check conversion condition - is possible convert input from field to bean attribute type?
+```xhtml
+<h:inputText id="inputAge" value="#{validatorForm.age}"
+             converterMessage="#{msg1['err.convert.toNumber']}"/>
+```
+* check validation condition - pass through additional validation?
 
 # faces-config.xml file
 This file has to be situted as follows in main/webpp/WEB-INF/faces-config.xml
