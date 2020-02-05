@@ -10,21 +10,21 @@ then it is possible to simply run from command line
 ```
 java -jar archive_name.war
 ```
-
-# Lifecycle of JSF
+# JSF
+## Lifecycle of JSF
 * getter methods of bean are called once form is **displayed**
 * setter methods of bean are called once formular is **submitted** 
     * after that, method specified in action attribute of button is called. There can be several action methods if
      there is several buttons on form.
 
-# EL - Expression language
+## EL - Expression language
 * accesss to concrete element of list ```#{bean.list[index]}```
 * accesss to concrete element of array ```#{bean.array[index]}```
 * accesss to concrete element of map ```#{bean.map[key]}```
 * array notation for accessing properties ```#{bean["mapName"][index]})```
 * is string empty (null or '') ```#{empty bean.property}``` - the same is valid also for list, map...
 
-# Predefined variables
+## Predefined variables
 * facesContext
 * param
 * header
@@ -37,14 +37,14 @@ All of this variables are available and can be accessed as #{variableName}. All 
 
 
 
-# Redirecting
+## Redirecting
 in action define
 ```
 action="{name_of_new_page?faces-redirect=true}"
 ```
 [more](https://stackoverflow.com/questions/15521451/how-to-navigate-in-jsf-how-to-make-url-reflect-current-page-and-not-previous-o)
 
-# Input validation
+## Input validation
 Following checks are in the same order as they are done in JSF
 * check required condition - is mandatory?
 ```xhtml
@@ -56,9 +56,37 @@ Following checks are in the same order as they are done in JSF
 <h:inputText id="inputAge" value="#{validatorForm.age}"
              converterMessage="#{msg1['err.convert.toNumber']}"/>
 ```
-* check validation condition - pass through additional validation?
+It is also possible define own converter inside **inputText** tag
+via:
+ 
+```xhtml
+<f:converter binding="#{birthNumberConverter}" />
+```
+in this case **BirthNumberConverter class is annoted with *@FacesConverter("birthNumberConverter")*. This attitude
+ make it possible to injecd e.g. dependency on **MessageSource** and return from converter i18n error messsages.
+or
+```xhtml
+<f:converter converterId="birthNumberConverter" />
+```
+in this case **BirthNumberConverter class is annoted with *@Named @ApplicationScoped*
 
-# faces-config.xml file
+
+
+     
+ 
+* check validation condition - pass through additional validation?
+```xhtml
+<p:inputText id="inputRating" value="#{validatorForm.rating}"
+             validatorMessage="#{msg1['err.range.rating']}">
+    <f:validateDoubleRange minimum="0" maximum="5"/>
+</p:inputText>
+```
+or it is possible to define your own validator similarly as converter. Define between **<p:inputText>** tags:
+```xhtml
+<f:validator validatorId="birthNumberValidator" />
+```
+
+## faces-config.xml file
 This file has to be situted as follows in main/webpp/WEB-INF/faces-config.xml
 
 File starts like this
@@ -76,7 +104,7 @@ File starts like this
 Notice that there is version 2.2 but in pom there is version of JSF 2.3. Problem was that this file wasn't possible
  load and I wasn't able to reproduce this [advice](http://alibassam.com/deploying-jsf-2-3-application-tomcat-9/).
 
-## Explicit navigation
+### Explicit navigation
 It means that you externaly (in file **faces-config.xml**) define what are navigation rules when you click submit
  button on page.
  
@@ -138,7 +166,7 @@ Finally it is also possible to compute next page also in config as follows:
 </navigation-case>
 ```
 
-## Messages
+### Messages
 Add to *faces-config.xml* following code.
 ```xhtml
 <application>
@@ -159,7 +187,7 @@ In facelet it is now possible following syntax:
 #{msg['label.value1']}
 ```
 
-## Placeholders
+### Placeholders
 If you want to add to message text some parameter specify messsage in **messages.properties** as follows:
 ```properties
 msg.result=Výsledok je {0} a cislo {1} je prvočíslo.
@@ -174,7 +202,7 @@ then it is possible use in XHTML
 ```
 Parameters values are specified through ```<f:param>``` tag
 
-# XML configuration
+## XML configuration
 Spring bean configuration is possible also through *.xml file. It is necessary specify bean in *.xml file and then
  specify this file in class annoted with **@Configuration** annotation as follows
 ```java
@@ -194,7 +222,7 @@ In *.xml file it is also necessary to specify scope mainly if bean is used as mo
     </bean>
 ```
 
-# Passing arguments to facelet
+## Passing arguments to facelet
 From JSF 2.2 it possible to call methods of managed bean as follows
 
 ```#{expression.analyzePrime()}```
@@ -203,8 +231,8 @@ also with parameters
 
 
 
-# UI elements
-## Conditional displaying
+## UI elements
+### Conditional displaying
 Almost all UI elements have attribute **rendered**. According to value which is set this element is visible or
  invisible. It can be used for conditional displaying of UI elements.
  
@@ -225,7 +253,7 @@ other possibility is embed HTML code which is conditional to other tag e. g. as 
  have
  rendered attribute.</span>
 
-## Selection elements
+### Selection elements
 There is many UI elements which can be used for selecting:
 * selecting several data items:
     * selectManyCheckbox
@@ -266,8 +294,8 @@ For each of previous (should be) option it is possible:
 
 
 
-## Table
-### Send current row
+### Table
+#### Send current row
 ```xhtml
     <h:form>
         <h:dataTable value="#{personData.persons}" var="person">
@@ -286,7 +314,7 @@ For each of previous (should be) option it is possible:
 in backend there has to be model classs **PersonData** with method **deletePerson(Person person)** which accepts one
  input parameter of type Person.
 
-# Styling (CSS)
+## Styling (CSS)
 It is necessary to create following structure in project *resources/static/style.css*
 In XHTML then you can reference it through
 ```xhtml
@@ -298,6 +326,39 @@ There should be also other possibility through
   <h:outputStylesheet library="default" name="css/style.css" />
 ```
 but I wasn't able to handle it.
+
+# Primefaces
+It is library which is on top of JSF. To integrate to projet it is necessary add dependency:
+```xml
+<dependency>
+    <groupId>org.primefaces</groupId>
+    <artifactId>primefaces</artifactId>
+</dependency>
+```
+and also add some template e. g.
+```xml
+<dependency>
+    <groupId>org.primefaces.extensions</groupId>
+    <artifactId>all-themes</artifactId>
+    <version>1.0.8</version>
+</dependency>
+```
+
+To *application.properties* add
+```properties
+jsf.PROJECT_STAGE=Development
+primefaces.theme=overcast
+```
+
+To XHTML file it is necessary to add namespace
+```XHTML
+xmlns:p="http://primefaces.org/ui"
+```
+
+It is necessary to restart server. In XHTML then it is possible to use many Primefaces UI element.
+
+# Joinfaces
+It is project which autoconfigure PrimeFaces, Mojarra, JSF and many otheers. [More details](http://joinfaces.org/) 
 
 # Sources
 <a name="coreServlets">[1] [CoreServlets](http://www.coreservlets.com/JSF-Tutorial/jsf2/#Beans-1)

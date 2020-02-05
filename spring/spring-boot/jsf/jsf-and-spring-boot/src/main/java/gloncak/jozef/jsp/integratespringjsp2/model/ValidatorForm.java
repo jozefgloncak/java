@@ -1,14 +1,27 @@
 package gloncak.jozef.jsp.integratespringjsp2.model;
 
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.annotation.RequestScope;
 import org.springframework.web.context.annotation.SessionScope;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+
 @Component
-@SessionScope
+@RequestScope
 public class ValidatorForm {
     private String name;
     private Integer age;
     private Double rating;
+
+    @Min(20)
+    @Max(150)
+    @NotNull
+    private Integer weight;
+
+    private Long birthNumber;
 
     public String getName() {
         return name;
@@ -32,5 +45,21 @@ public class ValidatorForm {
 
     public void setRating(Double rating) {
         this.rating = rating;
+    }
+
+    public Integer getWeight() {
+        return weight;
+    }
+
+    public void setWeight(Integer weight) {
+        this.weight = weight;
+    }
+
+    public Long getBirthNumber() {
+        return birthNumber;
+    }
+
+    public void setBirthNumber(Long birthNumber) {
+        this.birthNumber = birthNumber;
     }
 }

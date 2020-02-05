@@ -1,6 +1,7 @@
 package gloncak.jozef.jsp.integratespringjsp2.config;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.ImportResource;
 
 /**
@@ -8,5 +9,6 @@ import org.springframework.context.annotation.ImportResource;
  */
 @Configuration
 @ImportResource({"classpath*:beans.xml"})
+@Import( ServletConfiguration.class)
 public class XMLConfiguration {
 }

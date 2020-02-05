@@ -4,6 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
 >
 
 <h:head>
@@ -11,10 +12,39 @@
           href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/cosmo/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="../style.css"/>
 
+    <script type="text/javascript">
+        PrimeFaces.converter['birthNumberConverter'] = {
+            convert: function(element, value) {
+                console.log(value);
+                console.log(element.data.data1);
+                const parsed = parseInt(value);
+                if (isNaN(parsed)) {
+                    throw {
+                    }
+                }
+            }
+        };
+
+    PrimeFaces.validator['birthNumberValidator'] = {
+
+        pattern: /[0-9]{10}/,
+
+        validate: function(element, value) {
+            //use element.data() to access validation metadata, in this case there is none.
+            console.log(element.data());
+            if(!this.pattern.test(element[0].value)) {
+                throw {
+                    summary: 'Validation Error',
+                    detail: value + ' is not a valid email.'
+                }
+            }
+        }
+    };
+    </script>
+
 </h:head>
 <h:body>
     <f:view locale="#{formSettings.localeInner}">
-
         <h:form>
             <h:commandLink action="#{navigationController.resolvePage}" value="menu">
                 <f:param name="pageId" value=""/>
@@ -27,29 +57,112 @@
             </h:selectOneMenu>
         </h:form>
 
-        <h:form>
-            <h:panelGrid columns="4">
-                Name:
-                <h:inputText id="inputName" value="#{validatorForm.name}" required="true"
-                             requiredMessage="#{msg1['msg.required']}"/>
-                <h:message class="error" for="inputName"/>
-                <h:outputText value="Required validation"/>
+        <p:panel
+                header="Validation on backend - demonstrate various validation types, required field and default conversion"
+                toggleable="true">
+            <h:form>
+                <h:panelGrid columns="4">
+                    Name:
+                    <p:inputText id="inputName" value="#{validatorForm.name}" required="true"
+                                 requiredMessage="#{msg1['msg.required']}"
+                                 validatorMessage="#{msg1['validator.name']}">
+                        <f:validateLength minimum="2" maximum="10"/>
+                        <f:validateRegex pattern="^[A-Z][a-zA-Z]{1,}$"/>
+                        <p:clientValidator event="keyup"/>
+                    </p:inputText>
+                    <p:message class="error" for="inputName"/>
+                    <h:outputText value="Required validation, range validation, regex validation"/>
 
-                Age:
-                <h:inputText id="inputAge" value="#{validatorForm.age}"
-                             converterMessage="#{msg1['err.convert.toNumber']}"/>
-                <h:message class="error" for="inputAge"/>
-                <h:outputText value="String to int conversion validation"/>
+                    Age:
+                    <p:inputText id="inputAge" value="#{validatorForm.age}"
+                                 converterMessage="#{msg1['err.convert.toNumber']}"
+                                 validatorMessage="#{msg1['err.range.age']}">
+                        <f:validateLongRange minimum="18" maximum="120"/>
+                        <p:ajax update="msgAge" event="keyup"/>
+                    </p:inputText>
+                    <p:message id="msgAge" class="error" for="inputAge"/>
+                    <h:outputText
+                            value="String to int conversion validation and range validation. Ajax call on keyup"/>
 
-                Rating:
-                <h:inputText id="inputRating" value="#{validatorForm.rating}"
-                             converterMessage="#{msg1['err.convert.toDouble']}"/>
-                <h:message class="error" for="inputRating"/>
-                <h:outputText value="String to double conversion validation"/>
+                    Rating:
+                    <p:inputText id="inputRating" value="#{validatorForm.rating}"
+                                 converterMessage="#{msg1['err.convert.toDouble']}"
+                                 validatorMessage="#{msg1['err.range.rating']}">
+                        <f:validateDoubleRange minimum="0" maximum="5"/>
+                        <p:ajax update="msgRating" event="change"/>
+                    </p:inputText>
+                    <p:message id="msgRating" class="error" for="inputRating"/>
+                    <h:outputText
+                            value="String to double conversion validation and range validation. Ajax call on change"/>
 
-            </h:panelGrid>
-            <h:commandButton value="#{capt['button.submit']}"/>
-        </h:form>
+                    Weight:
+                    <p:inputText id="inputWeight" value="#{validatorForm.weight}"
+                                 converterMessage="#{msg1['err.convert.toNumber']}"
+                                 validatorMessage="Has to be grather than 20 and lower than 150"/>
+                    <p:message for="inputWeight" class="error" />
+                    <h:outputText value="Validation constrain on backand bean, but validation is done on frontend" />
+
+                    Birth number:
+                    <p:inputText id="inputBirthNumber" value="#{validatorForm.birthNumber}"
+                        converterMessage="#{msg1['err.convert.toNumber']}"
+                        validatorMessage="#{msg1['err.valid.birthNumber']}"
+                    >
+<!--                        <f:converter binding="#{birthNumberConverter}" />-->
+                        <f:converter converterId="birthNumberConverter" />
+                        <f:validator validatorId="birthNumberValidator" />
+                    </p:inputText>
+                    <p:message for="inputBirthNumber" class="error" />
+                    <h:outputText value="Custom validator BirthNumberValidator" />
+
+                </h:panelGrid>
+                <p:commandButton value="#{capt['button.submit']}" ajax="false" validateClient="false"/>
+                <p:tooltip for="@previous"
+                           value="Backend validation. Each click on button will send dat to backend and return response." />
+
+
+                <p:commandButton value="Submit Non-Ajax" ajax="false" icon="pi pi-check" validateClient="true"/>
+                <p:tooltip for="@previous"
+                           value="CSV (Client side validation) enabled through button attribute 'validateClient' and global enablement of validation." />
+            </h:form>
+        </p:panel>
+<!--        <p:panel header="Frontend validation" toggleable="true">-->
+<!--            <h:form>-->
+<!--                <h:panelGrid>-->
+<!--                    Name:-->
+<!--                    <p:inputText id="inputName" value="#{validatorForm.name}" required="true"-->
+<!--                                 requiredMessage="#{msg1['msg.required']}"-->
+<!--                                 validatorMessage="#{msg1['validator.name']}">-->
+<!--                        <f:validateLength minimum="2" maximum="10"/>-->
+<!--                        <f:validateRegex pattern="^[A-Z][a-zA-Z]{1,}$"/>-->
+<!--                    </p:inputText>-->
+<!--                    <p:message class="error" for="inputName"/>-->
+<!--                    <h:outputText value="Required validation, range validation, regex validation"/>-->
+
+<!--                    Age:-->
+<!--                    <p:inputText id="inputAge" value="#{validatorForm.age}"-->
+<!--                                 converterMessage="#{msg1['err.convert.toNumber']}"-->
+<!--                                 validatorMessage="#{msg1['err.range.age']}">-->
+<!--                        <f:validateLongRange minimum="18" maximum="120"/>-->
+<!--                    </p:inputText>-->
+<!--                    <p:message id="msgAge" class="error" for="inputAge"/>-->
+<!--                    <h:outputText-->
+<!--                            value="String to int conversion validation and range validation. Ajax call on keyup"/>-->
+
+<!--                    Rating:-->
+<!--                    <p:inputText id="inputRating" value="#{validatorForm.rating}"-->
+<!--                                 converterMessage="#{msg1['err.convert.toDouble']}"-->
+<!--                                 validatorMessage="#{msg1['err.range.rating']}">-->
+<!--                        <f:validateDoubleRange minimum="0" maximum="5"/>-->
+<!--                    </p:inputText>-->
+<!--                    <p:message id="msgRating" class="error" for="inputRating"/>-->
+<!--                    <h:outputText-->
+<!--                            value="String to double conversion validation and range validation. Ajax call on change"/>-->
+
+<!--                </h:panelGrid>-->
+
+<!--&lt;!&ndash;                <h:commandButton value="#{capt['button.submit']}"/>&ndash;&gt;-->
+<!--            </h:form>-->
+<!--        </p:panel>-->
     </f:view>
 </h:body>
 
