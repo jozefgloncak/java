@@ -4,7 +4,9 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+>
 
 <h:head>
     <title>JSF tutorial</title>
@@ -24,45 +26,49 @@
     <h2>DataTable Example</h2>
 
     <h:form>
-        <h:dataTable value="#{personData.persons}" var="person">
+        <p:dataTable id="personTable" value="#{personData.persons}"
+                     rows="3"
+                     caseSensitiveSort="true"
+                     paginator="true"
+                     rowsPerPageTemplate="3,5, 10, 15"
+                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                     var="person">
 
-            <h:column>
+            <p:column>
                 <f:facet name="header">Name</f:facet>
                 #{person.firstName}
-            </h:column>
+            </p:column>
 
-            <h:column>
+            <p:column>
                 <f:facet name="header">Height</f:facet>
                 #{person.height}
-            </h:column>
+            </p:column>
 
-            <h:column>
+            <p:column>
                 <f:facet name="header">Age</f:facet>
                 #{person.age}
-            </h:column>
+            </p:column>
 
-            <h:column>
+            <p:column>
                 <f:facet name="header">Job start</f:facet>
                 #{person.jobStartDate}
-            </h:column>
-            <h:column>
+            </p:column>
+            <p:column>
                 <f:facet name="header">Delete</f:facet>
-                <h:commandButton value="Delete"
-                                 action="#{personData.deletePerson(person)}">
-                </h:commandButton>
-            </h:column>
+                <p:commandButton value="Delete"
+                                 action="#{personData.deletePerson(person)}"
+                                 update="personTable">
+                </p:commandButton>
+            </p:column>
 
-        </h:dataTable>
+        </p:dataTable>
+        <p:commandButton value="Restore data" update="personTable" actionListener="#{personData.restoreData}"/>
+
 
         <h:panelGrid columns="3">
-            bla
-            bla
             <h:outputLabel for="input1" value="label" />
             <h:inputText value="bla1" id="input1"/>
             <h:inputText value="bla2" id="input2"/>
-            bla3
-            bla4
-            bla5
         </h:panelGrid>
 
         <h2>Add person</h2>

@@ -2,3 +2,6 @@
 *target
 *.idea
 *.swp
+
+**nb-configuration.xml
+**nbactions-release-profile.xml

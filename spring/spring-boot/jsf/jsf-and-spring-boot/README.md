@@ -47,10 +47,12 @@ action="{name_of_new_page?faces-redirect=true}"
 ## Input validation
 Following checks are in the same order as they are done in JSF
 * check required condition - is mandatory?
+
 ```xhtml
 <h:inputText id="inputName" value="#{validatorForm.name}" required="true"
              requiredMessage="#{msg1['msg.required']}"/>
 ```
+
 * check conversion condition - is possible convert input from field to bean attribute type?
 ```xhtml
 <h:inputText id="inputAge" value="#{validatorForm.age}"
@@ -90,7 +92,8 @@ or it is possible to define your own validator similarly as converter. Define be
 This file has to be situted as follows in main/webpp/WEB-INF/faces-config.xml
 
 File starts like this
-```xml
+
+```
 <?xml version="1.0" encoding="UTF-8"?>
 <faces-config xmlns="http://xmlns.jcp.org/xml/ns/javaee"
               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -357,8 +360,30 @@ xmlns:p="http://primefaces.org/ui"
 
 It is necessary to restart server. In XHTML then it is possible to use many Primefaces UI element.
 
+## Theme switch
+There is some default theme which is used. In **application.properties** it SHOULD be possible to change theme through
+*jsf.primefaces.theme* key but it doesn't work.
+
+Therefore in **ServletConfiguration** class there was added
+```java
+    @Value("${jsf.primefaces.theme:afterdark}")
+    String primafacesTheme; 
+
+```
+This annotation automatically inject value *jsf.primefaces.theme* from application.properties file to variable
+ **primafcesTheme*. In case that this value in properties file isn't specified, default value is used (after colon
+ ). Then this value is used in
+
+```java
+    @Override
+    public void onStartup(ServletContext sc) throws ServletException {
+        sc.setInitParameter("primefaces.THEME", primafacesTheme);
+    }  
+```
+
 # Joinfaces
-It is project which autoconfigure PrimeFaces, Mojarra, JSF and many otheers. [More details](http://joinfaces.org/) 
+It is project which autoconfigure PrimeFaces, Mojarra, JSF and many otheers. [More details](http://joinfaces.org/)
+ 
 
 # Sources
 <a name="coreServlets">[1] [CoreServlets](http://www.coreservlets.com/JSF-Tutorial/jsf2/#Beans-1)

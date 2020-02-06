@@ -19,20 +19,32 @@ public class PersonData implements Serializable {
     private Integer height;
     private LocalDate jobStartDate;
 
-    public static final List<Person> persons =
+    private static final List<Person> ORIGINAL_PERSONS =
             new ArrayList<>(Arrays.asList(
                     new Person("Adam", 21, 173, LocalDate.of(1985, 4, 21))
                     , new Person("Barbor", 32, 165, LocalDate.of(1990, 12, 1))
                     , new Person("Cyril", 29, 185, LocalDate.of(1983, 6, 30))
                     , new Person("Denisa", 23, 163, LocalDate.of(1989, 3, 15))
                     , new Person("Emil", 35, 181, LocalDate.of(1987, 8, 17))
+                    , new Person("Filip", 27, 173, LocalDate.of(1980, 4, 15))
+                    , new Person("Gustav", 34, 168, LocalDate.of(1980, 1, 24))
+                    , new Person("Gustav", 35, 173, LocalDate.of(1990, 9, 23))
+                    , new Person("Gustav", 29, 189, LocalDate.of(1984, 3, 14))
+                    , new Person("Hana", 16, 159, LocalDate.of(1987, 11, 1))
+                    , new Person("Ivan", 23, 177, LocalDate.of(1983, 5, 5))
             ));
+
+    private List<Person> persons = new ArrayList<>(ORIGINAL_PERSONS);
 
     public PersonData() {
     }
 
     public List<Person> getPersons() {
         return persons;
+    }
+
+    public void restoreData() {
+        this.persons = new ArrayList<>(ORIGINAL_PERSONS);
     }
 
     public String addPerson() {
@@ -60,7 +72,6 @@ public class PersonData implements Serializable {
         }
         return null;
     }
-
 
     public Integer getAge() {
         return age;
