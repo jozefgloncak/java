@@ -21,7 +21,6 @@ import java.util.Locale;
  * This converter make it possible to parse|format data from|to LocalDate.
  */
 @FacesConverter("PickListConverter")
-@Component("PickListConverter")
 public class LocalDateConverter implements Converter {
 
         @Override

@@ -1,8 +1,10 @@
 package gloncak.jozef.jsp.integratespringjsp2.model;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-import javax.enterprise.context.SessionScoped;
+import javax.faces.view.ViewScoped;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -11,8 +13,11 @@ import java.util.List;
 
 
 @Component
-@SessionScoped
+@ViewScoped
 public class PersonData implements Serializable {
+
+    private static final Logger LOG = LoggerFactory.getLogger(PersonData.class);
+
     private static final long serialVersionUID = 1L;
     private String firstName;
     private Integer age;
@@ -27,11 +32,14 @@ public class PersonData implements Serializable {
                     , new Person("Denisa", 23, 163, LocalDate.of(1989, 3, 15))
                     , new Person("Emil", 35, 181, LocalDate.of(1987, 8, 17))
                     , new Person("Filip", 27, 173, LocalDate.of(1980, 4, 15))
-                    , new Person("Gustav", 34, 168, LocalDate.of(1980, 1, 24))
+                    , new Person("Gustav", 34, 190, LocalDate.of(1980, 1, 24))
                     , new Person("Gustav", 35, 173, LocalDate.of(1990, 9, 23))
                     , new Person("Gustav", 29, 189, LocalDate.of(1984, 3, 14))
                     , new Person("Hana", 16, 159, LocalDate.of(1987, 11, 1))
-                    , new Person("Ivan", 23, 177, LocalDate.of(1983, 5, 5))
+                    , new Person("Denisa", 35, 173, LocalDate.of(1990, 6, 2))
+                    , new Person("Cyril", 35, 173, LocalDate.of(1980, 10, 14))
+                    , new Person("Filip", 35, 173, LocalDate.of(1983, 5, 5))
+                    , new Person("Filip", 35, 172, LocalDate.of(1983, 5, 5))
             ));
 
     private List<Person> persons = new ArrayList<>(ORIGINAL_PERSONS);
@@ -60,16 +68,6 @@ public class PersonData implements Serializable {
 
     public String editPerson(Person person) {
         person.setCanEdit(true);
-        return null;
-    }
-
-    public String savePerson() {
-
-        //set "canEdit" of all persons to false
-
-        for (Person person : persons) {
-            person.setCanEdit(false);
-        }
         return null;
     }
 

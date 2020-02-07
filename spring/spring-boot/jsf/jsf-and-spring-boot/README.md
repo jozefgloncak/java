@@ -381,9 +381,96 @@ This annotation automatically inject value *jsf.primefaces.theme* from applicati
     }  
 ```
 
+## Table - <p:dataTable>
+### Sorting
+It is possible to enable multi level sorting as follows:
+```xhtml
+<p:dataTable ...   sortMode="multiple" >
+    ....
+    <p:column sortBy="#{bean.attributeName}" >
+        #{bean.attributeName}
+    </p:column>
+    ....
+</p:dataTable>
+```
+
+Sort by column is done by clicking on header. While holding CTRL key it is possible to click on other column and add
+ sorting at 2nd level and so on.
+ 
+### Paging
+In following case by defult there is table with 3 rows initially displayed. Drop downmenu contins possibility to set
+ also 5, 10, 15 rows per page. Last option is what will be displayed with paginator (what is current page, link to
+  first, last, next, previous page....) 
+```xhtml
+
+<p:dataTable rows="3"
+             paginator="true"
+             rowsPerPageTemplate="3,5, 10, 15"
+             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+             >
+```
+
+### Editing data - row
+Following code is used for inline editing. First column display data. In **cellEditor** there are specified
+ elements for displaying and for editing dat. Second column represents toolbar with edit and save, abort possibility.
+```xhtml
+<p:dataTable value="#{personData.persons}"                                          
+             var="person"
+             editable="true"
+             >
+        <p:column headerText="Name">
+            <p:cellEditor>
+                <f:facet name="output"><h:outputText value="#{person.firstName}" /></f:facet>
+                <f:facet name="input"><p:inputText value="#{person.firstName}" style="width:100%"/></f:facet>
+            </p:cellEditor>
+        </p:column>
+        <p:column style="width:35px">
+            <p:rowEditor />
+        </p:column>
+</p:dataTable>
+```
+
+### Editing data - cell
+Items are editable by clicking on it (every cell for which it is set (defined cell editor) is editable)
+```xhtml
+<p:dataTable value="#{personData.persons}"
+             var="person"
+             editable="true"
+             editMode="cell"
+             >
+
+    <p:column headerText="Name">
+        <p:cellEditor>
+            <f:facet name="output"><h:outputText value="#{person.firstName}" /></f:facet>
+            <f:facet name="input"><p:inputText value="#{person.firstName}" style="width:100%"/></f:facet>
+        </p:cellEditor>
+    </p:column>
+
+</p:dataTable>
+```
+
+### Dynamic columns
+This example make shows how it is possible to specify dynamically which columns are displayed
+```xhtml
+    <p:dataTable id="personTableDynamicCol" value="#{personData.persons}"
+                 var="person"
+                 >
+
+        <p:columns value="#{personTableDynamicColumns.columns}" var="column">
+                <f:facet name="header">
+                    <h:outputText value="#{column.header}" />
+                </f:facet>
+            <h:outputText value="#{person[column.attrName]}" />
+        </p:columns>
+
+    </p:dataTable>
+```
+*Columns* attribute of bean personTableDynamicColumns is object which contains attribute **heder** and **attrName
+**. Construction **person[column.attrName]** obtain from object *person* value of attribute which name is column
+.attrName.
+
 # Joinfaces
 It is project which autoconfigure PrimeFaces, Mojarra, JSF and many otheers. [More details](http://joinfaces.org/)
  
-
 # Sources
 <a name="coreServlets">[1] [CoreServlets](http://www.coreservlets.com/JSF-Tutorial/jsf2/#Beans-1)

@@ -15,12 +15,17 @@ import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.List;
+import java.util.Objects;
 
-public class Person implements Serializable {
+public class Person implements Serializable, Cloneable {
 
     private static final Logger LOG = LoggerFactory.getLogger(Person.class);
 
+    private static Integer idCounter = 0;
+
     private boolean canEdit;
+
+    private Integer id;
 
     private String firstName;
 
@@ -31,18 +36,18 @@ public class Person implements Serializable {
     @Size(min = 2, max = 15, message = "Annotation validation - middle name length >2 & <15")
     private String middleName;
 
-    @Digits(integer = 2, fraction = 0, message = "Annotation validation - age has to be number with integer part max " +
-            "2 and fraction part 0")
-    @DecimalMin(value = "18", inclusive = false, message = "Annotation validation - Number has to be  >" +
-            " 18")
+    @Digits(integer = 2, fraction = 0, message = "Annotation validation - age has to be number with integer part max "
+            + "2 and fraction part 0")
+    @DecimalMin(value = "18", inclusive = false, message = "Annotation validation - Number has to be  >"
+            + " 18")
     private Integer age;
 
     @Min(value = 30, message = "Annotation validation - Height > 30")
-    @Max(value = 130, message = "Annotation validation - Height < 130")
+    @Max(value = 210, message = "Annotation validation - Height < 210")
     private Integer height; //rounhded height in cm
 
-    @Pattern(regexp = "^[a-zA-Z0-9]{1,}@[a-zA-Z0-9]{1,}.[a-zA-Z]{2}$", message = "Annotation validation - has to " +
-            "comply with specified regex ^[a-zA-Z0-9]{1,}@[a-zA-Z0-9]{1,}.[a-zA-Z]{2}$")
+    @Pattern(regexp = "^[a-zA-Z0-9]{1,}@[a-zA-Z0-9]{1,}.[a-zA-Z]{2}$", message = "Annotation validation - has to "
+            + "comply with specified regex ^[a-zA-Z0-9]{1,}@[a-zA-Z0-9]{1,}.[a-zA-Z]{2}$")
     private String eMail;
 
     private String zip;
@@ -83,6 +88,7 @@ public class Person implements Serializable {
     }
 
     public Person(String firstName, Integer age, Integer height, LocalDate jobStartDate) {
+        this.id = idCounter++;
         this.firstName = firstName;
         this.age = age;
         this.height = height;
@@ -279,4 +285,60 @@ public class Person implements Serializable {
         this.healthy = healthy;
     }
 
+    @Override
+    public Person clone() throws CloneNotSupportedException {
+        Person newClone =(Person) super.clone();
+        newClone.setJobStartDate(LocalDate.of(this.jobStartDate.getYear(), this.jobStartDate.getMonth(), this.jobStartDate.getDayOfMonth()));
+        //@TODO: NOT all field are copied, it isn't complete deep copy. Just for demonstration purposes.
+        return newClone;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 47 * hash + Objects.hashCode(this.id);
+        hash = 47 * hash + Objects.hashCode(this.firstName);
+        hash = 47 * hash + Objects.hashCode(this.age);
+        hash = 47 * hash + Objects.hashCode(this.height);
+        hash = 47 * hash + Objects.hashCode(this.jobStartDate);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Person other = (Person) obj;
+        if (!Objects.equals(this.firstName, other.firstName)) {
+            return false;
+        }
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        if (!Objects.equals(this.age, other.age)) {
+            return false;
+        }
+        if (!Objects.equals(this.height, other.height)) {
+            return false;
+        }
+        if (!Objects.equals(this.jobStartDate, other.jobStartDate)) {
+            return false;
+        }
+        return true;
+    }
 }

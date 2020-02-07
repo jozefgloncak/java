@@ -1,107 +1,223 @@
 <?xml version = "1.0" encoding = "UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui"
->
+      >
 
-<h:head>
-    <title>JSF tutorial</title>
-    <!--    <h:outputStylesheet library="css" name="styles.css"/>-->
-    <link rel="stylesheet" type="text/css"
-          href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/cosmo/bootstrap.min.css"/>
+    <h:head>
+        <title>JSF tutorial</title>
+        <!--    <h:outputStylesheet library="css" name="styles.css"/>-->
+        <link rel="stylesheet" type="text/css"
+              href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/cosmo/bootstrap.min.css"/>
 
-</h:head>
+        <script type="text/javascript">
 
-<h:body>
-    <h:form>
-        <h:commandLink action="#{navigationController.resolvePage}" value="menu">
-            <f:param name="pageId" value=""/>
-        </h:commandLink>
-    </h:form>
-
-    <h2>DataTable Example</h2>
-
-    <h:form>
-        <p:dataTable id="personTable" value="#{personData.persons}"
-                     rows="3"
-                     caseSensitiveSort="true"
-                     paginator="true"
-                     rowsPerPageTemplate="3,5, 10, 15"
-                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                     var="person">
-
-            <p:column>
-                <f:facet name="header">Name</f:facet>
-                #{person.firstName}
-            </p:column>
-
-            <p:column>
-                <f:facet name="header">Height</f:facet>
-                #{person.height}
-            </p:column>
-
-            <p:column>
-                <f:facet name="header">Age</f:facet>
-                #{person.age}
-            </p:column>
-
-            <p:column>
-                <f:facet name="header">Job start</f:facet>
-                #{person.jobStartDate}
-            </p:column>
-            <p:column>
-                <f:facet name="header">Delete</f:facet>
-                <p:commandButton value="Delete"
-                                 action="#{personData.deletePerson(person)}"
-                                 update="personTable">
-                </p:commandButton>
-            </p:column>
-
-        </p:dataTable>
-        <p:commandButton value="Restore data" update="personTable" actionListener="#{personData.restoreData}"/>
+        </script>
+        <style type="text/css">
+            [id*="personTableEditable"] {
+                width: 100%;
+            }
+        </style>
+    </h:head>
 
 
-        <h:panelGrid columns="3">
-            <h:outputLabel for="input1" value="label" />
-            <h:inputText value="bla1" id="input1"/>
-            <h:inputText value="bla2" id="input2"/>
-        </h:panelGrid>
+    <h:body>
+        <h:form>
+            <h:commandLink action="#{navigationController.resolvePage}" value="menu">
+                <f:param name="pageId" value=""/>
+            </h:commandLink>
+        </h:form>
 
-        <h2>Add person</h2>
-        <table>
-            <tr>
-                <td>Name</td>
-                <td>
-                    <h:inputText value="#{personData.firstName}"/>
-                </td>
-            </tr>
-            <tr>
-                <td>Height</td>
-                <td>
-                    <h:inputText value="#{personData.height}"/>
-                </td>
-            </tr>
-            <tr>
-                <td>Age</td>
-                <td>
-                    <h:inputText value="#{personData.age}"/>
-                </td>
-            </tr>
-            <tr>
-                <td>Job start date</td>
-                <td>
-                    <h:inputText value="#{personData.jobStartDate}">
-                        <f:converter converterId="PickListConverter"/>
-                    </h:inputText>
-                </td>
-            </tr>
-        </table>
-        <h:commandButton value="Add person" action="#{personData.addPerson}"/>
-    </h:form>
+        <h2>DataTable Example</h2>
+        <h:form>
+            <p:selectBooleanCheckbox value="#{personTableAcordeonView.expandAllTabs}" itemLabel="Expand all tabs">                
+                <p:ajax update="dataTables"  listener="#{personTableAcordeonView.expandCollapseAllTabs}" />
+            </p:selectBooleanCheckbox>
+        </h:form>
+        <p:commandButton value="Restore data" update="dataTables" actionListener="#{personData.restoreData}"/>
+        <p:accordionPanel id="dataTables" activeIndex="#{personTableAcordeonView.expandedTabs}" >
+            <p:tab title="sorting and paging">
+                <h:form>
+                    <p:panel header="table p:dataTable - sorting, paging" toggleable="true" collapsed="true">
+                        <p:dataTable id="personTable" value="#{personData.persons}"
+                                     rows="3"
+                                     caseSensitiveSort="true"
+                                     paginator="true"
+                                     rowsPerPageTemplate="3,5, 10, 15"
+                                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                     sortMode="multiple"
+                                     var="person"
+                                     rowIndexVar="currRow"
+                                     >
 
-</h:body>
+                            <p:column sortBy="#{person.firstName}">
+                                <f:facet name="header">Name</f:facet>
+                                <h:outputText value="#{person.firstName}" />
+                            </p:column>
+
+                            <p:column sortBy="#{person.height}">
+                                <f:facet name="header">Height</f:facet>
+                                <h:outputText value="#{person.height}" />
+                            </p:column>
+
+                            <p:column sortBy="#{person.age}">
+                                <f:facet name="header">Age</f:facet>
+                                <h:outputText value="#{person.age}" />
+                            </p:column>
+
+                            <p:column sortBy="#{person.jobStartDate}">
+                                <f:facet name="header">Job start</f:facet>
+                                <h:outputText value="#{person.jobStartDate}" />
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">Operation</f:facet>
+                                <p:commandButton value="Delete"
+                                                 action="#{personData.deletePerson(person)}"
+                                                 update="personTable">
+                                </p:commandButton>
+                            </p:column>
+                        </p:dataTable>
+                    </p:panel>
+                </h:form>
+            </p:tab>
+            <p:tab title="row editing">
+                <h:form>
+                    <p:panel header="table p:dataTable - data editing" toggleable="true">
+                        <p:messages>
+                            <p:autoUpdate />
+                        </p:messages>
+                        <p:dataTable id="personTableEditable" value="#{personData.persons}"                                          
+                                     var="person"
+                                     editable="true"
+                                     >
+                            
+                            <p:ajax event="rowEdit" listener="#{rowEditView.onRowEdit}" />
+                            <p:ajax event="rowEditCancel" listener="#{rowEditView.onRowCancel}" />
+                            <p:ajax event="rowEditInit" listener="#{rowEditView.rowEditInit}" />
+
+                            <p:column headerText="Name">
+                                <p:cellEditor>
+                                    <f:facet name="output"><h:outputText value="#{person.firstName}" /></f:facet>
+                                    <f:facet name="input"><p:inputText value="#{person.firstName}" style="width:100%"/></f:facet>
+                                </p:cellEditor>
+                            </p:column>
+
+                            <p:column headerText="Height">
+                                <p:cellEditor>
+                                    <f:facet name="output"><h:outputText value="#{person.height}" /></f:facet>
+                                    <f:facet name="input"><p:inputText value="#{person.height}" converterMessage="#{msg1['err.convert.toNumber']}"/></f:facet>
+                                </p:cellEditor>
+                            </p:column>
+
+
+
+                            <p:column headerText="Age">
+                                <p:cellEditor>
+                                    <f:facet name="output"><h:outputText value="#{person.age}" /></f:facet>
+                                    <f:facet name="input"><p:spinner value="#{person.age}" style="width:100%"/></f:facet>
+                                </p:cellEditor>
+                            </p:column>
+
+                            <p:column sortBy="#{person.jobStartDate}">
+                                <f:facet name="header">Job start</f:facet>
+                                <h:outputText value="#{person.jobStartDate}" />
+                            </p:column>
+
+                            <p:column style="width:35px">
+                                <p:rowEditor />
+                            </p:column>
+                        </p:dataTable>
+                    </p:panel>
+                </h:form>
+            </p:tab>
+            <p:tab title="cell editing">
+                <h:form>
+                    <p:panel header="table p:dataTable - data editing in cells" toggleable="true">
+                        <p:dataTable id="personTableEditableCell" value="#{personData.persons}"
+                                     var="person"
+                                     editable="true"
+                                     editMode="cell"
+                                     >
+
+                            <p:column headerText="Name">
+                                <p:cellEditor>
+                                    <f:facet name="output"><h:outputText value="#{person.firstName}" /></f:facet>
+                                    <f:facet name="input"><p:inputText value="#{person.firstName}" style="width:100%"/></f:facet>
+                                </p:cellEditor>
+                            </p:column>
+
+                        </p:dataTable>
+                    </p:panel>
+                </h:form>
+            </p:tab>
+            <p:tab title="dynamic columns">
+                <h:form id="formDynamic">
+                    <p:panel id="panelDynamic" header="table p:dataTable - dynamic columns" toggleable="true">
+                        <p:repeat id="a" value="#{personTableDynamicColumns.columnsToEnable}" var="columnToEnable">
+                            <h:outputLabel value="#{columnToEnable.value.header}" />
+                            <p:selectBooleanCheckbox value="#{columnToEnable.value.enabled}">
+                                <p:ajax update=":dataTables:formDynamic:personTableDynamicCol" />
+                            </p:selectBooleanCheckbox>
+                        </p:repeat>
+                        <p:dataTable id="personTableDynamicCol" value="#{personData.persons}"
+                                     var="person"
+                                     >
+
+                            <p:columns value="#{personTableDynamicColumns.columns}" var="column">
+                                    <f:facet name="header">
+                                        <h:outputText value="#{column.header}" />
+                                    </f:facet>
+                                <h:outputText value="#{person[column.attrName]}" />
+                            </p:columns>
+
+                        </p:dataTable>
+                    </p:panel>
+                </h:form>
+            </p:tab>
+        </p:accordionPanel>
+        <h:form>
+            <h:panelGrid columns="3">
+                <h:outputLabel for="input1" value="label" />
+                <h:inputText value="bla1" id="input1"/>
+                <h:inputText value="bla2" id="input2"/>
+            </h:panelGrid>
+
+
+            <h2>Add person</h2>
+            <table>
+                <tr>
+                    <td>Name</td>
+                    <td>
+                        <h:inputText value="#{personData.firstName}"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Height</td>
+                    <td>
+                        <h:inputText value="#{personData.height}"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Age</td>
+                    <td>
+                        <h:inputText value="#{personData.age}"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Job start date</td>
+                    <td>
+                        <h:inputText value="#{personData.jobStartDate}">
+                            <f:converter converterId="PickListConverter"/>
+                        </h:inputText>
+                    </td>
+                </tr>
+            </table>
+            <h:commandButton value="Add person" action="#{personData.addPerson}"/>
+        </h:form>
+
+    </h:body>
 </html>
