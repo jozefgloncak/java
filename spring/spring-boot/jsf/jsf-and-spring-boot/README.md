@@ -360,6 +360,23 @@ xmlns:p="http://primefaces.org/ui"
 
 It is necessary to restart server. In XHTML then it is possible to use many Primefaces UI element.
 
+## Ajax
+It is extension of <f:ajax>.
+It is possible:
+* to define what should be updated through **update** attribute.
+* what action should be triggered on backend through **listener** attribute.
+* DOM **event** on which should be ajax triggered. If nothing specified there are default events. For input elements
+ **onchange** and for button **click**
+
+In example below on event *keyup* there is in backing bean triggered *increment* method and after response frontend 
+*out* is updated.
+```xhtml
+<h:inputText id="counter">
+    <p:ajax event="keyup" update="out" listener="#{counterBean.increment}"/>
+</h:inputText>
+<h:outputText id="out" value="#{counterBean.count}" />
+```
+
 ## Theme switch
 There is some default theme which is used. In **application.properties** it SHOULD be possible to change theme through
 *jsf.primefaces.theme* key but it doesn't work.
@@ -468,6 +485,45 @@ This example make shows how it is possible to specify dynamically which columns 
 *Columns* attribute of bean personTableDynamicColumns is object which contains attribute **heder** and **attrName
 **. Construction **person[column.attrName]** obtain from object *person* value of attribute which name is column
 .attrName.
+
+### Selecting
+There are 4 attitudes to selecting:
+* click on row (single select) - *rowSelect, rowUnselect* AJAX event
+```xhtml
+<p:dataTable id="tableRowSelect" value="#{personData.persons}" var="person"
+             selectionMode="single"
+             selection="#{personTableRowSelecting.selectedPerson}"
+             rowKey="#{person.id}">
+    <p:ajax event="rowSelect" listener="#{personTableRowSelecting.onRowSelected}" update="msgs" />
+    <p:ajax event="rowUnselect" listener="#{personTableRowSelecting.onRowUnselected}" update="msgs" />
+```
+* click on row holding CTRL key (multi select) - *rowSelect, rowUnselect* AJAX event
+```xhtml
+<p:dataTable id="tableMultiRowSelect" value="#{personData.persons}" var="person"
+             selectionMode="multiple"
+             selection="#{personTableRowSelecting.selectedPersons}"
+             rowKey="#{person.id}">
+    <p:ajax event="rowSelect" listener="#{personTableRowSelecting.onRowSelected}" update="msgs dataTables:formMultiSelect:personTableSelectedRows" />
+    <p:ajax event="rowUnselect" listener="#{personTableRowSelecting.onRowUnselected}" update="msgs dataTables:formMultiSelect:personTableSelectedRows" />
+```
+* click on checkbox (multi select) - *rowSelectCheckbox, rowUnselectCheckbox* AJAX event
+```xhtml
+<p:dataTable id="personTableRowSelectingMultyCheckbox" value="#{personData.persons}" var="person"
+             selection="#{personTableRowSelecting.selectedPersons}"
+             rowKey="#{person.id}">
+    <p:ajax event="rowSelectCheckbox" listener="#{personTableRowSelecting.onChecked}" update="msgs dataTables:formMultiSelect:tableMultiRowSelect" />
+    <p:ajax event="rowUnselectCheckbox" listener="#{personTableRowSelecting.onUnchecked}" update="msgs dataTables:formMultiSelect:tableMultiRowSelect" />
+    <p:column selectionMode="multiple" style="width:16px;text-align:center"/>
+```
+* click on radio button (single select) - *rowSelectRadio* AJAX event
+```xhtml
+<p:dataTable id="tableRowSelect" value="#{personData.persons}" var="person"                                         
+             selection="#{personTableRowSelecting.selectedPerson}"
+             rowKey="#{person.id}">
+    <p:ajax event="rowSelectRadio" listener="#{personTableRowSelecting.onRadioSelected}" update="msgs dataTables:formSingleSelect:tableRowSelect" />
+    <p:column selectionMode="single" style="width:16px;text-align:center"/>
+```
+
 
 # Joinfaces
 It is project which autoconfigure PrimeFaces, Mojarra, JSF and many otheers. [More details](http://joinfaces.org/)

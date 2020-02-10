@@ -26,6 +26,8 @@
 
 
     <h:body>
+        <p:growl id="msgs" />
+
         <h:form>
             <h:commandLink action="#{navigationController.resolvePage}" value="menu">
                 <f:param name="pageId" value=""/>
@@ -177,6 +179,73 @@
                         </p:dataTable>
                     </p:panel>
                 </h:form>
+            </p:tab>
+            <p:tab title="selecting rows">
+                <div class="ui-g">
+                <p:panel class="ui-g-6" header="multiselect">
+                <h:form  id="formMultiSelect">
+                    <p:dataTable id="tableMultiRowSelect" value="#{personData.persons}" var="person"
+                                 selectionMode="multiple"
+                                 selection="#{personTableRowSelecting.selectedPersons}"
+                                 rowKey="#{person.id}">
+                        <p:ajax event="rowSelect" listener="#{personTableRowSelecting.onRowSelected}" update="msgs dataTables:formMultiSelect:personTableSelectedRows" />
+                        <p:ajax event="rowUnselect" listener="#{personTableRowSelecting.onRowUnselected}" update="msgs dataTables:formMultiSelect:personTableSelectedRows" />
+                        <p:column headerText="First name">
+                            <h:outputText value="#{person.firstName}" />
+                        </p:column>
+                    </p:dataTable>
+                    <p:dataTable id="personTableSelectedRows" value="#{personTableRowSelecting.selectedPersons}" var="person">
+                        <p:column headerText="#{empty personTableRowSelecting.selectedPersons ? 'nothing selected' : 'selected rows'}" >
+                            <h:outputText value="#{person.firstName}" />
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+                </p:panel>
+                <p:panel class="ui-g-6" header="single select">
+                <h:form  id="formSingleSelect">
+                    <p:dataTable id="tableRowSelect" value="#{personData.persons}" var="person"
+                                 selectionMode="single"
+                                 selection="#{personTableRowSelecting.selectedPerson}"
+                                 rowKey="#{person.id}">
+                        <p:ajax event="rowSelect" listener="#{personTableRowSelecting.onRowSelected}" update="msgs" />
+                        <p:ajax event="rowUnselect" listener="#{personTableRowSelecting.onRowUnselected}" update="msgs" />
+                        <p:column headerText="First name">
+                            <h:outputText value="#{person.firstName}" />                            
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+                </p:panel>
+                </div>
+                <div class="ui-g" >
+                    <p:panel class="ui-g-6" header="multi select - checkboxes">
+                        <h:form  id="formSingleSelectAsCheckbox">
+                            <p:dataTable id="personTableRowSelectingMultyCheckbox" value="#{personData.persons}" var="person"
+                                         selection="#{personTableRowSelecting.selectedPersons}"
+                                         rowKey="#{person.id}">
+                                <p:ajax event="rowSelectCheckbox" listener="#{personTableRowSelecting.onChecked}" update="msgs dataTables:formMultiSelect:tableMultiRowSelect" />
+                                <p:ajax event="rowUnselectCheckbox" listener="#{personTableRowSelecting.onUnchecked}" update="msgs dataTables:formMultiSelect:tableMultiRowSelect" />
+                                <p:column selectionMode="multiple" style="width:16px;text-align:center"/>
+                                <p:column headerText="First name">
+                                    <h:outputText value="#{person.firstName}" />                            
+                                </p:column>
+                            </p:dataTable>
+                        </h:form>
+                    </p:panel>
+                    <p:panel class="ui-g-6" header="single select - radio">
+                        <h:form  id="formSingleSelectAsRadio">
+                            <p:dataTable id="tableRowSelect" value="#{personData.persons}" var="person"                                         
+                                         selection="#{personTableRowSelecting.selectedPerson}"
+                                         rowKey="#{person.id}">
+                                <p:ajax event="rowSelectRadio" listener="#{personTableRowSelecting.onRadioSelected}" update="msgs dataTables:formSingleSelect:tableRowSelect" />
+                                <p:column selectionMode="single" style="width:16px;text-align:center"/>
+                                <p:column headerText="First name">
+                                    <h:outputText value="#{person.firstName}" />                            
+                                </p:column>
+                            </p:dataTable>
+                        </h:form>
+                    </p:panel>
+                </div>
+
             </p:tab>
         </p:accordionPanel>
         <h:form>

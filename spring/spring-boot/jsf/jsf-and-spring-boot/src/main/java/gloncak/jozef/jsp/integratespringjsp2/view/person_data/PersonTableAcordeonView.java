@@ -10,10 +10,10 @@ import javax.faces.view.ViewScoped;
 @ViewScoped
 public class PersonTableAcordeonView implements Serializable {
     private Boolean expandAllTabs;
-    private String expandedTabs = "3";
+    private String expandedTabs = "4";
 
     public void expandCollapseAllTabs() {
-        expandedTabs = expandAllTabs ? "0,1,2,3" : "";
+        expandedTabs = expandAllTabs ? "0,1,2,3,4" : "";
     }
 
     public Boolean getExpandAllTabs() {
