@@ -341,4 +341,10 @@ public class Person implements Serializable, Cloneable {
         }
         return true;
     }
+
+    @Override
+    public String toString() {
+        return "Person{" + "firstName='" + firstName + '\'' + ", age=" + age + ", height=" + height + ", jobStartDate" +
+                "=" + jobStartDate + '}';
+    }
 }
