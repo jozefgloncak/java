@@ -1,15 +1,15 @@
 # About
 Following remarks come mainly from tutorial [1](#coreServlets)
 
-Once is project started directly from IDE (IntelliJ) than it is possible it just simply run (e. g. click R-mouse on
- Application class). If you want to crete runnable JAR with embeded Tomcat it is necessary to change packaging in pom to
-```xml
-<package>war</package>
-```
+Example can be run at least in 3 ways:
+- directly from IDE (IntelliJ, NetBeans) than it is possible it just simply run (e. g. click R-mouse on
+ Application class).
+- through runnable archive - to crete runnable WAR with embeded Tomcat it is necessary to change packaging in pom to
 then it is possible to simply run from command line
 ```
 java -jar archive_name.war
 ```
+- by deployng war in container (e. g. tomcat) by copying war file to **webapps** folder of tomcat where it will be automatically unwrapped and deployed
 # JSF
 ## Lifecycle of JSF
 * getter methods of bean are called once form is **displayed**

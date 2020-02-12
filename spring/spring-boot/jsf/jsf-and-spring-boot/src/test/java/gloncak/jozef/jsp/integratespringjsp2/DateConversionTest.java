@@ -15,7 +15,7 @@ import java.util.Locale;
 
 public class DateConversionTest {
 
-    @Test
+//    @Test
     public void simpleDateConversionTest() throws ParseException {
         DateFormat dateInstance = DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.getDefault());
         DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM);
@@ -26,7 +26,7 @@ public class DateConversionTest {
 
     }
 
-    @Test
+//    @Test
     public void simpleDateFormationTest() {
         DateFormat dateInstance = DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.getDefault());
         Instant instant = LocalDate.of(2019, 4, 4).atStartOfDay().atZone(ZoneId.systemDefault()).toInstant();

@@ -9,11 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>gloncak.jozef.jsp</groupId>
-	<artifactId>integrate-spring-jsp2</artifactId>
+	<artifactId>spring-boot-and-primefaces</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-<!--	this packiging war value should be used once you want to generate runnable, tomcat enabled archive (war)-->
-<!--	<packaging>war</packaging>-->
-	<name>integrate-spring-jsp2</name>
+	<packaging>war</packaging>
+	<name>Integeration of spring boot and primefaces</name>
 	<description>Demo project for Spring Boot integration with jsp</description>
 
 	<properties>
