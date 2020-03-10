@@ -7,3 +7,4 @@ without neccesity to change file inside JAR file. To make it possible class path
 in part maven-assembly-plugin. Also copying of file outside of jar is done through resource where is in include defined this
 file.
 
+Inspiration from [this site](https://stackoverflow.com/questions/5132389/if-using-maven-usually-you-put-log4j-properties-under-java-or-resourcesa) - comment from Zoltan
