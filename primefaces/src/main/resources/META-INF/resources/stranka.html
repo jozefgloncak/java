@@ -1,0 +1,58 @@
+<html>
+<style>
+        .outDiv {
+            border: solid 1px;
+        }
+
+        .element {
+            border: solid 0px;
+            margin: 5px
+        }
+
+        .row {
+            border: solid 1px;
+            display:flex;
+            flex-direction:row;
+            justify-content:space-between;
+        }
+
+
+        label {
+            display:block;
+        }
+
+
+</style>
+<body>
+<div class="outDiv" style="width:600px">
+    <div class="row">
+        <div class="element" style="width:25%">
+            <label for="titulPred">Titul pred</label>
+            <input type="text" value="" size="10" style="width:100%"/>
+        </div>
+        <div class="element" style="width:45%">
+            <label for="name">Name</label>
+            <input type="text" value="" size="15" style="width:100%"/>
+        </div>
+        <div class="element" style="width:35%">
+            <label for="surname">Surname</label>
+            <input type="text" value="" size="10" style="width:100%"/>
+        </div>
+        <div class="element" style="width:15%">
+            <label for="titulZa">Titul za</label>
+            <input type="text" value="" size="10" style="width:100%"/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="element" style="width:25%">
+            <label for="pohlavie">Pohlavie</label>
+            <select name="pohlavie">
+                <option value="muz">muz</option>
+                <option value="zena">zena</option>
+            </select>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
