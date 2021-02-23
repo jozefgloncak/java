@@ -9,7 +9,12 @@
 
   <modules>
     <module>time</module>
-      <module>hibernate</module>
+    <module>hibernate</module>
+    <module>wsdl-test</module>
+    <module>java8-features</module>
+    <module>kafka</module>
+    <module>xlsx</module>
+    <module>spring</module>
   </modules>
 
 </project>
