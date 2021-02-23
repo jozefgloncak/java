@@ -1,0 +1,126 @@
+<div xmlns:p="http://primefaces.org/ui"
+     xmlns:h="http://java.sun.com/jsf/html"
+     xmlns:ui="http://java.sun.com/jsf/facelets"
+     xmlns:f="http://java.sun.com/jsf/core" >
+
+    <script>
+
+    function changeFarbaPozadiaPreZmenu(rowIndex, styl) {
+        console.log("bla");
+        var tbody = document.getElementById("fmDetail:dtOtazky_data");
+        //            console.log(tbody);
+        var rows = tbody.children;
+                //            console.log(rows);
+                //            console.log(rows[rowIndex]);
+                var row = rows[rowIndex];
+                var classList = row.classList
+                classList.add(styl);
+                console.log(classList);
+    }
+            
+    function resolveRowID(buttonEl) {       
+        var buttonID = buttonEl.id
+        var idx = buttonID.lastIndexOf(":")
+        buttonIDWithoutOdobrat = buttonID.substr(0,idx)
+        var idx = buttonIDWithoutOdobrat.lastIndexOf(":")
+        return buttonIDWithoutOdobrat.substr(idx+1);
+    }
+
+    function jSNaZmazanie(buttonEl) {
+        var rowIdx = resolveRowID(buttonEl);
+        changeFarbaPozadiaPreZmenu(rowIdx, "naZmazanie");
+    }
+
+    function jSNaPridanie() {
+        PF('polozkyWidget').addRow();
+        var tbody = document.getElementById("fmDetail:dtOtazky_data");        
+        var row = tbody.lastChild;
+        console.log(row);
+        var classList = row.classList
+        classList.add("naPridanie");
+    }
+
+</script>
+        <h:outputStylesheet>
+            .naPridanie {
+                background-color:  #7dcea0  !important;
+            }
+
+            .naZmazanie {
+                background-color: #f5b7b1  !important;
+            }
+
+            .naZmenu {
+                background-color:  #fad7a0  !important;
+            }
+
+            .textArea {
+                width: 100%;
+            }
+
+            </h:outputStylesheet>        
+            <h:panelGroup layout="block" id="panDotaznikContainer">
+
+                <p:panelGrid id="panDotaznikTable" columns="1">
+                    <p:dataTable id="dtOtazky"
+                                 value="#{controller.polozky}" var="polozka"
+                                 rowKey="#{polozkaDotaznika.dokDotaznik.idDokDotaznik}"
+                                 rowIndexVar="index"
+                                 widgetVar="polozkyWidget"
+                                 >
+
+                        <p:column headerText="otazka" >
+                            <p:outputPanel id="otazkaPanel">
+                                <p:inputTextarea id="itOtazka" value="#{polozka.value.dokDotaznik.otazka}"
+                                                 disabled="#{isDisabled or polozka.value.akcia eq 'naZmazanie'}"
+                                                 class="textArea"
+                                                 maxlength="500">
+                                    <p:ajax update=":fmDetail:dtOtazky:#{index}:akciaPanel" 
+                                            listener="#{controller.acRowEdited(polozka.value.id)}" 
+                                            oncomplete="changeFarbaPozadiaPreZmenu(#{index})"/>
+                                </p:inputTextarea>
+                            </p:outputPanel>
+                        </p:column>
+
+                        <p:column headerText="odpoved" >
+                            <p:outputPanel id="odpovedPanel">
+                                <p:inputTextarea value="#{polozka.value.dokDotaznik.odpoved}" 
+                                                 disabled="#{isDisabled or polozka.value.akcia eq 'naZmazanie'}"
+                                                 class="textArea"
+                                                 maxlength="500">
+                                    <p:ajax update=":fmDetail:dtOtazky:#{index}:akciaPanel" 
+                                            listener="#{controller.acRowEdited(polozka.value.id)}" 
+                                            oncomplete="changeFarbaPozadiaPreZmenu(#{index}, 'naZmenu')"/>
+                                </p:inputTextarea>
+
+                            </p:outputPanel>
+                        </p:column>
+
+                        <p:column headerText="akcia" >
+                            <p:outputPanel id="akciaPanel">
+                                <p:commandButton id="odobrat" value="-"
+                                                 actionListener="#{controller.acOdobratPolozku(polozka.value.id)}"
+                                                 process="@this"
+                                                 update="@this:@parent"
+                                                 oncomplete="jSNaZmazanie(document.activeElement)"
+                                                 />
+                                
+                                <p:inputText id="akcia" value="#{polozka.value.akcia}" />
+                            </p:outputPanel>
+                        </p:column>
+
+                    </p:dataTable>
+                    <p:commandButton id="pridat" value="+"
+                                     actionListener="#{controller.acPridatPolozku()}"  
+                                     process="@this"
+                                     update="@none"
+                                     oncomplete="jSNaPridanie()"/>
+                    <p:commandButton id="save" value="save"
+                                     actionListener="#{controller.acSave()}" />
+
+                    
+                </p:panelGrid>
+
+            </h:panelGroup>    
+
+</div>

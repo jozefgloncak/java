@@ -33,7 +33,7 @@ java -jar archive_name.war
 * initParam
 All of this variables are available and can be accessed as #{variableName}. All of them has many getters and access
  many
-[useful information](src/main/webapp/collections/collections.xhtml)
+[useful information](src/main/resources/META-INF/resources/collections/collections.xhtml)
 
 
 

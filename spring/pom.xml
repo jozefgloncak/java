@@ -13,5 +13,6 @@
         <module>pure-framework</module>
         <module>web</module>
         <module>data-access-agregation</module>
+        <module>spring-boot/jsf/jsf-and-spring-boot</module>
     </modules>
 </project>
