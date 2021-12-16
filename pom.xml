@@ -15,6 +15,7 @@
     <module>kafka</module>
     <module>xlsx</module>
     <module>spring</module>
+    <module>mouse-mover</module>
   </modules>
 
 </project>
