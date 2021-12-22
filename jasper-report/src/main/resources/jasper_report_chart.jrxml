@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<jasperReport xmlns = "http://jasperreports.sourceforge.net/jasperreports"
+              xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation = "http://jasperreports.sourceforge.net/jasperreports
+   http://jasperreports.sourceforge.net/xsd/jasperreport.xsd"
+              name = "jasper_report_template" pageWidth = "595" pageHeight = "860"
+              columnWidth = "515" leftMargin = "40" rightMargin = "40"
+              topMargin = "50" bottomMargin = "50">
+
+    <field name = "city" class = "java.lang.String"/>
+    <field name = "population" class = "java.lang.Integer"/>
+
+    <variable name = "countNumber" class = "java.lang.Integer" calculation = "Count">
+        <variableExpression>
+            <![CDATA[Boolean.TRUE]]>
+        </variableExpression>
+    </variable>
+
+    <background>
+        <band splitType = "Stretch"/>
+    </background>
+
+    <title>
+        <band height = "79" splitType = "Stretch"/>
+    </title>
+
+    <pageHeader>
+        <band height = "600">
+
+            <barChart>
+                <chart evaluationTime = "Report">
+                    <reportElement x = "0" y = "0" width = "555" height = "300"/>
+
+                    <chartTitle>
+                        <titleExpression>
+                            <![CDATA["Population - bar chart"]]>
+                        </titleExpression>
+                    </chartTitle>
+                </chart>
+
+                <categoryDataset>
+                    <dataset incrementType = "None"/>
+
+                    <categorySeries>
+                        <seriesExpression>
+                            <![CDATA[$F{city}]]>
+                        </seriesExpression>
+
+                        <categoryExpression>
+                            <![CDATA[$F{city}]]>
+                        </categoryExpression>
+
+                        <valueExpression>
+                            <![CDATA[$F{population}]]>
+                        </valueExpression>
+
+                    </categorySeries>
+                </categoryDataset>
+
+                <barPlot isShowTickMarks = "true">
+                    <plot labelRotation="45"/>
+                </barPlot>
+            </barChart>
+            <pieChart>
+                <chart evaluationTime = "Report">
+                    <reportElement x = "135" y = "300" width = "270" height = "300"/>
+
+                    <chartTitle>
+                        <titleExpression>
+                            <![CDATA["Population - pie chart"]]>
+                        </titleExpression>
+                    </chartTitle>
+                </chart>
+
+                <pieDataset>
+                    <dataset incrementType = "None"/>
+
+                    <keyExpression>
+                        <![CDATA[$F{city}]]>
+                    </keyExpression>
+
+                    <valueExpression>
+                        <![CDATA[$F{population}]]>
+                    </valueExpression>
+                </pieDataset>
+
+                <piePlot>
+                    <plot/>
+                    <itemLabel/>
+                </piePlot>
+            </pieChart>
+
+
+        </band>
+    </pageHeader>
+
+</jasperReport>
