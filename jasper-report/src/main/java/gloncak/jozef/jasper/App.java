@@ -2,6 +2,7 @@ package gloncak.jozef.jasper;
 
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.data.JRCsvDataSource;
 import net.sf.jasperreports.engine.export.JRXlsExporter;
 import net.sf.jasperreports.export.SimpleExporterInput;
 import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
@@ -28,7 +29,9 @@ public class App
 //                    "\\java" +
 //                    "\\jasper-report\\src\\main\\resources\\jasper_report_template.jrxml");
 //            FileOutputStream fileOutputStream = new FileOutputStream("jasper_report_template.jasper");
-            String sourceFileName = isReadFromDB(args) ? "jasper_report_template_db.jrxml" : "jasper_report_template.jrxml";
+            String ds = provideDataSource(args);
+            String sourceFileName = "db".equalsIgnoreCase(ds)  ? "jasper_report_template_db.jrxml" :
+                    "jasper_report_template.jrxml";
             InputStream resourceAsStream = App.class.getClassLoader().getResourceAsStream(sourceFileName);
             jasperReport = JasperCompileManager.compileReport(resourceAsStream);
 
@@ -38,7 +41,7 @@ public class App
             params.put("Author", "Author of report");
 
             JasperPrint jrPrint;
-            if (isReadFromDB(args)) {
+            if ("db".equalsIgnoreCase(ds)) {
                 DBManager dbManager = new DBManager();
                 dbManager.executeUpdate("drop table simple");
                 if (dbManager.executeUpdate("    CREATE TABLE IF NOT EXISTS SIMPLE " +
@@ -57,15 +60,24 @@ public class App
                 Connection conn = dbManager.provideDBConnection();
                 jrPrint = JasperFillManager.fillReport(jasperReport, params, conn);
 
+            } else if ("csv".equalsIgnoreCase(ds)){
+
+                InputStream countryIS = App.class.getClassLoader().getResourceAsStream("country.csv");
+                JRCsvDataSource jrCsvDataSource = new JRCsvDataSource(countryIS);
+                jrCsvDataSource.setColumnNames(new String[]{"name", "country"});
+                jrPrint = JasperFillManager.fillReport(jasperReport, params, jrCsvDataSource);
+
             } else {
                 //generate dummy data
                 List<DataBean> data = Arrays.asList(
+                        new DataBean("Name4", "Country2"),
                         new DataBean("Name1", "Country1"),
+                        new DataBean("Name3", "Country1"),
                         new DataBean("Name2", "Country2"),
-                        new DataBean("Name3", "Country3"),
-                        new DataBean("Name4", "Country4")
+                        new DataBean("Name5", "Country4"),
+                        new DataBean("Name6", "Country3"),
+                        new DataBean("Name7", "Country1")
                 );
-
                 JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(data);
                 jrPrint = JasperFillManager.fillReport(jasperReport, params, dataSource);
 
@@ -92,7 +104,18 @@ public class App
 
     }
 
-    private static boolean isReadFromDB(String[] args) {
-        return args.length > 0 && "db".equalsIgnoreCase(args[0]);
+    private static String provideDataSource(String[] args) {
+        if (args.length == 0 ) {
+            return "";
+        }
+
+        if ("db".equalsIgnoreCase(args[0])) {
+            return "db";
+        }
+
+        if ("csv".equalsIgnoreCase(args[0])) {
+            return "csv";
+        }
+        return "";
     }
 }

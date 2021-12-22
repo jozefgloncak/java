@@ -2,11 +2,11 @@ package gloncak.jozef.jasper;
 
 public class DataBean {
     private String name;
-    private String country;
+    private String coutr;
 
-    public DataBean(String name, String country) {
+    public DataBean(String name, String coutr) {
         this.name = name;
-        this.country = country;
+        this.coutr = coutr;
     }
 
     public String getName() {
@@ -17,11 +17,11 @@ public class DataBean {
         this.name = name;
     }
 
-    public String getCountry() {
-        return country;
+    public String getCoutr() {
+        return coutr;
     }
 
-    public void setCountry(String country) {
-        this.country = country;
+    public void setCoutr(String coutr) {
+        this.coutr = coutr;
     }
 }
