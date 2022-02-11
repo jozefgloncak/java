@@ -1,11 +1,11 @@
-package gloncak.jozef.hibernate.many.to.many.entities;
+package gloncak.jozef.hibernate.many.to.many.entities.first;
 
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "EMPLOYEER_UNIDIRECT")
-public class EmployeerUnidirect {
+@Table(name = "EMPLOYEER_UNIDIRECT_A")
+public class EmployeerUnidirectA {
 
     @Id
     @GeneratedValue
@@ -14,12 +14,12 @@ public class EmployeerUnidirect {
     private String name;
 
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    private Set<PersonUnidirect> persons;
+    private Set<PersonUnidirectA> persons;
 
-    public EmployeerUnidirect() {
+    public EmployeerUnidirectA() {
     }
 
-    public EmployeerUnidirect(String name) {
+    public EmployeerUnidirectA(String name) {
         this.name = name;
     }
 
@@ -39,11 +39,11 @@ public class EmployeerUnidirect {
         this.name = name;
     }
 
-    public Set<PersonUnidirect> getPersons() {
+    public Set<PersonUnidirectA> getPersons() {
         return persons;
     }
 
-    public void setPersons(Set<PersonUnidirect> persons) {
+    public void setPersons(Set<PersonUnidirectA> persons) {
         this.persons = persons;
     }
 }

@@ -1,14 +1,10 @@
-package gloncak.jozef.hibernate.many.to.many.entities;
+package gloncak.jozef.hibernate.many.to.many.entities.second;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import java.util.Set;
+import javax.persistence.*;
 
 @Entity
-@Table(name = "PERSON_UNIDIRECT")
-public class PersonUnidirect {
+@Table(name = "EMPLOYER_UNIDIRECT_B")
+public class EmployerUnidirectB {
 
     @Id
     @GeneratedValue
@@ -16,10 +12,10 @@ public class PersonUnidirect {
 
     private String name;
 
-    public PersonUnidirect() {
+    public EmployerUnidirectB() {
     }
 
-    public PersonUnidirect(String name) {
+    public EmployerUnidirectB(String name) {
         this.name = name;
     }
 
@@ -38,4 +34,5 @@ public class PersonUnidirect {
     public void setName(String name) {
         this.name = name;
     }
+
 }

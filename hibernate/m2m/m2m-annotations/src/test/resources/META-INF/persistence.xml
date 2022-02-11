@@ -5,10 +5,12 @@
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/persistence">
     <persistence-unit name="employment">
         <description>Persistence unit for Books</description>
-<!--        <class>gloncak.jozef.hibernate.many.to.many.entities.EmployeerBidirect</class>-->
-        <class>gloncak.jozef.hibernate.many.to.many.entities.EmployeerUnidirect</class>
-<!--        <class>gloncak.jozef.hibernate.many.to.many.entities.PersonBidirect</class>-->
-        <class>gloncak.jozef.hibernate.many.to.many.entities.PersonUnidirect</class>
+<!--        <class>gloncak.jozef.hibernate.many.to.many.entities.third.EmployerBidirect</class>-->
+        <class>gloncak.jozef.hibernate.many.to.many.entities.first.EmployeerUnidirectA</class>
+        <class>gloncak.jozef.hibernate.many.to.many.entities.second.EmployerUnidirectB</class>
+<!--        <class>gloncak.jozef.hibernate.many.to.many.entities.third.PersonBidirect</class>-->
+        <class>gloncak.jozef.hibernate.many.to.many.entities.first.PersonUnidirectA</class>
+        <class>gloncak.jozef.hibernate.many.to.many.entities.second.PersonUnidirectB</class>
         <properties>
             <property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>
 <!--            <property name="javax.persistence.jdbc.url" value="jdbc:h2:tcp://localhost/~/test"/>-->
@@ -24,8 +26,26 @@
     </persistence-unit>
     <persistence-unit name="employment_bidirectional">
         <description>Persistence unit for Books</description>
-        <class>gloncak.jozef.hibernate.many.to.many.entities.EmployeerBidirect</class>
-        <class>gloncak.jozef.hibernate.many.to.many.entities.PersonBidirect</class>
+        <class>gloncak.jozef.hibernate.many.to.many.entities.third.EmployerBidirect</class>
+        <class>gloncak.jozef.hibernate.many.to.many.entities.third.PersonBidirect</class>
+        <properties>
+            <property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>
+<!--            <property name="javax.persistence.jdbc.url" value="jdbc:h2:tcp://localhost/~/test"/>-->
+<!--            <property name="javax.persistence.jdbc.url" value="jdbc:h2:~/test"/>-->
+            <property name="javax.persistence.jdbc.url" value="jdbc:h2:mem:test"/>
+            <property name="javax.persistence.jdbc.user" value="sa"/>
+            <property name="javax.persistence.jdbc.password" value=""/>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+            <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect   "/>
+        </properties>
+    </persistence-unit>
+    <persistence-unit name="employment_bidirectional_join">
+        <description>Persistence unit for many2many anotation with join table</description>
+        <class>gloncak.jozef.hibernate.many.to.many.entities.fourth.EmployerBidirectJoin</class>
+        <class>gloncak.jozef.hibernate.many.to.many.entities.fourth.PersonBidirectJoin</class>
+        <class>gloncak.jozef.hibernate.many.to.many.entities.fourth.EmployerPersonBidirectJoin</class>
         <properties>
             <property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>
 <!--            <property name="javax.persistence.jdbc.url" value="jdbc:h2:tcp://localhost/~/test"/>-->

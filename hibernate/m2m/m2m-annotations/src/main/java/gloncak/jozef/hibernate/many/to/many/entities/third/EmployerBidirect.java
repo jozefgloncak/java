@@ -1,4 +1,4 @@
-package gloncak.jozef.hibernate.many.to.many.entities;
+package gloncak.jozef.hibernate.many.to.many.entities.third;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -6,7 +6,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "EMPLOYEER_BIDIRECT")
-public class EmployeerBidirect {
+public class EmployerBidirect {
     @Id
     @GeneratedValue
     private Integer id;
@@ -16,21 +16,21 @@ public class EmployeerBidirect {
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Set<PersonBidirect> persons = new HashSet<>();
 
-    public EmployeerBidirect() {
+    public EmployerBidirect() {
     }
 
-    public EmployeerBidirect(String name) {
+    public EmployerBidirect(String name) {
         this.name = name;
     }
 
     public void addPerson(PersonBidirect person) {
         this.persons.add(person);
-        person.getEmployees().add(this);
+        person.getEmployers().add(this);
     }
 
     public void removePerson(PersonBidirect person) {
         this.persons.remove(person);
-        person.getEmployees().remove(this);
+        person.getEmployers().remove(this);
     }
 
     public Integer getId() {
