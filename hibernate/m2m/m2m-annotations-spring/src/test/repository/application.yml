@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    #url: jdbc:h2:mem:testdb
+    url: jdbc:h2:tcp://localhost/~/test
+    #url: jdbc:h2:file:~/testt
+    driverClassName: org.h2.Driver
+    username: sa
+    password:
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      #ddl-auto: update
+      ddl-auto: create #po kazdom teste sa
+  test:
+    database:
+      replace: none  #zabezpeci ze nedojde ku revertu zmien, ktore boli vykonane v ramci testu
+
+---
+spring:
+  profiles: junit_memory
+  datasource:
+    url: jdbc:h2:mem:testdb
+
