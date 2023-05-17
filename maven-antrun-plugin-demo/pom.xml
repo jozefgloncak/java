@@ -15,10 +15,18 @@
         <windows.bash>d:\cygwin64\bin\bash.exe</windows.bash>
     </properties>
 
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.2</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
     <build>
         <plugins>
             <plugin>
-<!--                https://ant.apache.org/manual/tasksoverview.html-->
+                <!--                https://ant.apache.org/manual/tasksoverview.html-->
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-antrun-plugin</artifactId>
                 <version>3.1.0</version>
@@ -35,43 +43,43 @@
                         <id>CLEAN ID</id>
                         <configuration>
                             <target>
-                                <echo message=":::Clean phase start" />
-                                <echo message=":Current directory" />
+                                <echo message=":::Clean phase start"/>
+                                <echo message=":Current directory"/>
                                 <exec executable="cmd">
-                                    <arg value="/c" />
-                                    <arg value="echo" />
-                                    <arg value="%CD%" />
+                                    <arg value="/c"/>
+                                    <arg value="echo"/>
+                                    <arg value="%CD%"/>
                                 </exec>
-                                <echo message=":Remove previous zip file" />
-<!--                                <exec executable="cmd">-->
-<!--                                    <arg value="/c" />-->
-<!--                                    <arg value="del" />-->
-<!--                                    <arg value="files\files.zip" />-->
-<!--                                </exec>-->
-                                <delete file="files/files.zip" />
-                                <echo message=":Zipping folder files" />
-                                <zip destfile="files/files.zip" basedir="files" />
-                                <echo message=":List files" />
+                                <echo message=":Remove previous zip file"/>
+                                <!--                                <exec executable="cmd">-->
+                                <!--                                    <arg value="/c" />-->
+                                <!--                                    <arg value="del" />-->
+                                <!--                                    <arg value="files\files.zip" />-->
+                                <!--                                </exec>-->
+                                <delete file="files/files.zip"/>
+                                <echo message=":Zipping folder files"/>
+                                <zip destfile="files/files.zip" basedir="files"/>
+                                <echo message=":List files"/>
                                 <exec executable="cmd">
-                                    <arg value="/c" />
-                                    <arg value="dir" />
+                                    <arg value="/c"/>
+                                    <arg value="dir"/>
                                 </exec>
-                                <echo message="Aktualny os ${os.name}" />
-                                <echo message="Replace in file 'file1.txt occurences of 'na' string" />
-                                <delete file="file1_copy.txt" />
-                                <copy file="files/file1.txt" tofile="file1_copy.txt" />
-                                <replace file="file1_copy.txt" token="na" value="NA" />
+                                <echo message="Aktualny os ${os.name}"/>
+                                <echo message="Replace in file 'file1.txt occurences of 'na' string"/>
+                                <delete file="file1_copy.txt"/>
+                                <copy file="files/file1.txt" tofile="file1_copy.txt"/>
+                                <replace file="file1_copy.txt" token="na" value="NA"/>
 
-                                <echo message="Properties" />
-                                <echoproperties />
-                                <echo message=":::Clean phase end***" />
+                                <echo message="Properties"/>
+                                <echoproperties/>
+                                <echo message=":::Clean phase end***"/>
 
-                                <echo message="Script bat" />
-                                <exec executable="script.bat" />
+                                <echo message="Script bat"/>
+                                <exec executable="script.bat"/>
 
-                                <echo message="Script sh" />
+                                <echo message="Script sh"/>
                                 <exec executable="${windows.bash}">
-                                    <arg value="script.sh" />
+                                    <arg value="script.sh"/>
                                 </exec>
                             </target>
                         </configuration>
@@ -84,8 +92,8 @@
                         <id>VALIDATE ID</id>
                         <configuration>
                             <target>
-                                <echo message="Validate phase start" />
-                                <echo message="Validate phase end" />
+                                <echo message="Validate phase start"/>
+                                <echo message="Validate phase end"/>
                             </target>
                         </configuration>
                         <goals>
@@ -96,6 +104,16 @@
             </plugin>
         </plugins>
     </build>
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-report-plugin</artifactId>
+                <version>3.1.0</version>
+            </plugin>
+        </plugins>
+
+    </reporting>
 
 
 </project>
