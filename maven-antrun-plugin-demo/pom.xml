@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.example</groupId>
+    <artifactId>maven-antrun-plugin-demo</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <windows.bash>d:\cygwin64\bin\bash.exe</windows.bash>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+<!--                https://ant.apache.org/manual/tasksoverview.html-->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>3.1.0</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.apache.ant</groupId>
+                        <artifactId>ant-apache-bsf</artifactId>
+                        <version>1.10.13</version>
+                    </dependency>
+                </dependencies>
+                <executions>
+                    <execution>
+                        <phase>clean</phase>
+                        <id>CLEAN ID</id>
+                        <configuration>
+                            <target>
+                                <echo message=":::Clean phase start" />
+                                <echo message=":Current directory" />
+                                <exec executable="cmd">
+                                    <arg value="/c" />
+                                    <arg value="echo" />
+                                    <arg value="%CD%" />
+                                </exec>
+                                <echo message=":Remove previous zip file" />
+<!--                                <exec executable="cmd">-->
+<!--                                    <arg value="/c" />-->
+<!--                                    <arg value="del" />-->
+<!--                                    <arg value="files\files.zip" />-->
+<!--                                </exec>-->
+                                <delete file="files/files.zip" />
+                                <echo message=":Zipping folder files" />
+                                <zip destfile="files/files.zip" basedir="files" />
+                                <echo message=":List files" />
+                                <exec executable="cmd">
+                                    <arg value="/c" />
+                                    <arg value="dir" />
+                                </exec>
+                                <echo message="Aktualny os ${os.name}" />
+                                <echo message="Replace in file 'file1.txt occurences of 'na' string" />
+                                <delete file="file1_copy.txt" />
+                                <copy file="files/file1.txt" tofile="file1_copy.txt" />
+                                <replace file="file1_copy.txt" token="na" value="NA" />
+
+                                <echo message="Properties" />
+                                <echoproperties />
+                                <echo message=":::Clean phase end***" />
+
+                                <echo message="Script bat" />
+                                <exec executable="script.bat" />
+
+                                <echo message="Script sh" />
+                                <exec executable="${windows.bash}">
+                                    <arg value="script.sh" />
+                                </exec>
+                            </target>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <phase>validate</phase>
+                        <id>VALIDATE ID</id>
+                        <configuration>
+                            <target>
+                                <echo message="Validate phase start" />
+                                <echo message="Validate phase end" />
+                            </target>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+
+</project>

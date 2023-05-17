@@ -1,0 +1,4 @@
+file1.txt content
+subor NA NAhradenie vsetkych vyskytov slova NA.
+Ak sa slovo NA NAchadza, tak ho NAhradi za velke NA.
+Na, NA, NA.
